@@ -8,25 +8,53 @@
 </head>
 <body>
 
-    <header>
-        <a href="t-positions.html">← НАЗАД</a>
-        <h1>MIRAGE — СМОК У ВІКНО</h1>
-    </header>
+    <a href="t-mid.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">MIRAGE — СМОК У ВІКНО</div>
 
-        <div class="card">
-            <h3 class="card-title">🔥 СМОК У ВІКНО (MID)</h3>
-            <div class="single-img" style="max-width: 500px; margin: 0 auto;">
-                <img src="фото/t-window.png" alt="Смок у вікно">
-                <p class="img-label">🎯 ПРИЦІЛ / ПОЗИЦІЯ</p>
-            </div>
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ КИДОК: JUMPTHROW + D</span>
-            </div>
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-    </main>
+        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ -->
+        <div class="step-card">
+            <div class="step-title">📍 1. ПОЗИЦІЯ ГРАВЦЯ</div>
+            <img src="фото/t-mid-full-stand.jpg" alt="Позиція гравця" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-full-stand.png'">
+            <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ БІЛЯ ДВЕРЕЙ)</div>
+        </div>
+
+        <!-- 2. ЦІЛЬСЯ ТУТ -->
+        <div class="step-card">
+            <div class="step-title">🎯 2. ЦІЛЬСЯ ТУТ</div>
+            <img src="фото/t-mid-window-aim.jpg" alt="Приціл смок у вікно" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-window-aim.png'">
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- 3. ВПАДЕ ТУТ -->
+        <div class="step-card">
+            <div class="step-title">💥 3. ВПАДЕ ТУТ</div>
+            <img src="фото/t-mid-window-drop.jpg" alt="Результат смока у вікно" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-window-drop.png'">
+        </div>
+
+    </div>
+
+    <!-- ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Збільшене фото">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>

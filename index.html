@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CS2 Tactics - Карти</title>
+    <title>CS2 TAKTICS — ОБЕРИ КАРТУ</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .map-grid {
+        .maps-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 15px;
         }
 
+        /* Основна картка */
         .map-card {
-            position: relative;
-            border-radius: 12px;
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 10px;
             overflow: hidden;
             text-decoration: none;
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            aspect-ratio: 16 / 9;
-            background-color: #1a1a24;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .map-card:hover {
-            transform: translateY(-5px);
-            border-color: #ff4655;
+        .map-card-img-wrapper {
+            width: 100%;
+            height: 180px;
+            overflow: hidden; /* Щоб картинка не виходила за межі при зумі */
         }
 
         .map-card img {
@@ -37,41 +38,64 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease; /* Плавний зум */
         }
 
-        .map-title {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
+        .map-card-title {
             padding: 15px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
-            font-size: 1.4rem;
-            font-weight: bold;
             text-align: center;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 0;
+            background: #14161d;
+            transition: color 0.3s ease;
+        }
+
+        /* 💥 ЕФЕКТИ ПРИ НАВЕДЕННІ (HOVER) */
+        .map-card:hover {
+            border-color: #ff4655; /* Червона рамка */
+            transform: translateY(-5px); /* Легке піднімання картки */
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2); /* Червоне сяйво */
+        }
+
+        .map-card:hover img {
+            transform: scale(1.08); /* Ефект зближення фотографії */
+        }
+
+        .map-card:hover .map-card-title {
+            color: #ff4655; /* Текст стає червоним */
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>ОБЕРІТЬ КАРТУ</h1>
+        <h1>ОБЕРИ КАРТУ</h1>
     </header>
 
     <main>
-        <div class="map-grid">
-            <a href="mirage.html" class="map-card">
-                <img src="mirage.jpg" alt="Mirage" onerror="this.src='mirage.png'">
-                <div class="map-title">Mirage</div>
+
+        <div class="maps-grid">
+
+            <!-- MIRAGE -->
+            <a href="side.html" class="map-card">
+                <div class="map-card-img-wrapper">
+                    <img src="фото/mirage.png" alt="Mirage" onerror="this.src='фото/mirage.jpg'">
+                </div>
+                <h3 class="map-card-title">Mirage</h3>
             </a>
 
+            <!-- ANCIENT -->
             <a href="ancient.html" class="map-card">
-                <img src="ancient.png" alt="Ancient" onerror="this.src='ancient.jpg'">
-                <div class="map-title">Ancient</div>
+                <div class="map-card-img-wrapper">
+                    <img src="фото/ancient.png" alt="Ancient" onerror="this.src='фото/ancient.jpg'">
+                </div>
+                <h3 class="map-card-title">Ancient</h3>
             </a>
+
         </div>
+
     </main>
 
 </body>

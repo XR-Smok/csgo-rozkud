@@ -3,107 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAGE — Т ПОЗИЦІЇ</title>
+    <title>MIRAGE — ПОЗИЦІЇ (T)</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .positions-grid {
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 15px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .pos-card {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-radius: 10px;
-            overflow: hidden;
+        .card-link {
             text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pos-card-img-wrapper {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .pos-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            color: inherit;
             display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .pos-card-title {
-            padding: 14px;
-            text-align: center;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 15px;
-            margin: 0;
-            background: #14161d;
-            transition: color 0.3s ease;
-        }
-
-        .pos-card:hover {
-            border-color: #ff4655;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
-        }
-
-        .pos-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .pos-card:hover .pos-card-title {
-            color: #ff4655;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="side.html">← НАЗАД</a>
-        <h1>MIRAGE — Т ПОЗИЦІЇ</h1>
-    </header>
+    <!-- КНОПКА НАЗАД -->
+    <a href="side.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">MIRAGE — ПОЗИЦІЇ (T)</div>
 
-        <div class="positions-grid">
+    <div class="guide-container" style="max-width: 1100px;">
 
-            <!-- 1. A SITE -->
-            <a href="t-asite.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-asite.jpg" alt="A site" onerror="this.src='фото/t-asite.png'">
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- 1. РОЗКИД A SITE -->
+            <a href="t-asite.html" class="card-link">
+                <div class="map-card">
+                    <img src="фото/t-asite.jpg" alt="Розкид A site" class="step-img" onerror="this.src='фото/t-asite.png'">
+                    <div class="map-title">Розкид A site</div>
                 </div>
-                <h3 class="pos-card-title">Розкид A site</h3>
             </a>
 
-            <!-- 2. PALACE -->
-            <a href="t-palace.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/palace-preview.png" alt="Palace">
+            <!-- 2. РОЗКИД PALACE (ПАЛАЦ) -->
+            <a href="t-palace.html" class="card-link">
+                <div class="map-card">
+                    <img src="фото/palace-preview.jpg" alt="Розкид Palace" class="step-img" onerror="this.src='фото/palace-preview.png'">
+                    <div class="map-title">Розкид Palace (Палац)</div>
                 </div>
-                <h3 class="pos-card-title">Розкид Palace (Палац)</h3>
             </a>
 
-            <!-- 3. РОЗКИД MID (БЕЗ ДУЖОК) -->
-            <a href="t-mid.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-mid.png" alt="Mid">
+            <!-- 3. РОЗКИД MID -->
+            <a href="t-mid.html" class="card-link">
+                <div class="map-card">
+                    <img src="фото/t-mid.jpg" alt="Розкид Mid" class="step-img" onerror="this.src='фото/t-mid.png'">
+                    <div class="map-title">Розкид Mid</div>
                 </div>
-                <h3 class="pos-card-title">Розкид Mid</h3>
             </a>
 
         </div>
 
-    </main>
+    </div>
 
 </body>
 </html>

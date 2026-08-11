@@ -1,116 +1,193 @@
-/* Основні налаштування */
+/* ==========================================
+   ОСНОВНИЙ СТИЛЬ ПРОЄКТУ (CS2 TACTICS)
+   ========================================== */
+
 body {
-    background-color: #0d0e12;
+    background: linear-gradient(135deg, #090a0f, #1b0a12, #0a1128, #120a1c);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
     color: #ffffff;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 25px 12px;
+    min-height: 100vh;
 }
 
-/* Шапка */
-header {
-    background-color: #14161d;
-    padding: 15px 20px;
-    border-bottom: 2px solid #ff4655;
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1, .header-title {
     text-align: center;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #ff4655, #8855ff, #4b69ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-bottom: 12px;
     position: relative;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 20px;
-    color: #ff4655;
-    letter-spacing: 1px;
+h1::after, .header-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff4655, #4b69ff);
+    border-radius: 2px;
+    box-shadow: 0 0 12px rgba(255, 70, 85, 0.6);
 }
 
-header a {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ffffff;
+.guide-container {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.tip-box {
+    background: rgba(22, 25, 34, 0.75);
+    backdrop-filter: blur(8px);
+    border-left: 4px solid #ff4655;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    color: #e1e3e8;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.step-card, .map-card, .side-card, .pos-card, .option-card {
+    background: rgba(22, 25, 34, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.step-card:hover, .map-card:hover, .side-card:hover, .pos-card:hover, .option-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(75, 105, 255, 0.5);
+    box-shadow: 0 10px 35px rgba(75, 105, 255, 0.2);
+}
+
+.step-title, .map-title, .side-title, .pos-title, .option-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #5875ff;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(75, 105, 255, 0.3);
+}
+
+.step-img, img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 18px auto;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.step-img:hover, img:hover {
+    transform: scale(1.015);
+    box-shadow: 0 0 25px rgba(255, 70, 85, 0.25);
+}
+
+.action-badge, .throw-badge {
+    background: linear-gradient(90deg, rgba(255, 70, 85, 0.15), rgba(75, 105, 255, 0.2));
+    border: 1px solid rgba(75, 105, 255, 0.6);
+    color: #6c88ff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    box-shadow: 0 0 15px rgba(75, 105, 255, 0.15);
+}
+
+.step-description, .media-caption {
+    color: #b0b5c5;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    line-height: 1.5;
+}
+
+/* ==========================================
+   ПЛАВАЮЧА КНОПКА «НАЗАД» (НА ВСІХ СТОРІНКАХ)
+   ========================================== */
+.back-btn {
+    position: fixed !important;
+    top: 15px !important;
+    left: 15px !important;
+    z-index: 1000 !important;
+    background: rgba(18, 20, 29, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding: 10px 16px !important;
+    border-radius: 8px !important;
+    display: inline-block;
+    color: #a0a5b5;
     text-decoration: none;
     font-weight: bold;
-    font-size: 14px;
-    background: #232733;
-    padding: 6px 12px;
-    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.25s ease !important;
 }
 
-header a:hover {
-    background: #ff4655;
+.back-btn:hover {
+    color: #ffffff !important;
+    border-color: #ff4655 !important;
+    box-shadow: 0 0 15px rgba(255, 70, 85, 0.4) !important;
+    transform: translateY(-2px);
 }
 
-/* Основний контейнер */
-main {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 15px;
-}
-
-/* Картки блоків */
-.card {
-    background: #14161d;
-    border: 1px solid #232733;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-
-.card-title {
-    color: #ff4655;
-    margin-top: 0;
-    font-size: 16px;
-    border-bottom: 1px solid #232733;
-    padding-bottom: 8px;
-}
-
-/* Сітка для фотографій */
-.grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.grid-2 img, .single-img img {
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-radius: 6px;
-    display: block;
+    height: 100%;
+    background-color: rgba(5, 6, 10, 0.92);
+    backdrop-filter: blur(12px);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: fadeIn 0.2s ease;
 }
 
-.img-label {
-    text-align: center;
-    font-size: 13px;
-    color: #aaa;
-    margin-top: 6px;
-    font-weight: bold;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* Плашка Jumpthrow */
-.jumpthrow-box {
-    background: #ff4655;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 6px;
-    margin-top: 15px;
-}
-
-/* Порада для телефонів */
-.desktop-tip {
-    background: #1a1d28;
-    border-left: 4px solid #ff4655;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
-    font-size: 13px;
-}
-
-/* Нижнє примітка */
-.footer-note {
-    text-align: center;
-    color: #888;
-    font-size: 13px;
-    margin-top: 30px;
+.lightbox img {
+    max-width: 92%;
+    max-height: 92%;
+    border-radius: 12px;
+    box-shadow: 0 0 35px rgba(255, 70, 85, 0.3), 0 0 50px rgba(75, 105, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }

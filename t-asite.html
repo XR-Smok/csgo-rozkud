@@ -3,92 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAGE — A SITE</title>
+    <title>MIRAGE — A SITE (T)</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Сітка для розміщення двох фотографій в один ряд по горизонталі */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2-col {
+                grid-template-columns: 1fr; /* На смартфонах фото встануть одне під одним */
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <a href="t-positions.html">← НАЗАД</a>
-        <h1>MIRAGE — A SITE</h1>
-    </header>
+    <a href="t-positions.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">MIRAGE — A SITE</div>
 
-        <!-- ПІДКАЗКА ПРО «ВЕРСІЮ ДЛЯ ПК» ДЛЯ ТЕЛЕФОНІВ -->
-        <div class="desktop-tip">
-            <p>💡 <strong>Порада для телефонів:</strong> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки зверху) та постав галочку <strong>«Версія для комп'ютера» / «Десктопний сайт»</strong>.</p>
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
         <!-- КРОК 1: ПОЗИЦІЯ ГРАВЦЯ -->
-        <div class="card">
-            <h3 class="card-title">📍 КРОК 1: ПОЗИЦІЯ ГРАВЦЯ</h3>
-            <div class="single-img" style="max-width: 420px; margin: 0 auto;">
-                <img src="фото/t-asite-1-stand.png" alt="Позиція гравця">
-                <p class="img-label">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ)</p>
-            </div>
+        <div class="step-card">
+            <div class="step-title">📍 КРОК 1: ПОЗИЦІЯ ГРАВЦЯ</div>
+            <img src="фото/t-asite-1-stand.jpg" alt="Позиція гравця" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-stand.png'">
+            <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ)</div>
         </div>
 
         <!-- РОЗКИДКА №1 -->
-        <div class="card">
-            <h3 class="card-title">🔥 РОЗКИДКА №1</h3>
-            <div class="grid-2">
+        <div class="step-card">
+            <div class="step-title">🔥 РОЗКИДКА №1</div>
+            
+            <div class="grid-2-col">
                 <div>
-                    <img src="фото/t-asite-1-aim.png" alt="Цілься тут">
-                    <p class="img-label">🎯 ЦІЛЬСЯ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-asite-1-aim.jpg" alt="Приціл розкидка 1" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-aim.png'">
                 </div>
                 <div>
-                    <img src="фото/t-asite-1-drop.png" alt="Впаде тут">
-                    <p class="img-label">📍 ВПАДЕ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-asite-1-drop.jpg" alt="Результат розкидка 1" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-drop.png'">
                 </div>
             </div>
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ КИДОК: JUMPTHROW</span>
-            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
         </div>
 
         <!-- РОЗКИДКА №2 -->
-        <div class="card">
-            <h3 class="card-title">🔥 РОЗКИДКА №2</h3>
-            <div class="grid-2">
+        <div class="step-card">
+            <div class="step-title">🔥 РОЗКИДКА №2</div>
+
+            <div class="grid-2-col">
                 <div>
-                    <img src="фото/t-asite-2-aim.png" alt="Цілься тут">
-                    <p class="img-label">🎯 ЦІЛЬСЯ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-asite-2-aim.jpg" alt="Приціл розкидка 2" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-2-aim.png'">
                 </div>
                 <div>
-                    <img src="фото/t-asite-2-drop.png" alt="Впаде тут">
-                    <p class="img-label">📍 ВПАДЕ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-asite-2-drop.jpg" alt="Результат розкидка 2" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-2-drop.png'">
                 </div>
             </div>
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ КИДОК: JUMPTHROW</span>
-            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
         </div>
 
         <!-- РОЗКИДКА №3 -->
-        <div class="card">
-            <h3 class="card-title">🔥 РОЗКИДКА №3</h3>
-            <div class="grid-2">
+        <div class="step-card">
+            <div class="step-title">🔥 РОЗКИДКА №3</div>
+
+            <div class="grid-2-col">
                 <div>
-                    <img src="фото/t-asite-3-aim.png" alt="Цілься тут">
-                    <p class="img-label">🎯 ЦІЛЬСЯ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-asite-3-aim.jpg" alt="Приціл розкидка 3" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-3-aim.png'">
                 </div>
                 <div>
-                    <img src="фото/t-asite-3-drop.png" alt="Впаде тут">
-                    <p class="img-label">📍 ВПАДЕ ТУТ</p>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-asite-3-drop.jpg" alt="Результат розкидка 3" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-3-drop.png'">
                 </div>
             </div>
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ КИДОК: JUMPTHROW</span>
-            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
         </div>
 
-        <!-- ПАМ'ЯТКА -->
-        <div class="footer-note">
-            📌 Пам'ятка для команди: Наводись на приціл, натискай Jumpthrow і дивись, як граната лягає ідеально в ціль!
+        <div class="tip-box">
+            📌 <b>Пам'ятка для команди:</b> Наводись на приціл, натискай Jumpthrow + ЛКМ і дивись, як граната лягає ідеально в ціль!
         </div>
 
-    </main>
+    </div>
+
+    <!-- ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Збільшене фото">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>

@@ -5,70 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — PALACE</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Сітка для розміщення двох фотографій в один ряд по горизонталі */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <a href="t-positions.html">← НАЗАД</a>
-        <h1>MIRAGE — PALACE</h1>
-    </header>
+    <!-- КНОПКА НАЗАД -->
+    <a href="t-positions.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">MIRAGE — PALACE</div>
 
-        <div class="desktop-tip">
-            <p>💡 <strong>Порада для телефонів:</strong> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку <strong>«Версія для комп'ютера»</strong>.</p>
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
         <!-- 1. ПОЗИЦІЯ (ДЕ СТАТИ) -->
-        <div class="card">
-            <h3 class="card-title">📍 1. ПОЗИЦІЯ (ДЕ СТАТИ)</h3>
-            <div class="grid-2">
-                <div>
-                    <img src="фото/palace-stand-1.png" alt="Загальний вид">
-                    <p class="img-label">1. ЗАГАЛЬНИЙ ВИД</p>
-                </div>
-                <div>
-                    <img src="фото/palace-stand-2.png" alt="Упор під ноги">
-                    <p class="img-label">2. УПОР ПІД НОГИ</p>
-                </div>
+        <div class="step-card">
+            <div class="step-title">📍 1. ПОЗИЦІЯ (ДЕ СТАТИ)</div>
+            <div class="grid-2-col">
+                <img src="фото/palace-stand-1.jpg" alt="Загальний вид" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/palace-stand-1.png'">
+                <img src="фото/palace-stand-2.jpg" alt="Упор під ноги" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/palace-stand-2.png'">
             </div>
         </div>
 
         <!-- 2. ПРИЦІЛ ТА КИДОК -->
-        <div class="card">
-            <h3 class="card-title">🔥 2. ПРИЦІЛ ТА КИДОК</h3>
-            <div class="single-img" style="max-width: 450px; margin: 0 auto;">
-                <img src="фото/palace-aim.png" alt="Приціл">
-                <p class="img-label">🎯 ЦІЛЬСЯ ТУТ</p>
-            </div>
+        <div class="step-card">
+            <div class="step-title">🎯 2. ПРИЦІЛ ТА КИДОК</div>
             
-            <!-- ОНОВЛЕНА ПЛАШКА КИДКА -->
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ КИДОК: CTRL + JUMPTHROW + ЛКМ</span>
+            <div class="step-description" style="margin-bottom: 10px;">🎯 ЦІЛЬСЯ ТУТ</div>
+            <img src="фото/palace-aim.jpg" alt="Приціл" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/palace-aim.png'">
+            
+            <div class="action-badge">⚡ КИДОК: CTRL + JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- 3. ВИД З ДИМУ -->
+        <div class="step-card">
+            <div class="step-title">👁️ 3. ВИД З ДИМУ</div>
+
+            <div class="step-description" style="margin-bottom: 10px;">👁️ ТВІЙ ВИД (ШО ТИ БАЧИШ) — ПОЗИЦІЯ 1</div>
+            <img src="фото/palace-view-1.jpg" alt="Вид з диму 1" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/palace-view-1.png'">
+
+            <div class="step-description" style="margin-top: 20px; margin-bottom: 10px;">👁️ ТВІЙ ВИД (ШО ТИ БАЧИШ) — ПОЗИЦІЯ 2</div>
+            <img src="фото/palace-view-2.jpg" alt="Вид з диму 2" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/palace-view-2.png'">
+
+            <div class="tip-box" style="margin-top: 20px;">
+                📌 <b>Порада:</b> Чекай, поки дим повністю розкриється, просочись в нього по драбині і шукай легкий kill!
             </div>
         </div>
 
-        <!-- 3. ВИД З ДИМУ ТА ПРОСОЧУВАННЯ -->
-        <div class="card">
-            <h3 class="card-title">👁️ 3. ВИД З ДИМУ ТА ПРОСОЧУВАННЯ</h3>
-            <div class="grid-2">
-                <div>
-                    <img src="фото/palace-view-1.png" alt="Твій вид з диму">
-                    <p class="img-label">👁️ ТВІЙ ВИД (ШО ТИ БАЧИШ)</p>
-                </div>
-                <div>
-                    <img src="фото/palace-view-2.png" alt="Твій вид з диму">
-                    <p class="img-label">👁️ ТВІЙ ВИД (ШО ТИ БАЧИШ)</p>
-                </div>
-            </div>
-        </div>
+    </div>
 
-        <!-- ПАМ'ЯТКА -->
-        <div class="footer-note">
-            📌 Порада: Чекай, поки дим повністю розкриється і просочиться, після чого займай позицію для легкого фраг!
-        </div>
+    <!-- ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Збільшене фото">
+    </div>
 
-    </main>
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>

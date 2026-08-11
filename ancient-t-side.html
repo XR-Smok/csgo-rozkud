@@ -6,90 +6,46 @@
     <title>ANCIENT — Т ПОЗИЦІЇ</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .positions-grid {
+        .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
-            justify-content: center;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            max-width: 850px;
-            margin: 30px auto;
-            padding: 0 15px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
-        .pos-card {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-radius: 10px;
-            overflow: hidden;
+        .card-link {
             text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pos-card-img-wrapper {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .pos-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            color: inherit;
             display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .pos-card-title {
-            padding: 12px;
-            text-align: center;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 15px;
-            margin: 0;
-            background: #14161d;
-            transition: color 0.3s ease;
-        }
-
-        /* 💥 АНІМАЦІЯ ПРИ НАВЕДЕННІ */
-        .pos-card:hover {
-            border-color: #ff4655;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
-        }
-
-        .pos-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .pos-card:hover .pos-card-title {
-            color: #ff4655;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="ancient.html">← НАЗАД</a>
-        <h1>ANCIENT — Т ПОЗИЦІЇ</h1>
-    </header>
+    <a href="ancient.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">ANCIENT — Т ПОЗИЦІЇ</div>
 
-        <div class="positions-grid">
+    <div class="guide-container" style="max-width: 1150px;">
 
-            <!-- КЛІК ВЕДЕ НА ancient-b-site.html -->
-            <a href="ancient-b-site.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/ancient-b-site.png" alt="B Site" onerror="this.src='фото/b-stand-1.png'">
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- РОЗКИД B SITE -->
+            <a href="ancient-b-site.html" class="card-link">
+                <div class="map-card">
+                    <img src="фото/ancient-b-site.jpg" alt="Розкид B site" class="step-img" onerror="this.src='фото/ancient-b-site.png'">
+                    <div class="map-title">Розкид B site</div>
                 </div>
-                <h3 class="pos-card-title">Розкид B site</h3>
             </a>
 
         </div>
 
-    </main>
+    </div>
 
 </body>
 </html>

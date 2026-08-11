@@ -6,112 +6,111 @@
     <title>MIRAGE — РОЗКИД MID</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .positions-grid {
+        /* Блок для розміщення двох фото в один ряд (по горизонталі) */
+        .grid-2-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
-        .pos-card {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-radius: 10px;
-            overflow: hidden;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .pos-card-img-wrapper {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .pos-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .pos-card-title {
-            padding: 14px;
-            text-align: center;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 15px;
-            margin: 0;
-            background: #14161d;
-            transition: color 0.3s ease;
-        }
-
-        .pos-card:hover {
-            border-color: #ff4655;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
-        }
-
-        .pos-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .pos-card:hover .pos-card-title {
-            color: #ff4655;
+        @media (max-width: 600px) {
+            .grid-2-col {
+                grid-template-columns: 1fr; /* На малих екранах фото стануть одне під одним */
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="t-positions.html">← НАЗАД</a>
-        <h1>MIRAGE — РОЗКИД MID</h1>
-    </header>
+    <a href="t-positions.html" class="back-btn">← НАЗАД</a>
 
-    <main>
+    <div class="header-title">MIRAGE — РОЗКИД MID</div>
 
-        <div class="positions-grid">
+    <div class="guide-container">
 
-            <!-- 1. SMOKE WINDOW -->
-            <a href="t-smoke-window.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-mid-window.png" alt="Smoke Window">
-                </div>
-                <h3 class="pos-card-title">Смок у Window (Вікно)</h3>
-            </a>
-
-            <!-- 2. SMOKE CONNECTOR -->
-            <a href="t-smoke-connector.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-mid-connector.png" alt="Smoke Connector">
-                </div>
-                <h3 class="pos-card-title">Смок у Connector (Коннектор)</h3>
-            </a>
-
-            <!-- 3. SMOKE SHORT -->
-            <a href="t-smoke-short.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-mid-short.png" alt="Smoke Short">
-                </div>
-                <h3 class="pos-card-title">Смок на Short (Шорт)</h3>
-            </a>
-
-            <!-- 4. ФЛЕШКА TYPE-C -->
-            <a href="t-flash-mid.html" class="pos-card">
-                <div class="pos-card-img-wrapper">
-                    <img src="фото/t-mid-flash.png" alt="Flash Type-C Mid">
-                </div>
-                <h3 class="pos-card-title">Флешка під вихід Tімейта на Mid</h3>
-            </a>
-
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-    </main>
+        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ -->
+        <div class="step-card">
+            <div class="step-title">📍 1. ПОЗИЦІЯ ГРАВЦЯ</div>
+            <img src="фото/t-mid-full-stand.jpg" alt="Позиція гравця" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-full-stand.png'">
+            <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ БІЛЯ ДВЕРЕЙ)</div>
+        </div>
+
+        <!-- 2. СМОК НА ШОРТ -->
+        <div class="step-card">
+            <div class="step-title">🔥 СМОК НА ШОРТ (SHORT)</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-mid-short-aim.jpg" alt="Приціл" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-short-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-mid-short-drop.jpg" alt="Результат" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-short-drop.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- 3. СМОК У ВІКНО -->
+        <div class="step-card">
+            <div class="step-title">🔥 СМОК У ВІКНО (WINDOW)</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-mid-window-aim.jpg" alt="Приціл" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-window-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-mid-window-drop.jpg" alt="Результат" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-window-drop.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- 4. СМОК У КОННЕКТОР -->
+        <div class="step-card">
+            <div class="step-title">🔥 СМОК У КОННЕКТОР (CONNECTOR)</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/t-mid-con-aim.jpg" alt="Приціл" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-con-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/t-mid-con-drop.jpg" alt="Результат" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-mid-con-drop.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+    </div>
+
+    <!-- ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX) -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Збільшене фото">
+    </div>
+
+    <script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
