@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — СТОРОНА</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sides-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 850px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+
+        .side-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 10px;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .side-card-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .side-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .side-card-title {
+            padding: 15px;
+            text-align: center;
+            color: #4b69ff; /* Синій колір для КТ */
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0;
+            background: #14161d;
+        }
+
+        .side-card.t-side .side-card-title {
+            color: #ff4655; /* Червоний колір для Т */
+        }
+
+        .side-card:hover {
+            border-color: #4b69ff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(75, 105, 255, 0.2);
+        }
+
+        .side-card.t-side:hover {
+            border-color: #ff4655;
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
+        }
+
+        .side-card:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ПЛАВАЮЧА КНОПКА НАЗАД (ВЕДЕ НА ГОЛОВНУ INDEX.HTML) -->
+    <a href="index.html" class="back-btn">← НАЗАД</a>
+
+    <header>
+        <h1>DUST II</h1>
+    </header>
+
+    <main>
+
+        <div class="sides-grid">
+
+            <!-- ТЕРОРИСТИ -->
+            <a href="dust2-t-side.html" class="side-card t-side">
+                <div class="side-card-img-wrapper">
+                    <img src="фото/t-side.jpg" alt="Terrorists" onerror="this.src='фото/t-side.png'">
+                </div>
+                <h3 class="side-card-title">Terrorists (T)</h3>
+            </a>
+
+            <!-- КОНТРТЕРОРИСТИ -->
+            <a href="dust2-ct-side.html" class="side-card">
+                <div class="side-card-img-wrapper">
+                    <img src="фото/ct-side.jpg" alt="Counter-Terrorists" onerror="this.src='фото/ct-side.png'">
+                </div>
+                <h3 class="side-card-title">Counter-Terrorists (CT)</h3>
+            </a>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

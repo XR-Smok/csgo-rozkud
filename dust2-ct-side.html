@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — CT ТАКТИКИ 🛡️</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px 10px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Заголовок */
+        .header-title {
+            text-align: center;
+            color: #4b69ff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 2px solid #4b69ff;
+            padding-bottom: 10px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Блок підказки для телефонів */
+        .tip-box {
+            background: rgba(75, 105, 255, 0.1);
+            border-left: 4px solid #4b69ff;
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 14px;
+            color: #d0d7f7;
+            margin-bottom: 25px;
+            width: 100%;
+            max-width: 900px;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        /* Сітка карток */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Основна картка */
+        .map-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .map-card-img-wrapper {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .map-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .map-title {
+            padding: 15px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 17px;
+            margin: 0;
+            background: #14161d;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        /* 💥 ЕФЕКТИ ПРИ НАВЕДЕННІ (HOVER) */
+        .map-card:hover {
+            border-color: #4b69ff;
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(75, 105, 255, 0.3);
+        }
+
+        .map-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .map-card:hover .map-title {
+            color: #4b69ff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="dust2.html" class="back-btn">← НАЗАД</a>
+
+    <div class="header-title">DUST II — CT ТАКТИКИ 🛡️</div>
+
+    <!-- ПІДКАЗКА ДЛЯ ТЕЛЕФОНІВ -->
+    <div class="tip-box">
+        📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+    </div>
+
+    <!-- СІТКА КАРТОК -->
+    <div class="cards-grid">
+
+        <!-- 1. ONE WAY SMOKE A -->
+        <a href="dust2-ct-smoke-a.html" class="card-link">
+            <div class="map-card">
+                <div class="map-card-img-wrapper">
+                    <img src="фото/dust2-ct-smoke-a.jpg" alt="One Way Smoke A" onerror="this.src='фото/dust2-ct-smoke-a.png'">
+                </div>
+                <div class="map-title">🌫️ One Way Smoke A</div>
+            </div>
+        </a>
+
+        <!-- 2. RETAKE B -->
+        <a href="dust2-ct-retake-b.html" class="card-link">
+            <div class="map-card">
+                <div class="map-card-img-wrapper">
+                    <img src="фото/dust2-ct-retake-b.jpg" alt="Retake B" onerror="this.src='фото/dust2-ct-retake-b.png'">
+                </div>
+                <div class="map-title">💣 Retake B Site</div>
+            </div>
+        </a>
+
+    </div>
+
+</body>
+</html>

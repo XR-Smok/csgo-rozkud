@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — ONE WAY SMOKE A</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px 10px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Фіксована кнопка назад, щоб не зникала при скролі */
+        .fixed-back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #14161d;
+            border: 1px solid #4b69ff;
+            color: #ffffff;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .fixed-back-btn:hover {
+            background: #4b69ff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(75, 105, 255, 0.4);
+        }
+
+        header {
+            margin-top: 50px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #4b69ff;
+            font-size: 24px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Контейнер сітки */
+        .guide-container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Картка кроку */
+        .guide-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .guide-card:hover {
+            border-color: #4b69ff;
+            box-shadow: 0 8px 20px rgba(75, 105, 255, 0.2);
+        }
+
+        .guide-card-title {
+            padding: 12px 15px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0;
+            background: #191c26;
+            border-bottom: 1px solid #232733;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .guide-card-img-wrapper {
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .guide-card img {
+            width: 100%;
+            height: auto;
+            max-height: 480px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .guide-card-img-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Нижній ряд з 2 фото по горизонталі */
+        .guide-row-two {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .guide-row-two .guide-card img {
+            max-height: 320px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ФІКСОВАНА КНОПКА НАЗАД -->
+    <a href="dust2-ct-side.html" class="fixed-back-btn">← НАЗАД</a>
+
+    <header>
+        <h1>ONE WAY SMOKE A (DUST II)</h1>
+    </header>
+
+    <main class="guide-container">
+
+        <!-- 1. ВСТАВАЙ ТУТ (ВЕРХНЯ НА ВСЮ ШИРИНУ) -->
+        <div class="guide-card">
+            <h3 class="guide-card-title">1. Вставай тут</h3>
+            <div class="guide-card-img-wrapper">
+                <img src="фото/dust2-ct-smoke-a-stand.jpg" alt="Вставай тут" onerror="this.src='фото/dust2-ct-smoke-a-stand.png'">
+            </div>
+        </div>
+
+        <!-- ДВІ КАРТКИ ПО ГОРИЗОНТАЛІ -->
+        <div class="guide-row-two">
+
+            <!-- 2. ЦІЛЬСЯ ТУТ -->
+            <div class="guide-card">
+                <h3 class="guide-card-title">2. Цілься тут</h3>
+                <div class="guide-card-img-wrapper">
+                    <img src="фото/dust2-ct-smoke-a-aim.jpg" alt="Цілься тут" onerror="this.src='фото/dust2-ct-smoke-a-aim.png'">
+                </div>
+            </div>
+
+            <!-- 3. ВПАДЕ ТУТ (НАЗВА ТА САМА, ЩО Й ПРЕВ'ЮШКА) -->
+            <div class="guide-card">
+                <h3 class="guide-card-title">3. Впаде тут</h3>
+                <div class="guide-card-img-wrapper">
+                    <img src="фото/dust2-ct-smoke-a.jpg" alt="Впаде тут" onerror="this.src='фото/dust2-ct-smoke-a.png'">
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <script src="gallery.js"></script>
+
+</body>
+</html>

@@ -36,7 +36,7 @@
         <!-- КРОК 1: ПОЗИЦІЯ ГРАВЦЯ -->
         <div class="step-card">
             <div class="step-title">📍 КРОК 1: ПОЗИЦІЯ ГРАВЦЯ</div>
-            <img src="фото/t-asite-1-stand.jpg" alt="Позиція гравця" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-stand.png'">
+            <img src="фото/t-asite-1-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/t-asite-1-stand.png'">
             <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ)</div>
         </div>
 
@@ -47,11 +47,11 @@
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="фото/t-asite-1-aim.jpg" alt="Приціл розкидка 1" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-aim.png'">
+                    <img src="фото/t-asite-1-aim.jpg" alt="Приціл розкидка 1" class="step-img" onerror="this.src='фото/t-asite-1-aim.png'">
                 </div>
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="фото/t-asite-1-drop.jpg" alt="Результат розкидка 1" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-1-drop.png'">
+                    <img src="фото/t-asite-1-drop.jpg" alt="Результат розкидка 1" class="step-img" onerror="this.src='фото/t-asite-1-drop.png'">
                 </div>
             </div>
 
@@ -65,11 +65,11 @@
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="фото/t-asite-2-aim.jpg" alt="Приціл розкидка 2" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-2-aim.png'">
+                    <img src="фото/t-asite-2-aim.jpg" alt="Приціл розкидка 2" class="step-img" onerror="this.src='фото/t-asite-2-aim.png'">
                 </div>
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="фото/t-asite-2-drop.jpg" alt="Результат розкидка 2" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-2-drop.png'">
+                    <img src="фото/t-asite-2-drop.jpg" alt="Результат розкидка 2" class="step-img" onerror="this.src='фото/t-asite-2-drop.png'">
                 </div>
             </div>
 
@@ -83,11 +83,11 @@
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="фото/t-asite-3-aim.jpg" alt="Приціл розкидка 3" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-3-aim.png'">
+                    <img src="фото/t-asite-3-aim.jpg" alt="Приціл розкидка 3" class="step-img" onerror="this.src='фото/t-asite-3-aim.png'">
                 </div>
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="фото/t-asite-3-drop.jpg" alt="Результат розкидка 3" class="step-img" onclick="openLightbox(this.src)" onerror="this.src='фото/t-asite-3-drop.png'">
+                    <img src="фото/t-asite-3-drop.jpg" alt="Результат розкидка 3" class="step-img" onerror="this.src='фото/t-asite-3-drop.png'">
                 </div>
             </div>
 
@@ -100,21 +100,8 @@
 
     </div>
 
-    <!-- ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX) -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Збільшене фото">
-    </div>
-
-    <script>
-        function openLightbox(src) {
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-        }
-    </script>
+    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <script src="gallery.js"></script>
 
 </body>
 </html>

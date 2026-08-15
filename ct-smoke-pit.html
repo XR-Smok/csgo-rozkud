@@ -66,6 +66,12 @@
             display: block;
             margin: 0 auto 20px auto;
             border: 1px solid rgba(255, 255, 255, 0.15);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .step-img:hover {
+            transform: scale(1.01);
         }
 
         .action-badge {
@@ -106,25 +112,37 @@
         <!-- 1. ЯК ЗІГРАТИ ONE WAY -->
         <div class="step-card">
             <div class="step-title">👁️ 1. ЯК ЗІГРАТИ ONE WAY</div>
-            <img src="фото/ct-pit-view.png" alt="Вигляд One Way" class="step-img" onerror="this.src='фото/ct-pit-view.jpg'">
+            <img src="фото/ct-pit-view.png" 
+                 alt="Вигляд One Way" 
+                 class="step-img" 
+                 onerror="this.src='фото/ct-pit-view.jpg'">
             <div class="step-description">ПІДІЙДІТЬ ДО ВКАЗАНОЇ ПОЗИЦІЇ</div>
         </div>
 
         <!-- 2. ЦІЛЬСЯ ТУТ -->
         <div class="step-card">
             <div class="step-title">🎯 2. ЦІЛЬСЯ ТУТ</div>
-            <img src="фото/ct-pit-aim.png" alt="Приціл для One Way" class="step-img" onerror="this.src='фото/ct-pit-aim.jpg'">
+            <img src="фото/ct-pit-aim.png" 
+                 alt="Приціл для One Way" 
+                 class="step-img" 
+                 onerror="this.src='фото/ct-pit-aim.jpg'">
             <div class="action-badge">⚡ КИДОК: ЛКМ (ЛІВА КЛАВІША МИШІ)</div>
         </div>
 
         <!-- 3. ПОЗИЦІЯ -->
         <div class="step-card">
             <div class="step-title">📍 3. ПОЗИЦІЯ</div>
-            <img src="фото/ct-pit-stand.png" alt="Вигляд позиції" class="step-img" onerror="this.src='фото/ct-pit-stand.jpg'">
+            <img src="фото/ct-pit-stand.png" 
+                 alt="Вигляд позиції" 
+                 class="step-img" 
+                 onerror="this.src='фото/ct-pit-stand.jpg'">
             <div class="step-description">ПРОСОЧИСЬ В СМОУК НАПРАВО ТА ВИСТРИБНИ НА ВАЗУ. ТЕБЕ МОЖУТЬ ПОБАЧИТИ, АЛЕ ЦЕ ЛЕГКИЙ КІЛ!</div>
         </div>
 
     </div>
+
+    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <script src="gallery.js"></script>
 
 </body>
 </html>

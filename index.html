@@ -30,7 +30,7 @@
         .map-card-img-wrapper {
             width: 100%;
             height: 180px;
-            overflow: hidden; /* Щоб картинка не виходила за межі при зумі */
+            overflow: hidden;
         }
 
         .map-card img {
@@ -38,7 +38,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.3s ease; /* Плавний зум */
+            transition: transform 0.3s ease;
         }
 
         .map-card-title {
@@ -52,19 +52,19 @@
             transition: color 0.3s ease;
         }
 
-        /* 💥 ЕФЕКТИ ПРИ НАВЕДЕННІ (HOVER) */
+        /* ЕФЕКТИ ПРИ НАВЕДЕННІ */
         .map-card:hover {
-            border-color: #ff4655; /* Червона рамка */
-            transform: translateY(-5px); /* Легке піднімання картки */
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2); /* Червоне сяйво */
+            border-color: #ff4655;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
         }
 
         .map-card:hover img {
-            transform: scale(1.08); /* Ефект зближення фотографії */
+            transform: scale(1.08);
         }
 
         .map-card:hover .map-card-title {
-            color: #ff4655; /* Текст стає червоним */
+            color: #ff4655;
         }
     </style>
 </head>
@@ -92,6 +92,14 @@
                     <img src="фото/ancient.png" alt="Ancient" onerror="this.src='фото/ancient.jpg'">
                 </div>
                 <h3 class="map-card-title">Ancient</h3>
+            </a>
+
+            <!-- DUST II -->
+            <a href="dust2.html" class="map-card">
+                <div class="map-card-img-wrapper">
+                    <img src="фото/dust2.png" alt="Dust II" onerror="this.src='фото/dust2.jpg'">
+                </div>
+                <h3 class="map-card-title">Dust II</h3>
             </a>
 
         </div>
