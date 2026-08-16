@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — СТОРОНА</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .sides-grid {
             display: grid;
@@ -37,21 +37,25 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            margin: 0;
+            border-radius: 0;
+            border: none;
             transition: transform 0.3s ease;
         }
 
         .side-card-title {
             padding: 15px;
             text-align: center;
-            color: #4b69ff; /* Синій колір для КТ */
+            color: #4b69ff; /* Синій для CT */
             font-weight: bold;
             font-size: 16px;
             margin: 0;
             background: #14161d;
+            transition: color 0.3s ease;
         }
 
         .side-card.t-side .side-card-title {
-            color: #ff4655; /* Червоний колір для Т */
+            color: #ff4655; /* Червоний для T */
         }
 
         .side-card:hover {
@@ -73,7 +77,7 @@
 <body>
 
     <!-- ПЛАВАЮЧА КНОПКА НАЗАД (ВЕДЕ НА ГОЛОВНУ INDEX.HTML) -->
-    <a href="index.html" class="back-btn">← НАЗАД</a>
+    <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <header>
         <h1>DUST II</h1>

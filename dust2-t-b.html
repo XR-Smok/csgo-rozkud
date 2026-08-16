@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — РОЗКИД B (T)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         /* Блок для розміщення двох фото в один ряд (по горизонталі) */
         .grid-2-col {
@@ -34,15 +34,23 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ -->
-        <div class="step-card">
+        <!-- 0. ПОЗИЦІЯ ГРАВЦЯ -->
+        <div class="step-card" id="d2-b-stand-pos">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-stand-pos', 'Позиція гравця [B]')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-stand-pos" onclick="toggleFavoriteCard(this, 'd2-b-stand-pos', 'DUST II T: Позиція гравця [B]', 'dust2-t-b.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 ПОЗИЦІЯ: СТАВАЙ ТУТ ДО УПОРА</div>
             <img src="фото/dust2-b-stand.jpg" alt="Позиція гравця на B" class="step-img" onerror="this.src='фото/dust2-b-stand.png'">
         </div>
 
         <!-- 1. СМОК ТАНЦПОЛ -->
         <div class="step-card" id="d2-b-smoke-dance">
-            <button class="fav-star-btn" data-id="d2-b-smoke-dance" onclick="toggleFavoriteCard(this, 'd2-b-smoke-dance', 'DUST II T: Смок Танцпол [B]', 'dust2-t-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-smoke-dance', '1. Смок Танцпол')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-smoke-dance" onclick="toggleFavoriteCard(this, 'd2-b-smoke-dance', 'DUST II T: Смок Танцпол [B]', 'dust2-t-b.html')">☆</button>
+            </div>
 
             <div class="step-title">☁️ 1. СМОК ТАНЦПОЛ</div>
 
@@ -62,7 +70,10 @@
 
         <!-- 2. СМОК ЗА X -->
         <div class="step-card" id="d2-b-smoke-x">
-            <button class="fav-star-btn" data-id="d2-b-smoke-x" onclick="toggleFavoriteCard(this, 'd2-b-smoke-x', 'DUST II T: Смок за X [B]', 'dust2-t-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-smoke-x', '2. Смок за X')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-smoke-x" onclick="toggleFavoriteCard(this, 'd2-b-smoke-x', 'DUST II T: Смок за X [B]', 'dust2-t-b.html')">☆</button>
+            </div>
 
             <div class="step-title">☁️ 2. СМОК ЗА X</div>
 
@@ -82,7 +93,10 @@
 
         <!-- 3. СМОК САЙТ -->
         <div class="step-card" id="d2-b-smoke-site">
-            <button class="fav-star-btn" data-id="d2-b-smoke-site" onclick="toggleFavoriteCard(this, 'd2-b-smoke-site', 'DUST II T: Смок Сайт [B]', 'dust2-t-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-smoke-site', '3. Смок Сайт')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-smoke-site" onclick="toggleFavoriteCard(this, 'd2-b-smoke-site', 'DUST II T: Смок Сайт [B]', 'dust2-t-b.html')">☆</button>
+            </div>
 
             <div class="step-title">☁️ 3. СМОК САЙТ</div>
 
@@ -102,7 +116,10 @@
 
         <!-- 4. СМОК ВІКНО -->
         <div class="step-card" id="d2-b-smoke-window">
-            <button class="fav-star-btn" data-id="d2-b-smoke-window" onclick="toggleFavoriteCard(this, 'd2-b-smoke-window', 'DUST II T: Смок Вікно [B]', 'dust2-t-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-smoke-window', '4. Смок Вікно')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-smoke-window" onclick="toggleFavoriteCard(this, 'd2-b-smoke-window', 'DUST II T: Смок Вікно [B]', 'dust2-t-b.html')">☆</button>
+            </div>
 
             <div class="step-title">☁️ 4. СМОК ВІКНО</div>
 
@@ -122,7 +139,10 @@
 
         <!-- 5. СМОК ДВЕРІ -->
         <div class="step-card" id="d2-b-smoke-door">
-            <button class="fav-star-btn" data-id="d2-b-smoke-door" onclick="toggleFavoriteCard(this, 'd2-b-smoke-door', 'DUST II T: Смок Двері [B]', 'dust2-t-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-b-smoke-door', '5. Смок Двері')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-b-smoke-door" onclick="toggleFavoriteCard(this, 'd2-b-smoke-door', 'DUST II T: Смок Двері [B]', 'dust2-t-b.html')">☆</button>
+            </div>
 
             <div class="step-title">☁️ 5. СМОК ДВЕРІ</div>
 
@@ -143,6 +163,15 @@
         <!-- ПОРАДА ПРО СИТУАТИВНІСТЬ -->
         <div class="tip-box">
             📌 <b>Порада:</b> Гранати ситуативні! У більшості випадків кидати всі 5 смоків немає потреби — обирай потрібні варіанти та комбінуй їх на власний розсуд під раунд.
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

@@ -4,97 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ONE WAY У PIT [A]</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            background-color: #0d0e12;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px 10px;
-        }
-
-        .header-title {
-            text-align: center;
-            color: #ff4655;
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #ff4655;
-            padding-bottom: 10px;
-        }
-
-        .guide-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .tip-box {
-            background-color: #161922;
-            border-left: 4px solid #ff4655;
-            border-radius: 6px;
-            padding: 15px;
-            font-size: 1rem;
-            color: #d1d5db;
-        }
-
-        .step-card {
-            background-color: #161922;
-            border-radius: 12px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            text-align: center;
-        }
-
-        .step-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #4b69ff;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .step-img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto 20px auto;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .step-img:hover {
-            transform: scale(1.01);
-        }
-
-        .action-badge {
-            background-color: rgba(75, 105, 255, 0.15);
-            border: 1px solid #4b69ff;
-            color: #4b69ff;
-            font-weight: bold;
-            font-size: 1.1rem;
-            padding: 12px;
-            border-radius: 6px;
-            margin: 20px 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .step-description {
-            color: #a0a5b5;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -110,8 +20,13 @@
         </div>
 
         <!-- 1. ЯК ЗІГРАТИ ONE WAY -->
-        <div class="step-card">
-            <div class="step-title">👁️ 1. ЯК ЗІГРАТИ ONE WAY</div>
+        <div class="step-card" id="ct-pit-view">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ct-pit-view', '1. Як зіграти One Way')" title="Сховати цей блок">👁️</button>
+                <button class="fav-star-btn" data-id="ct-pit-view" onclick="toggleFavoriteCard(this, 'ct-pit-view', 'MIRAGE CT: Як зіграти One Way у Pit [A]', 'ct-smoke-pit.html')">☆</button>
+            </div>
+
+            <div class="step-title">👀 1. ЯК ЗІГРАТИ ONE WAY</div>
             <img src="фото/ct-pit-view.png" 
                  alt="Вигляд One Way" 
                  class="step-img" 
@@ -121,7 +36,10 @@
 
         <!-- 2. ЦІЛЬСЯ ТУТ (ОСНОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
         <div class="step-card" id="ct-pit-oneway">
-            <button class="fav-star-btn" data-id="ct-pit-oneway" onclick="toggleFavoriteCard(this, 'ct-pit-oneway', 'MIRAGE CT: One Way у Pit [A]', 'ct-smoke-pit.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ct-pit-oneway', '2. Приціл One Way у Pit')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="ct-pit-oneway" onclick="toggleFavoriteCard(this, 'ct-pit-oneway', 'MIRAGE CT: One Way у Pit [A]', 'ct-smoke-pit.html')">☆</button>
+            </div>
 
             <div class="step-title">🎯 2. ЦІЛЬСЯ ТУТ</div>
             <img src="фото/ct-pit-aim.png" 
@@ -132,13 +50,27 @@
         </div>
 
         <!-- 3. ПОЗИЦІЯ -->
-        <div class="step-card">
+        <div class="step-card" id="ct-pit-stand">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ct-pit-stand', '3. Позиція на вазі')" title="Сховати цей блок">👁️</button>
+                <button class="fav-star-btn" data-id="ct-pit-stand" onclick="toggleFavoriteCard(this, 'ct-pit-stand', 'MIRAGE CT: Позиція на вазі у Pit [A]', 'ct-smoke-pit.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 3. ПОЗИЦІЯ</div>
             <img src="фото/ct-pit-stand.png" 
                  alt="Вигляд позиції" 
                  class="step-img" 
                  onerror="this.src='фото/ct-pit-stand.jpg'">
             <div class="step-description">ПРОСОЧИСЬ В СМОУК НАПРАВО ТА ВИСТРИБНИ НА ВАЗУ. ТЕБЕ МОЖУТЬ ПОБАЧИТИ, АЛЕ ЦЕ ЛЕГКИЙ КІЛ!</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

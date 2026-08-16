@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>⚡ МІЙ РАУНД — ТАКТИЧНИЙ СЕТАП</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .my-round-container {
-            max-width: 800px;
-            margin: 30px auto;
+            max-width: 850px;
+            margin: 25px auto;
             padding: 0 15px;
             display: flex;
             flex-direction: column;
@@ -16,40 +16,44 @@
         }
 
         .round-strip {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-left: 4px solid #ffd700; /* Золотий акцент обраного */
-            border-radius: 8px;
-            padding: 14px 20px;
+            background: rgba(20, 22, 29, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 4px solid #ffd700;
+            border-radius: 10px;
+            padding: 14px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .round-strip:hover {
             border-color: #ffd700;
-            background: #1c1f2b;
+            background: rgba(28, 32, 44, 0.95);
             transform: translateX(6px);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.25);
         }
 
         .strip-content {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .strip-icon {
-            font-size: 22px;
+            font-size: 20px;
             color: #ffd700;
+            line-height: 1;
         }
 
         .strip-title {
             color: #ffffff;
-            font-weight: bold;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 15px;
             margin: 0;
             transition: color 0.2s ease;
         }
@@ -61,47 +65,81 @@
         .strip-remove {
             background: rgba(255, 70, 85, 0.1);
             color: #ff4655;
-            border: 1px solid #ff4655;
+            border: 1px solid rgba(255, 70, 85, 0.4);
             border-radius: 6px;
             width: 32px;
             height: 32px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 10px;
         }
 
         .strip-remove:hover {
             background: #ff4655;
             color: #ffffff;
+            border-color: #ff4655;
             transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(255, 70, 85, 0.5);
+        }
+
+        .clear-all-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 70, 85, 0.4);
+            color: #ff4655;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            margin: 25px auto 0;
+            display: block;
+            transition: all 0.25s ease;
+        }
+
+        .clear-all-btn:hover {
+            background: rgba(255, 70, 85, 0.15);
+            border-color: #ff4655;
+            box-shadow: 0 0 14px rgba(255, 70, 85, 0.35);
+            transform: translateY(-2px);
         }
 
         .empty-msg {
             text-align: center;
-            color: #888;
+            color: #8b92a5;
             margin-top: 60px;
-            font-size: 18px;
+            font-size: 16px;
+            line-height: 1.6;
+            padding: 0 20px;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="nav-back">← НА ГОЛОВНУ</a>
-        <h1>⚡ МІЙ РАУНД</h1>
-    </header>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title">⚡ МІЙ РАУНД</div>
 
     <main>
 
         <div id="roundList" class="my-round-container"></div>
 
+        <!-- КНОПКА ОЧИСТИТИ ВСЕ -->
+        <button id="clearAllBtn" class="clear-all-btn" onclick="clearAllFavorites()" style="display: none;">
+            🗑️ Очистити весь сетап
+        </button>
+
         <div id="emptyMsg" class="empty-msg" style="display: none;">
-            <p>😴 Твій сетап порожній!</p>
-            <p>Тисни зірочку <strong>★</strong> на будь-якому смоку чи флешці, щоб додати його сюди.</p>
+            <p style="font-size: 20px; font-weight: 800; color: #ffffff;">😴 Твій сетап порожній!</p>
+            <p>Тисни зірочку <strong>☆</strong> на будь-якому смоку, флешці чи молотові під час перегляду карт, щоб сформувати швидкий раунд під себе.</p>
         </div>
 
     </main>
@@ -110,25 +148,39 @@
         function loadFavorites() {
             const listContainer = document.getElementById('roundList');
             const emptyMsg = document.getElementById('emptyMsg');
+            const clearBtn = document.getElementById('clearAllBtn');
             let favs = JSON.parse(localStorage.getItem('myRoundCards')) || [];
 
             listContainer.innerHTML = '';
 
             if (favs.length === 0) {
                 emptyMsg.style.display = 'block';
+                clearBtn.style.display = 'none';
                 return;
             }
 
             emptyMsg.style.display = 'none';
+            clearBtn.style.display = 'block';
 
             favs.forEach(item => {
                 const stripWrapper = document.createElement('div');
                 stripWrapper.className = 'round-strip-wrapper';
 
+                // Визначаємо карту для бейджа
+                let mapBadgeHtml = '';
+                if (item.title.includes('DUST II')) {
+                    mapBadgeHtml = '<span class="map-badge" style="border-color:#e6a15c; color:#e6a15c;">Dust II</span>';
+                } else if (item.title.includes('MIRAGE')) {
+                    mapBadgeHtml = '<span class="map-badge" style="border-color:#4b69ff; color:#4b69ff;">Mirage</span>';
+                } else if (item.title.includes('ANCIENT')) {
+                    mapBadgeHtml = '<span class="map-badge" style="border-color:#48bb78; color:#48bb78;">Ancient</span>';
+                }
+
                 stripWrapper.innerHTML = `
                     <a href="${item.url}" class="round-strip">
                         <div class="strip-content">
                             <span class="strip-icon">★</span>
+                            ${mapBadgeHtml}
                             <h3 class="strip-title">${item.title}</h3>
                         </div>
                         <button class="strip-remove" onclick="event.preventDefault(); removeItem('${item.id}')" title="Видалити">✕</button>
@@ -143,6 +195,13 @@
             favs = favs.filter(item => item.id !== id);
             localStorage.setItem('myRoundCards', JSON.stringify(favs));
             loadFavorites();
+        }
+
+        function clearAllFavorites() {
+            if (confirm('Точно очистити всі збережені розкидки з Мого раунду?')) {
+                localStorage.removeItem('myRoundCards');
+                loadFavorites();
+            }
         }
 
         loadFavorites();

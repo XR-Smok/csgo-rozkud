@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Створюємо розмітку галереї (лайтбокса)
+    // 1. Створюємо розмітку лайтбокса
     let lb = document.getElementById("lightbox");
     if (!lb) {
         lb = document.createElement("div");
@@ -25,15 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnNext = document.getElementById("lb-next");
     const btnClose = document.getElementById("lb-close");
 
-    // Відкриття галереї з УСІМА фотографіями сторінки
+    // Відкриття галереї тільки з ВИДИМИМИ фото сторінки (ігнорує приховані картки)
     window.openGalleryByImg = function(targetImg) {
-        // Знаходимо спільний контейнер гайду
         const guideContainer = document.querySelector(".guide-container") || document.body;
         
-        // Збираємо ВСІ картинки гайду по порядку зверху вниз
-        currentGroup = Array.from(guideContainer.querySelectorAll(".step-img, .guide-card img, .step-card img, img:not(#lightbox-img):not(.side-img)"));
+        // Збираємо картинки тільки з тих карток, які не сховані
+        const allImgs = Array.from(guideContainer.querySelectorAll(".step-img, .guide-card img, .step-card img, img:not(#lightbox-img):not(.side-img)"));
+        currentGroup = allImgs.filter(img => {
+            const card = img.closest('.step-card, .guide-card');
+            return !card || card.style.display !== 'none';
+        });
 
-        // Видаляємо можливі дублікати
+        // Прибираємо дублікати
         currentGroup = [...new Set(currentGroup)];
 
         if (currentGroup.length === 0) {
@@ -47,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         lb.style.display = "flex";
     };
 
-    // Перехоплення старого виклику
     window.openLightbox = function(src) {
         let foundImg = Array.from(document.querySelectorAll("img")).find(img => img.src === src || img.getAttribute("src") === src);
         if (foundImg) {
@@ -98,12 +100,12 @@ document.addEventListener("DOMContentLoaded", () => {
     btnPrev.addEventListener("click", showPrev);
     btnClose.addEventListener("click", closeLB);
 
-    // Закриття кліком на фон
+    // Закриття кліком на темний фон
     lb.addEventListener("click", (e) => {
         if (e.target === lb) closeLB();
     });
 
-    // 2. Керування стрілочками клавіатури (← / → та Escape)
+    // Керування клавіатурою (←, →, Esc)
     document.addEventListener("keydown", (e) => {
         if (lb.style.display === "flex") {
             if (e.key === "ArrowRight") showNext();
@@ -112,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Гортання мишкою (Drag & Drop)
+    // Гортання мишкою (Drag & Drop)
     let isMouseDown = false;
     let startMouseX = 0;
 
@@ -130,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (diff > 40) showPrev();
     });
 
-    // 4. Свайпи на телефонах
+    // Свайпи на смартфонах
     let touchStartX = 0;
     lb.addEventListener("touchstart", (e) => {
         touchStartX = e.changedTouches[0].screenX;
@@ -143,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (diff > 40) showPrev();
     }, { passive: true });
 
-    // Підключаємо клік до всіх картинок сторінки
+    // Підключення кліку до картинок
     document.querySelectorAll(".step-img, .guide-card img, .step-card img").forEach(img => {
         img.addEventListener("click", (e) => {
             e.stopPropagation();

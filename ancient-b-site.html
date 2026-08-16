@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANCIENT — B SITE</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         /* Сітка для розміщення двох фотографій в один ряд по горизонталі */
         .grid-2-col {
@@ -34,8 +34,13 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- ПОЗИЦІЯ (ДЕ СТАТИ) -->
-        <div class="step-card">
+        <!-- 0. ПОЗИЦІЯ (ДЕ СТАТИ) -->
+        <div class="step-card" id="anc-b-stand">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-stand', 'Позиція гравця [B]')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-stand" onclick="toggleFavoriteCard(this, 'anc-b-stand', 'ANCIENT B: Позиція гравця', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 ПОЗИЦІЯ (ДЕ СТАТИ)</div>
             <div class="grid-2-col">
                 <img src="фото/b-stand-1.jpg" alt="Позиція 1" class="step-img" onerror="this.src='фото/b-stand-1.png'">
@@ -46,7 +51,11 @@
 
         <!-- 1. ПЕРШИЙ СМОК -->
         <div class="step-card" id="anc-b-smoke1">
-            <button class="fav-star-btn" data-id="anc-b-smoke1" onclick="toggleFavoriteCard(this, 'anc-b-smoke1', 'ANCIENT B: Перший смок (Шорт)', 'ancient-b-site.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-smoke1', '1. Перший смок (Шорт)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-smoke1" onclick="toggleFavoriteCard(this, 'anc-b-smoke1', 'ANCIENT B: Перший смок (Шорт)', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">☁️ 1. ПЕРШИЙ СМОК</div>
             
             <div class="grid-2-col">
@@ -65,7 +74,11 @@
 
         <!-- 2. ДРУГИЙ СМОК -->
         <div class="step-card" id="anc-b-smoke2">
-            <button class="fav-star-btn" data-id="anc-b-smoke2" onclick="toggleFavoriteCard(this, 'anc-b-smoke2', 'ANCIENT B: Другий смок (Лонг)', 'ancient-b-site.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-smoke2', '2. Другий смок (Лонг)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-smoke2" onclick="toggleFavoriteCard(this, 'anc-b-smoke2', 'ANCIENT B: Другий смок (Лонг)', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">☁️ 2. ДРУГИЙ СМОК</div>
 
             <div class="grid-2-col">
@@ -84,7 +97,11 @@
 
         <!-- 3. ПЕРШИЙ МОЛОТОВ -->
         <div class="step-card" id="anc-b-molo1">
-            <button class="fav-star-btn" data-id="anc-b-molo1" onclick="toggleFavoriteCard(this, 'anc-b-molo1', 'ANCIENT B: Перший молотов', 'ancient-b-site.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-molo1', '3. Перший молотов')" title="Сховати цей молотов">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-molo1" onclick="toggleFavoriteCard(this, 'anc-b-molo1', 'ANCIENT B: Перший молотов', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">🔥 3. ПЕРШИЙ МОЛОТОВ</div>
 
             <div class="grid-2-col">
@@ -103,7 +120,11 @@
 
         <!-- 4. ДРУГИЙ МОЛОТОВ -->
         <div class="step-card" id="anc-b-molo2">
-            <button class="fav-star-btn" data-id="anc-b-molo2" onclick="toggleFavoriteCard(this, 'anc-b-molo2', 'ANCIENT B: Другий молотов', 'ancient-b-site.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-molo2', '4. Другий молотов')" title="Сховати цей молотов">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-molo2" onclick="toggleFavoriteCard(this, 'anc-b-molo2', 'ANCIENT B: Другий молотов', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">🔥 4. ДРУГИЙ МОЛОТОВ</div>
 
             <div class="grid-2-col">
@@ -122,7 +143,11 @@
 
         <!-- 5. ФЛЕШКА -->
         <div class="step-card" id="anc-b-flash">
-            <button class="fav-star-btn" data-id="anc-b-flash" onclick="toggleFavoriteCard(this, 'anc-b-flash', 'ANCIENT B: Флешка на вихід', 'ancient-b-site.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('anc-b-flash', '5. Флешка')" title="Сховати цю флешку">👁️</button>
+                <button class="fav-star-btn" data-id="anc-b-flash" onclick="toggleFavoriteCard(this, 'anc-b-flash', 'ANCIENT B: Флешка на вихід', 'ancient-b-site.html')">☆</button>
+            </div>
+
             <div class="step-title">⚡ 5. ФЛЕШКА</div>
 
             <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
@@ -133,6 +158,15 @@
 
         <div class="tip-box">
             📌 <b>Порада:</b> Попроси тіммейтів дропнути тобі недостаючі гранати (смок, молотов чи флешку), щоб мати повний комплект із 2 смоків, 2 молотовів та флешок для соло-розкиду!
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

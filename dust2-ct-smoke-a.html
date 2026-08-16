@@ -4,177 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — ONE WAY SMOKE A</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
-        body {
-            background-color: #0d0e12;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px 10px 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Фіксована кнопка назад, щоб не зникала при скролі */
-        .fixed-back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: #14161d;
-            border: 1px solid #4b69ff;
-            color: #ffffff;
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .fixed-back-btn:hover {
-            background: #4b69ff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(75, 105, 255, 0.4);
-        }
-
-        header {
-            margin-top: 50px;
-            margin-bottom: 25px;
-            text-align: center;
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        header h1 {
-            color: #4b69ff;
-            font-size: 24px;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* Контейнер сітки */
-        .guide-container {
-            width: 100%;
-            max-width: 900px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Картка кроку */
-        .guide-card {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-
-        .guide-card:hover {
-            border-color: #4b69ff;
-            box-shadow: 0 8px 20px rgba(75, 105, 255, 0.2);
-        }
-
-        .guide-card-title {
-            padding: 12px 15px;
-            text-align: center;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 16px;
-            margin: 0;
-            background: #191c26;
-            border-bottom: 1px solid #232733;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .guide-card-img-wrapper {
-            width: 100%;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .guide-card img {
-            width: 100%;
-            height: auto;
-            max-height: 480px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .guide-card-img-wrapper:hover img {
-            transform: scale(1.03);
-        }
-
-        /* Нижній ряд з 2 фото по горизонталі */
-        .guide-row-two {
+        .grid-2-col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
-        .guide-row-two .guide-card img {
-            max-height: 320px;
+        @media (max-width: 600px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- РОЗУМНА ФІКСОВАНА КНОПКА НАЗАД -->
-    <a href="dust2-ct-side.html" class="fixed-back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="dust2-ct-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
-    <header>
-        <h1>ONE WAY SMOKE A (DUST II)</h1>
-    </header>
+    <div class="header-title">DUST II — ONE WAY SMOKE A</div>
 
-    <main class="guide-container" id="d2-ct-oneway-a">
+    <div class="guide-container">
 
-        <!-- 1. ВСТАВАЙ ТУТ (ВЕРХНЯ НА ВСЮ ШИРИНУ) -->
-        <div class="guide-card">
-            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
-            <button class="fav-star-btn" data-id="d2-ct-oneway-a" onclick="toggleFavoriteCard(this, 'd2-ct-oneway-a', 'DUST II CT: One Way Smoke A', 'dust2-ct-smoke-a.html')" style="top: 8px; right: 10px;">☆</button>
-
-            <h3 class="guide-card-title">1. Вставай тут</h3>
-            <div class="guide-card-img-wrapper">
-                <img src="фото/dust2-ct-smoke-a-stand.jpg" alt="Вставай тут" onerror="this.src='фото/dust2-ct-smoke-a-stand.png'">
-            </div>
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- ДВІ КАРТКИ ПО ГОРИЗОНТАЛІ -->
-        <div class="guide-row-two">
+        <!-- 1. ONE WAY SMOKE A (КАРТКА РОЗКИДКИ) -->
+        <div class="step-card" id="d2-ct-oneway-a">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-ct-oneway-a', 'One Way Smoke A')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-ct-oneway-a" onclick="toggleFavoriteCard(this, 'd2-ct-oneway-a', 'DUST II CT: One Way Smoke A', 'dust2-ct-smoke-a.html')">☆</button>
+            </div>
 
-            <!-- 2. ЦІЛЬСЯ ТУТ -->
-            <div class="guide-card">
-                <h3 class="guide-card-title">2. Цілься тут</h3>
-                <div class="guide-card-img-wrapper">
-                    <img src="фото/dust2-ct-smoke-a-aim.jpg" alt="Цілься тут" onerror="this.src='фото/dust2-ct-smoke-a-aim.png'">
+            <div class="step-title">🌫️ ONE WAY SMOKE A</div>
+
+            <!-- ВСТАВАЙ ТУТ -->
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 ВСТАВАЙ ТУТ</div>
+                <img src="фото/dust2-ct-smoke-a-stand.jpg" alt="Вставай тут" class="step-img" onerror="this.src='фото/dust2-ct-smoke-a-stand.png'">
+            </div>
+
+            <!-- ДВІ ФОТО В РЯД: ЦІЛЬСЯ ТУТ + ВПАДЕ ТУТ -->
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/dust2-ct-smoke-a-aim.jpg" alt="Цілься тут" class="step-img" onerror="this.src='фото/dust2-ct-smoke-a-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/dust2-ct-smoke-a.jpg" alt="Впаде тут" class="step-img" onerror="this.src='фото/dust2-ct-smoke-a.png'">
                 </div>
             </div>
 
-            <!-- 3. ВПАДЕ ТУТ (НАЗВА ТА САМА, ЩО Й ПРЕВ'ЮШКА) -->
-            <div class="guide-card">
-                <h3 class="guide-card-title">3. Впаде тут</h3>
-                <div class="guide-card-img-wrapper">
-                    <img src="фото/dust2-ct-smoke-a.jpg" alt="Впаде тут" onerror="this.src='фото/dust2-ct-smoke-a.png'">
-                </div>
-            </div>
-
+            <div class="action-badge">⚡ КИДОК: ЛКМ</div>
         </div>
 
-    </main>
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
+        </div>
+
+    </div>
 
     <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
     <script src="favorites.js"></script>

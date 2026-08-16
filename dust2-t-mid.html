@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — РОЗКИД MID (T)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .grid-2-col {
             display: grid;
@@ -32,8 +32,10 @@
 
         <!-- ================= 1. СМОК ДВЕРІ (ВАРІАНТ 1) ================= -->
         <div class="step-card" id="d2-mid-smoke1">
-            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
-            <button class="fav-star-btn" data-id="d2-mid-smoke1" onclick="toggleFavoriteCard(this, 'd2-mid-smoke1', 'DUST II: Смок двері (Варіант 1)', 'dust2-t-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-mid-smoke1', '1. Смок двері (Варіант 1)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-mid-smoke1" onclick="toggleFavoriteCard(this, 'd2-mid-smoke1', 'DUST II: Смок двері (Варіант 1)', 'dust2-t-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🌫️ 1. СМОК ДВЕРІ (ВАРІАНТ 1)</div>
 
@@ -58,8 +60,10 @@
 
         <!-- ================= 2. СМОК ДВЕРІ (ВАРІАНТ 2) ================= -->
         <div class="step-card" id="d2-mid-smoke2">
-            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
-            <button class="fav-star-btn" data-id="d2-mid-smoke2" onclick="toggleFavoriteCard(this, 'd2-mid-smoke2', 'DUST II: Смок двері (Варіант 2)', 'dust2-t-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-mid-smoke2', '2. Смок двері (Варіант 2)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-mid-smoke2" onclick="toggleFavoriteCard(this, 'd2-mid-smoke2', 'DUST II: Смок двері (Варіант 2)', 'dust2-t-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🌫️ 2. СМОК ДВЕРІ (ВАРІАНТ 2)</div>
 
@@ -84,8 +88,10 @@
 
         <!-- ================= 3. СМОК КТ ================= -->
         <div class="step-card" id="d2-mid-ct">
-            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
-            <button class="fav-star-btn" data-id="d2-mid-ct" onclick="toggleFavoriteCard(this, 'd2-mid-ct', 'DUST II: Смок CT (КТ)', 'dust2-t-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-mid-ct', '3. Смок КТ')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-mid-ct" onclick="toggleFavoriteCard(this, 'd2-mid-ct', 'DUST II: Смок CT (КТ)', 'dust2-t-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🌫️ 3. СМОК КТ (CT SPWAN / MID)</div>
 
@@ -106,6 +112,15 @@
             </div>
 
             <div class="action-badge">⚡ КИДОК: CTRL + JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

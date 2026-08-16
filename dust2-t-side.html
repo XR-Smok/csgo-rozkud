@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — ТЕРОРИСТИ (T)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .cards-grid {
             display: grid;
@@ -12,6 +12,12 @@
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .side-card {
@@ -44,8 +50,8 @@
 </head>
 <body>
 
-    <!-- КНОПКА НАЗАД -->
-    <a href="dust2.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="dust2.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">DUST II — ТЕРОРИСТИ (T)</div>
 
@@ -58,7 +64,7 @@
         <div class="cards-grid">
 
             <!-- 1. РОЗКИД B -->
-            <a href="dust2-t-b.html" style="text-decoration: none;">
+            <a href="dust2-t-b.html" class="card-link">
                 <div class="step-card side-card">
                     <img src="фото/dust2-t-b.jpg" alt="Розкид B" onerror="this.src='фото/dust2-t-b.png'">
                     <div class="step-title" style="margin-bottom: 0;">РОЗКИД B</div>
@@ -66,7 +72,7 @@
             </a>
 
             <!-- 2. РОЗКИД MID -->
-            <a href="dust2-t-mid.html" style="text-decoration: none;">
+            <a href="dust2-t-mid.html" class="card-link">
                 <div class="step-card side-card">
                     <img src="фото/dust2-t-mid.jpg" alt="Розкид Mid" onerror="this.src='фото/dust2-t-mid.png'">
                     <div class="step-title" style="margin-bottom: 0;">РОЗКИД MID</div>
@@ -74,7 +80,7 @@
             </a>
 
             <!-- 3. РОЗКИД LONG -->
-            <a href="dust2-t-long.html" style="text-decoration: none;">
+            <a href="dust2-t-long.html" class="card-link">
                 <div class="step-card side-card">
                     <img src="фото/dust2-t-long.jpg" alt="Розкид Long" onerror="this.src='фото/dust2-t-long.png'">
                     <div class="step-title" style="margin-bottom: 0;">РОЗКИД LONG</div>

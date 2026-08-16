@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — RETAKE B SITE</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
-        /* Блок для розміщення двох фото в один ряд (по горизонталі) */
         .grid-2-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -16,15 +15,14 @@
 
         @media (max-width: 600px) {
             .grid-2-col {
-                grid-template-columns: 1fr; /* На малих екранах фото стануть одне під одним */
+                grid-template-columns: 1fr;
             }
         }
 
-        /* Жовтий блок попередження / поради */
         .note-text {
             color: #ffb830;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin-top: 8px;
             text-align: center;
         }
@@ -46,17 +44,18 @@
 
         <!-- 1. СМОК НА ВИХІД -->
         <div class="step-card" id="d2-ct-retake-b-smoke">
-            <button class="fav-star-btn" data-id="d2-ct-retake-b-smoke" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-smoke', 'DUST II CT: Смок на вихід (B Exit)', 'dust2-ct-retake-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-ct-retake-b-smoke', '1. Смок на вихід (B Exit)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-ct-retake-b-smoke" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-smoke', 'DUST II CT: Смок на вихід (B Exit)', 'dust2-ct-retake-b.html')">☆</button>
+            </div>
 
             <div class="step-title">🌫️ 1. СМОК НА ВИХІД (B EXIT)</div>
 
-            <!-- Вставай тут зверху -->
             <div style="margin-bottom: 15px;">
                 <div class="step-description" style="margin-bottom: 8px;">📍 ВСТАВАЙ ТУТ</div>
                 <img src="фото/dust2-b-smoke-exit-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/dust2-b-smoke-exit-stand.png'">
             </div>
 
-            <!-- Дві фото по горизонталі -->
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
@@ -64,7 +63,7 @@
                 </div>
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="фото/dust2-ct-retake-b.jpg" alt="Результат (прев'ю)" class="step-img" onerror="this.src='фото/dust2-ct-retake-b.png'">
+                    <img src="фото/dust2-ct-retake-b.jpg" alt="Результат" class="step-img" onerror="this.src='фото/dust2-ct-retake-b.png'">
                 </div>
             </div>
 
@@ -73,17 +72,18 @@
 
         <!-- 2. МОЛОТОВ НА X -->
         <div class="step-card" id="d2-ct-retake-b-molly-x">
-            <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-x" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-x', 'DUST II CT: Молотов на X [B]', 'dust2-ct-retake-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-ct-retake-b-molly-x', '2. Молотов на X [B]')" title="Сховати цей молотов">👁️</button>
+                <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-x" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-x', 'DUST II CT: Молотов на X [B]', 'dust2-ct-retake-b.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 2. МОЛОТОВ НА X</div>
 
-            <!-- Вставай тут зверху -->
             <div style="margin-bottom: 15px;">
                 <div class="step-description" style="margin-bottom: 8px;">📍 ВСТАВАЙ ТУТ</div>
                 <img src="фото/dust2-b-molly-x-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/dust2-b-molly-x-stand.png'">
             </div>
 
-            <!-- Дві фото по горизонталі -->
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
@@ -101,7 +101,10 @@
 
         <!-- 3. ФЛЕШ НА ВИХІД -->
         <div class="step-card" id="d2-ct-retake-b-flash">
-            <button class="fav-star-btn" data-id="d2-ct-retake-b-flash" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-flash', 'DUST II CT: Флеш на вихід [B]', 'dust2-ct-retake-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-ct-retake-b-flash', '3. Флеш на вихід [B]')" title="Сховати цю флешку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-ct-retake-b-flash" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-flash', 'DUST II CT: Флеш на вихід [B]', 'dust2-ct-retake-b.html')">☆</button>
+            </div>
 
             <div class="step-title">⚡ 3. ФЛЕШ НА ВИХІД</div>
 
@@ -121,17 +124,18 @@
 
         <!-- 4. МОЛІК НА МАШИНУ -->
         <div class="step-card" id="d2-ct-retake-b-molly-car">
-            <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-car" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-car', 'DUST II CT: Молік на машину (Car) [B]', 'dust2-ct-retake-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-ct-retake-b-molly-car', '4. Молік на машину (Car) [B]')" title="Сховати цей молотов">👁️</button>
+                <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-car" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-car', 'DUST II CT: Молік на машину (Car) [B]', 'dust2-ct-retake-b.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 4. МОЛІК НА МАШИНУ (CAR)</div>
 
-            <!-- Вставай тут зверху -->
             <div style="margin-bottom: 15px;">
                 <div class="step-description" style="margin-bottom: 8px;">📍 ВСТАВАЙ ТУТ</div>
                 <img src="фото/dust2-b-tactic4-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/dust2-b-tactic4-stand.png'">
             </div>
 
-            <!-- Дві фото по горизонталі -->
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
@@ -145,6 +149,15 @@
 
             <div class="action-badge">⚡ КИДОК: 2 КРОКИ + JUMPTHROW + ЛКМ</div>
             <div class="note-text">⚠️ Завчасно потренуйся кидати!</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

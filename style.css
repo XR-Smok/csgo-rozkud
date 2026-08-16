@@ -65,6 +65,9 @@ h1::after, .header-title::after {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
+/* ==========================================
+   КАРТКИ ТА ЕЛЕМЕНТИ РОЗКИДОК
+   ========================================== */
 .step-card, .map-card, .side-card, .pos-card, .option-card {
     background: rgba(22, 25, 34, 0.8);
     backdrop-filter: blur(10px);
@@ -74,13 +77,23 @@ h1::after, .header-title::after {
     text-align: center;
     position: relative;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.3s ease, 
+                border-color 0.25s ease, 
+                box-shadow 0.25s ease;
 }
 
 .step-card:hover, .map-card:hover, .side-card:hover, .pos-card:hover, .option-card:hover {
     transform: translateY(-4px);
     border-color: rgba(75, 105, 255, 0.5);
     box-shadow: 0 10px 35px rgba(75, 105, 255, 0.2);
+}
+
+/* Анімація згортання та вильоту картки вниз при кліку на око */
+.card-collapsing {
+    transform: translateY(45px) scale(0.85) !important;
+    opacity: 0 !important;
+    pointer-events: none;
 }
 
 .step-title, .map-title, .side-title, .pos-title, .option-title {
@@ -134,6 +147,219 @@ h1::after, .header-title::after {
 }
 
 /* ==========================================
+   КНОПКИ В КУТКУ КАРТКИ (ОКО + ЗІРОЧКА)
+   ========================================== */
+.card-top-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+/* Кнопка "Сховати" (Око) */
+.hide-card-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #a0a5b5;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+}
+
+.hide-card-btn:hover {
+    color: #4b69ff;
+    border-color: #4b69ff;
+    background: rgba(75, 105, 255, 0.18);
+    box-shadow: 0 0 14px rgba(75, 105, 255, 0.5);
+    transform: scale(1.15);
+}
+
+/* Кнопка "Мій раунд" (Зірочка) */
+.fav-star-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #888888;
+    font-size: 20px;
+    line-height: 1;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0;
+}
+
+.fav-star-btn:hover {
+    transform: scale(1.15);
+    border-color: #ffd700;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.12);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+}
+
+.fav-star-btn.active {
+    color: #ffd700;
+    border-color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.5);
+}
+
+/* ==========================================
+   ПІДСВІЧУВАННЯ ПРИ ПЕРЕХОДІ З РАУНДУ
+   ========================================== */
+@keyframes highlightFlash {
+    0% {
+        box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+        border-color: rgba(255, 255, 255, 0.08);
+    }
+    30% {
+        box-shadow: 0 0 35px rgba(255, 215, 0, 0.85);
+        border-color: #ffd700;
+        transform: scale(1.02);
+    }
+    60% {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        border-color: #ffd700;
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(255, 215, 0, 0);
+        border-color: rgba(255, 255, 255, 0.08);
+        transform: scale(1);
+    }
+}
+
+.step-card:target,
+.guide-card:target {
+    animation: highlightFlash 1.6s ease-out;
+    scroll-margin-top: 80px;
+}
+
+.map-badge {
+    background: rgba(75, 105, 255, 0.2);
+    border: 1px solid #4b69ff;
+    color: #4b69ff;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   БЛОК ПРИХОВАНИХ РОЗКИДОК ЗНИЗУ
+   ========================================== */
+.hidden-section {
+    background: linear-gradient(180deg, #14161d 0%, #0e1015 100%);
+    border: 1px solid #232733;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 40px auto 20px;
+    max-width: 850px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease;
+}
+
+.hidden-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hidden-section-title {
+    color: #8b92a5;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.hidden-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 14px;
+}
+
+.hidden-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #181b24;
+    border: 1px solid #242938;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: #e1e4ea;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.hidden-item-row:hover {
+    border-color: #4b69ff;
+    background: #1c202c;
+    transform: translateX(4px);
+}
+
+.restore-btn {
+    background: rgba(75, 105, 255, 0.12);
+    border: 1px solid #4b69ff;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.restore-btn:hover {
+    background: #4b69ff;
+    box-shadow: 0 0 12px rgba(75, 105, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.restore-all-btn {
+    background: rgba(255, 70, 85, 0.1);
+    border: 1px solid rgba(255, 70, 85, 0.4);
+    color: #ff4655;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.restore-all-btn:hover {
+    background: #ff4655;
+    color: #ffffff;
+    border-color: #ff4655;
+    box-shadow: 0 0 12px rgba(255, 70, 85, 0.4);
+    transform: scale(1.05);
+}
+
+/* ==========================================
    ПЛАВАЮЧА КНОПКА «НАЗАД»
    ========================================== */
 .back-btn {
@@ -164,7 +390,7 @@ h1::after, .header-title::after {
 }
 
 /* ==========================================
-   ГАЛЕРЕЯ / ВІКНО ЗБІЛЬШЕННЯ (LIGHTBOX)
+   ГАЛЕРЕЯ / LIGHTBOX
    ========================================== */
 .lightbox {
     display: none;
@@ -198,7 +424,6 @@ h1::after, .header-title::after {
     cursor: default;
 }
 
-/* Хрестик закриття */
 .lightbox-close {
     position: absolute;
     top: 20px;
@@ -217,7 +442,6 @@ h1::after, .header-title::after {
     transform: scale(1.15);
 }
 
-/* Кнопки стрілочок */
 .lightbox-btn {
     position: absolute;
     top: 50%;
@@ -242,15 +466,9 @@ h1::after, .header-title::after {
     transform: translateY(-50%) scale(1.08);
 }
 
-.lightbox-prev {
-    left: 20px;
-}
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
 
-.lightbox-next {
-    right: 20px;
-}
-
-/* Лічильник фото */
 .lightbox-counter {
     position: absolute;
     bottom: 20px;
@@ -263,80 +481,4 @@ h1::after, .header-title::after {
     padding: 6px 16px;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-}
-/* Позиціонування зірочки всередині картки розкидки */
-.step-card {
-    position: relative;
-}
-
-.fav-star-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #888;
-    font-size: 22px;
-    line-height: 1;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    z-index: 10;
-}
-
-.fav-star-btn:hover {
-    transform: scale(1.15);
-    border-color: #ffd700;
-    color: #ffd700;
-}
-
-.fav-star-btn.active {
-    color: #ffd700;
-    border-color: #ffd700;
-    background: rgba(255, 215, 0, 0.15);
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
-}
-/* ================= ЗІРОЧКА ДЛЯ «МІЙ РАУНД» ================= */
-.step-card {
-    position: relative; /* Щоб зірочка позиціонувалася чітко всередині картки */
-}
-
-.fav-star-btn {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #888888;
-    font-size: 20px;
-    line-height: 1;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    z-index: 10;
-    padding: 0;
-}
-
-.fav-star-btn:hover {
-    transform: scale(1.15);
-    border-color: #ffd700;
-    color: #ffd700;
-    background: rgba(255, 215, 0, 0.1);
-}
-
-.fav-star-btn.active {
-    color: #ffd700;
-    border-color: #ffd700;
-    background: rgba(255, 215, 0, 0.2);
-    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
 }

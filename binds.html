@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⌨️ БІНДИ ТА КОМАНДИ — CS2</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <style>
+        .binds-container {
+            max-width: 820px;
+            margin: 20px auto 40px;
+            padding: 0 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-header {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .bind-box {
+            background: rgba(20, 22, 29, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+        }
+
+        /* 1. РОЗВОРОТ НА 180° */
+        .turn-box { border-left: 4px solid #ff4655; }
+
+        .stepper-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0 10px;
+        }
+
+        .step-btn {
+            background: #1e2230;
+            border: 1px solid #ff4655;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: bold;
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+            user-select: none;
+            touch-action: manipulation;
+        }
+
+        .step-btn:active { transform: scale(0.92); background: #ff4655; }
+
+        .sens-display-input {
+            background: #0b0c10;
+            border: 2px solid #ff4655;
+            color: #ffd700;
+            font-size: 20px;
+            font-weight: 900;
+            text-align: center;
+            width: 120px;
+            height: 46px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 70, 85, 0.2);
+            outline: none;
+            font-family: monospace;
+        }
+
+        .sens-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #232733;
+            outline: none;
+            accent-color: #ff4655;
+            margin: 10px 0 14px;
+            cursor: pointer;
+        }
+
+        .preset-chips {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .preset-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #a0a5b5;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .preset-btn:hover, .preset-btn.active {
+            background: #ff4655;
+            border-color: #ff4655;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* 2. ГРАНАТИ */
+        .nades-box { border-left: 4px solid #4b69ff; }
+
+        .nade-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .nade-tab-btn {
+            background: #14161d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a0a5b5;
+            padding: 10px 4px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .nade-tab-btn span.icon { font-size: 20px; }
+        .nade-tab-btn:hover { border-color: #4b69ff; color: #ffffff; }
+        .nade-tab-btn.active {
+            background: rgba(75, 105, 255, 0.2);
+            border-color: #4b69ff;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(75, 105, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* 3. КОНСТРУКТОР CFG */
+        .prac-box { border-left: 4px solid #00e676; }
+
+        .accordion-trigger {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-arrow {
+            font-size: 14px;
+            color: #00e676;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-arrow.open { transform: rotate(180deg); }
+
+        .cfg-checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 18px 0;
+            background: #0d0f15;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #1a1d26;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .check-item:hover { background: rgba(0, 230, 118, 0.06); }
+
+        .check-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #00e676;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .check-content { display: flex; flex-direction: column; gap: 2px; }
+
+        .check-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .check-code-badge {
+            font-family: monospace;
+            font-size: 11px;
+            color: #6cd0ff;
+            background: #06070a;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #232733;
+        }
+
+        .check-desc {
+            font-size: 12px;
+            color: #8c93a8;
+            line-height: 1.4;
+        }
+
+        /* РЯДКИ КОДУ ТА КНОПКИ */
+        .code-action-box {
+            background: #0b0c10;
+            border: 1px solid #232733;
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .code-row {
+            font-family: 'Consolas', 'Courier New', monospace;
+            color: #6cd0ff;
+            font-size: 13.5px;
+            font-weight: bold;
+            word-break: break-all;
+            line-height: 1.4;
+            user-select: all;
+        }
+
+        .key-tag {
+            color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px dashed #ffd700;
+            display: inline-block;
+        }
+
+        .copy-big-btn {
+            background: #4b69ff;
+            border: none;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 13.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(75, 105, 255, 0.3);
+        }
+
+        .copy-big-btn:hover {
+            background: #3855eb;
+            box-shadow: 0 0 20px rgba(75, 105, 255, 0.6);
+        }
+
+        .copy-big-btn.copied {
+            background: #00e676 !important;
+            color: #0d0e12 !important;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.6) !important;
+        }
+
+        .info-hint {
+            font-size: 12px;
+            color: #8c93a8;
+            line-height: 1.5;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 550px) {
+            .nade-tabs { grid-template-columns: repeat(3, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title">⌨️ БІНДИ ТА КОМАНДИ</div>
+
+    <div class="binds-container">
+
+        <div class="tip-box">
+            💡 Обирай потрібний бінд, тисни <b>«Скопіювати»</b>, відкривай консоль у грі (<code>~</code>) і тисни <code>Ctrl + V</code>. Замість <span class="key-tag">"ТВОЯ_КНОПКА"</span> підстав свою клавішу (наприклад: <code>c</code>, <code>v</code>, <code>f</code>, <code>mouse4</code>).
+        </div>
+
+        <!-- ================= 1. БІНД НА РОЗВОРОТ 180° ================= -->
+        <div class="section-header">🔄 1. Швидкий розворот на 180°</div>
+
+        <div class="bind-box turn-box">
+            <div style="text-align: center; font-weight: 700; font-size: 14px; color: #fff;">
+                🎯 Введи або обери свою чутливість (Sensitivity):
+            </div>
+
+            <!-- ВЕЛИКІ КНОПКИ ДЛЯ ТЕЛЕФОНУ -->
+            <div class="stepper-control">
+                <button type="button" class="step-btn" onclick="adjustSens(-0.01)">−</button>
+                <input type="text" id="userSens" class="sens-display-input" value="0.50" oninput="onManualInput()" onblur="onInputBlur()" placeholder="Сенса">
+                <button type="button" class="step-btn" onclick="adjustSens(0.01)">+</button>
+            </div>
+
+            <!-- СЛАЙДЕР -->
+            <input type="range" id="sensRange" class="sens-slider" min="0.01" max="5.00" step="0.01" value="0.50" oninput="onSliderChange()">
+
+            <!-- ШВИДКІ ПРЕСЕТИ (0.4, 0.5, 0.6 НА ПОЧАТКУ) -->
+            <div class="preset-chips">
+                <button class="preset-btn" onclick="setPreset(0.4)">0.4</button>
+                <button class="preset-btn active" onclick="setPreset(0.5)">0.5</button>
+                <button class="preset-btn" onclick="setPreset(0.6)">0.6</button>
+                <button class="preset-btn" onclick="setPreset(0.8)">0.8</button>
+                <button class="preset-btn" onclick="setPreset(1.0)">1.0</button>
+                <button class="preset-btn" onclick="setPreset(1.25)">1.25</button>
+                <button class="preset-btn" onclick="setPreset(1.5)">1.5</button>
+                <button class="preset-btn" onclick="setPreset(2.0)">2.0</button>
+            </div>
+
+            <!-- РЕЗУЛЬТАТ БІНДУ -->
+            <div class="code-action-box">
+                <div class="code-row" id="code-turn180">
+                    bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
+                </div>
+                <button class="copy-big-btn" onclick="copyCode('code-turn180', this)">
+                    📋 Скопіювати бінд 180°
+                </button>
+            </div>
+
+            <div class="info-hint">
+                ⚙️ <b>Як перевірити:</b> Натисни бінд перед стіною. Якщо <b>не докрутило</b> — трохи збільши число в команді. Якщо <b>перекрутило</b> — зменши.
+            </div>
+        </div>
+
+        <!-- ================= 2. БІНДИ НА ГРАНАТИ ================= -->
+        <div class="section-header">💣 2. Швидкий вибір гранат</div>
+
+        <div class="bind-box nades-box">
+            <div style="font-weight: 700; font-size: 14px; color: #fff;">
+                👇 Торкнись гранати, щоб отримати готовий бінд:
+            </div>
+
+            <!-- Вкладки-іконки -->
+            <div class="nade-tabs">
+                <button class="nade-tab-btn active" onclick="selectNade('smoke', this)">
+                    <span class="icon">☁️</span>
+                    <span>Смок</span>
+                </button>
+                <button class="nade-tab-btn" onclick="selectNade('flash', this)">
+                    <span class="icon">⚡</span>
+                    <span>Флешка</span>
+                </button>
+                <button class="nade-tab-btn" onclick="selectNade('molly', this)">
+                    <span class="icon">🔥</span>
+                    <span>Молік</span>
+                </button>
+                <button class="nade-tab-btn" onclick="selectNade('he', this)">
+                    <span class="icon">💥</span>
+                    <span>Хаєшка</span>
+                </button>
+                <button class="nade-tab-btn" onclick="selectNade('decoy', this)">
+                    <span class="icon">🎯</span>
+                    <span>Декой</span>
+                </button>
+            </div>
+
+            <!-- Активний бінд для вибраної гранати -->
+            <div class="code-action-box">
+                <div style="font-size: 13px; color: #ffd700; font-weight: 800;" id="nadeTitle">
+                    ☁️ СМОК (SMOKE GRENADE — SLOT 8)
+                </div>
+                <div class="code-row" id="nadeCode">
+                    bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "slot8"
+                </div>
+                <button class="copy-big-btn" id="nadeCopyBtn" onclick="copyCode('nadeCode', this)">
+                    📋 Скопіювати бінд на Смок
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= 3. КОНСТРУКТОР CFG ДЛЯ ТРЕНУВАНЬ ================= -->
+        <div class="section-header">🛠️ 3. Тренування та конфіги</div>
+
+        <div class="bind-box prac-box">
+            
+            <!-- Заголовок-спойлер -->
+            <div class="accordion-trigger" onclick="togglePracAccordion()">
+                <div>
+                    <div style="font-weight: 800; font-size: 15px; color: #fff;">
+                        🎯 Конструктор Practice CFG (Налаштуй під себе)
+                    </div>
+                    <div style="font-size: 12px; color: #a0a5b5; margin-top: 2px;">
+                        Всі галочки стоять за замовчуванням. Знімай зайве, щоб згенерувати свій код!
+                    </div>
+                </div>
+                <span id="pracArrow" class="accordion-arrow open">▼</span>
+            </div>
+
+            <!-- Розгортання з чекбоксами -->
+            <div id="pracBody">
+                
+                <div class="cfg-checklist">
+                    
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-cheats" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                🔓 Дозвіл чітів для тренування <span class="check-code-badge">sv_cheats 1</span>
+                            </div>
+                            <div class="check-desc">Обов'язкова база, без неї не працюють noclip та інші команди.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-ammo" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                ♾️ Нескінченні гранати та патрони <span class="check-code-badge">sv_infinite_ammo 1</span>
+                            </div>
+                            <div class="check-desc">Гранати ніколи не закінчуються, не потрібно купувати їх знову.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-pip" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                📐 Прев'ю траєкторії в кутку екрану <span class="check-code-badge">sv_grenade_trajectory_prac_pipreview 1</span>
+                            </div>
+                            <div class="check-desc">Показує маленьке віконце в кутку: ти бачиш, куди впаде граната, ще до кидка!</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-time" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                ⏳ 60 хвилин розминка без зупинки <span class="check-code-badge">mp_roundtime 60; mp_warmup_end</span>
+                            </div>
+                            <div class="check-desc">Раунд ніколи не завершується раптово.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-bots" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                🚫 Кік усіх ботів <span class="check-code-badge">bot_kick</span>
+                            </div>
+                            <div class="check-desc">Прибирає ботів з сервера, щоб ніхто не заважав кидати гранати.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-buy" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                💰 Купівля скрізь і максимум грошей <span class="check-code-badge">mp_buy_anywhere 1; mp_maxmoney 60000</span>
+                            </div>
+                            <div class="check-desc">Можна відкрити магазин та купити будь-яку зброю в будь-якій точці карти.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-impacts" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                🎯 Показ слідів від куль <span class="check-code-badge">sv_showimpacts 1</span>
+                            </div>
+                            <div class="check-desc">Показує кольорові маркери, куди саме прилітають кулі крізь стіни чи дим.</div>
+                        </div>
+                    </label>
+
+                    <label class="check-item">
+                        <input type="checkbox" id="cfg-restart" checked onchange="buildCustomCfg()">
+                        <div class="check-content">
+                            <div class="check-title">
+                                🔄 Миттєвий перезапуск раунду <span class="check-code-badge">mp_restartgame 1</span>
+                            </div>
+                            <div class="check-desc">Застосовує всі команди одразу після натискання Enter.</div>
+                        </div>
+                    </label>
+
+                </div>
+
+                <!-- ЗГЕНЕРОВАНИЙ КОД -->
+                <div class="code-action-box">
+                    <div style="font-size: 12px; color: #ffd700; font-weight: 800;">
+                        📋 ТВІЙ ПІДСУМКОВИЙ КОНФІГ:
+                    </div>
+                    <div class="code-row" id="customCfgCode">
+                        sv_cheats 1; bot_kick; mp_warmup_end; mp_freezetime 0; mp_roundtime 60; mp_roundtime_defuse 60; sv_infinite_ammo 1; mp_buy_anywhere 1; mp_maxmoney 60000; mp_startmoney 60000; sv_grenade_trajectory_prac_pipreview 1; sv_showimpacts 1; mp_restartgame 1
+                    </div>
+                    <button class="copy-big-btn" style="background:#00c853;" onclick="copyCode('customCfgCode', this)">
+                        🚀 Скопіювати обраний конфіг
+                    </button>
+                </div>
+
+                <!-- ОКРЕМІ ТАКТИЧНІ БІНДИ -->
+                <div style="font-size: 13px; font-weight: 800; color: #ffd700; margin-top: 20px; margin-bottom: 10px;">
+                    ⚡ Окремі корисні бінди для тренування:
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    
+                    <!-- Noclip -->
+                    <div class="code-action-box" style="padding: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">🕊️ Політ крізь стіни (Noclip)</span>
+                        </div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Швидко долетіти до місця падіння гранати.</div>
+                        <div class="code-row" id="cmd-noclip">bind "<span class="key-tag">N</span>" "noclip"</div>
+                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-noclip', this)">Скопіювати Noclip</button>
+                    </div>
+
+                    <!-- Rethrow -->
+                    <div class="code-action-box" style="padding: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">🔄 Повтор останньої гранати (Rethrow)</span>
+                        </div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату, щоб ти перевірив її збоку (чи сліпить флешка, чи є щілини в смоку).</div>
+                        <div class="code-row" id="cmd-rethrow">bind "<span class="key-tag">H</span>" "sv_rethrow_last_grenade"</div>
+                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-rethrow', this)">Скопіювати Rethrow</button>
+                    </div>
+
+                    <!-- Smoke Crosshair -->
+                    <div class="code-action-box" style="padding: 10px;">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">➕ Приціл на весь екран для смоків</span>
+                        </div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран, щоб ідеально рівно цілитися по дахах та вікнах будівель.</div>
+                        <div class="code-row" id="cmd-cross">bind "<span class="key-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
+                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-cross', this)">Скопіювати Smoke Crosshair</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- СКРИПТИ -->
+    <script>
+        // 1. ДАНІ ГРАНАТ
+        const nadesData = {
+            smoke: { title: '☁️ СМОК (SMOKE GRENADE — SLOT 8)', slot: 'slot8', name: 'Смок' },
+            flash: { title: '⚡ ФЛЕШКА (FLASHBANG — SLOT 7)', slot: 'slot7', name: 'Флешку' },
+            molly: { title: '🔥 МОЛОТОВ / ЗАПАЛЬНА (SLOT 10)', slot: 'slot10', name: 'Молотов' },
+            he:    { title: '💥 УЛАМКОВА ГРАНАТА (HE — SLOT 6)', slot: 'slot6', name: 'Хаєшку' },
+            decoy: { title: '🎯 ДЕКОЙ / ФЕЙК (SLOT 9)', slot: 'slot9', name: 'Декой' }
+        };
+
+        function selectNade(type, btn) {
+            document.querySelectorAll('.nade-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const item = nadesData[type];
+            document.getElementById('nadeTitle').innerText = item.title;
+            document.getElementById('nadeCode').innerHTML = `bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "${item.slot}"`;
+            document.getElementById('nadeCopyBtn').innerHTML = `📋 Скопіювати бінд на ${item.name}`;
+        }
+
+        // 2. КАЛЬКУЛЯТОР 180°
+        function calculateYaw(sens) {
+            if (sens > 0) {
+                return Math.round(180 / (0.022 * sens));
+            }
+            return 16364;
+        }
+
+        function updateYawOnly(sens) {
+            let s = parseFloat(sens);
+            if (!isNaN(s) && s > 0) {
+                document.getElementById('yawValue').innerText = calculateYaw(s);
+                let rangeVal = Math.min(5.0, Math.max(0.01, s));
+                document.getElementById('sensRange').value = rangeVal;
+            }
+        }
+
+        function onManualInput() {
+            let text = document.getElementById('userSens').value.replace(',', '.');
+            let s = parseFloat(text);
+            if (!isNaN(s) && s > 0) {
+                document.getElementById('yawValue').innerText = calculateYaw(s);
+                document.getElementById('sensRange').value = Math.min(5.0, Math.max(0.01, s));
+                updatePresetActive(s);
+            }
+        }
+
+        function onInputBlur() {
+            let text = document.getElementById('userSens').value.replace(',', '.');
+            let s = parseFloat(text);
+            if (isNaN(s) || s <= 0) s = 0.5;
+            document.getElementById('userSens').value = s;
+            updateYawOnly(s);
+            updatePresetActive(s);
+        }
+
+        function adjustSens(delta) {
+            let current = parseFloat(document.getElementById('userSens').value.replace(',', '.')) || 0.5;
+            let next = Math.round((current + delta) * 100) / 100;
+            if (next < 0.01) next = 0.01;
+            document.getElementById('userSens').value = next;
+            updateYawOnly(next);
+            updatePresetActive(next);
+        }
+
+        function onSliderChange() {
+            let val = parseFloat(document.getElementById('sensRange').value);
+            document.getElementById('userSens').value = val.toFixed(2);
+            updateYawOnly(val);
+            updatePresetActive(val);
+        }
+
+        function setPreset(val) {
+            document.getElementById('userSens').value = val;
+            updateYawOnly(val);
+            updatePresetActive(val);
+        }
+
+        function updatePresetActive(currentVal) {
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                let pVal = parseFloat(btn.innerText);
+                if (Math.abs(pVal - currentVal) < 0.005) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        // 3. КОНСТРУКТОР CFG
+        function buildCustomCfg() {
+            const commands = [];
+
+            if (document.getElementById('cfg-cheats').checked) commands.push('sv_cheats 1');
+            if (document.getElementById('cfg-bots').checked) commands.push('bot_kick');
+            if (document.getElementById('cfg-time').checked) {
+                commands.push('mp_warmup_end', 'mp_freezetime 0', 'mp_roundtime 60', 'mp_roundtime_defuse 60');
+            }
+            if (document.getElementById('cfg-ammo').checked) commands.push('sv_infinite_ammo 1');
+            if (document.getElementById('cfg-buy').checked) {
+                commands.push('mp_buy_anywhere 1', 'mp_maxmoney 60000', 'mp_startmoney 60000');
+            }
+            if (document.getElementById('cfg-pip').checked) commands.push('sv_grenade_trajectory_prac_pipreview 1');
+            if (document.getElementById('cfg-impacts').checked) commands.push('sv_showimpacts 1');
+            if (document.getElementById('cfg-restart').checked) commands.push('mp_restartgame 1');
+
+            const finalCode = commands.length > 0 ? commands.join('; ') : '// Оберіть хоча б один пункт вище';
+            document.getElementById('customCfgCode').innerText = finalCode;
+        }
+
+        function togglePracAccordion() {
+            const body = document.getElementById('pracBody');
+            const arrow = document.getElementById('pracArrow');
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                arrow.classList.add('open');
+            } else {
+                body.style.display = 'none';
+                arrow.classList.remove('open');
+            }
+        }
+
+        // 4. КОПІЮВАННЯ В 1 КЛІК
+        function copyCode(elementId, btn) {
+            const el = document.getElementById(elementId);
+            const text = el.innerText || el.textContent;
+            navigator.clipboard.writeText(text.trim()).then(() => {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '✅ СКОПІЙОВАНО В БУФЕР!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.classList.remove('copied');
+                }, 1800);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateYawOnly(0.5);
+            buildCustomCfg();
+        });
+    </script>
+
+</body>
+</html>

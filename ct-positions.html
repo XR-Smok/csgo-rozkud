@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — CT ПОЗИЦІЇ</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .positions-grid {
             display: grid;
@@ -70,7 +70,7 @@
 <body>
 
     <!-- ПЛАВАЮЧА КНОПКА НАЗАД -->
-    <a href="side.html" class="back-btn">← НАЗАД</a>
+    <a href="side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <header>
         <h1>MIRAGE — CT ПОЗИЦІЇ</h1>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DUST II — РОЗКИД LONG (T)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         /* Блок для розміщення двох фото в один ряд (по горизонталі) */
         .grid-2-col {
@@ -34,16 +34,24 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ (ВЕРХНЯ НА ВСЮ ШИРИНУ) -->
-        <div class="step-card">
+        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ -->
+        <div class="step-card" id="d2-t-long-stand">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-long-stand', '1. Позиція гравця [Long]')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-long-stand" onclick="toggleFavoriteCard(this, 'd2-t-long-stand', 'DUST II T: Позиція гравця [Long]', 'dust2-t-long.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 1. ПОЗИЦІЯ ГРАВЦЯ</div>
             <img src="фото/dust2-long-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/dust2-long-stand.png'">
             <div class="step-description">СТАВАЙ ТУТ (ДО УПОРА)</div>
         </div>
 
-        <!-- 2. РОЗКИДКА (ГОЛОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
+        <!-- 2. РОЗКИДКА (ГОЛОВНИЙ БЛОК) -->
         <div class="step-card" id="d2-t-long-smoke">
-            <button class="fav-star-btn" data-id="d2-t-long-smoke" onclick="toggleFavoriteCard(this, 'd2-t-long-smoke', 'DUST II T: Розкид Long (Смок)', 'dust2-t-long.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-long-smoke', '2. Кидок гранати [Long]')" title="Сховати цю розкидку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-long-smoke" onclick="toggleFavoriteCard(this, 'd2-t-long-smoke', 'DUST II T: Розкид Long (Смок)', 'dust2-t-long.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 2. КИДОК ГРАНАТИ</div>
 
@@ -59,6 +67,15 @@
             </div>
 
             <div class="action-badge">⚡ КИДОК: ЛКМ</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

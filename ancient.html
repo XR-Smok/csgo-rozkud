@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANCIENT — СТОРОНА</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .sides-grid {
             display: grid;
@@ -50,7 +50,7 @@
             background: #14161d;
         }
 
-        /* 💥 АНІМАЦІЯ ПРИ НАВЕДЕННІ */
+        /* АНІМАЦІЯ ПРИ НАВЕДЕННІ */
         .side-card:hover {
             border-color: #ff4655;
             transform: translateY(-5px);
@@ -84,8 +84,8 @@
 </head>
 <body>
 
-    <!-- ПЛАВАЮЧА КНОПКА НАЗАД (ВЕДЕ НА INDEX.HTML) -->
-    <a href="index.html" class="back-btn">← НАЗАД</a>
+    <!-- ПЛАВАЮЧА КНОПКА НАЗАД -->
+    <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <header>
         <h1>ANCIENT</h1>

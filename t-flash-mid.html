@@ -4,135 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — ФЛЕШКА TYPE-C НА MID</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .single-img-card {
-            background: #14161d;
-            border: 1px solid #232733;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .single-img-card h3 {
-            color: #ff4655;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 18px;
-            text-align: center;
-        }
-
-        .img-container {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #232733;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .img-label {
-            text-align: center;
-            color: #aaa;
-            font-size: 14px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-
-        .warning-box {
-            background: rgba(255, 70, 85, 0.12);
-            border: 1px solid #ff4655;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 25px;
-            text-align: center;
-        }
-
-        .warning-text {
-            color: #ff4655;
-            font-weight: bold;
-            font-size: 15px;
-            line-height: 1.4;
-        }
-
-        .jumpthrow-box {
-            background: rgba(255, 70, 85, 0.1);
-            border: 1px solid #ff4655;
-            border-radius: 6px;
-            padding: 10px;
-            text-align: center;
-            margin-top: 15px;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .jumpthrow-text {
-            color: #ff4655;
-            font-weight: bold;
-            font-size: 15px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
-    <header>
-        <!-- РОЗУМНА КНОПКА НАЗАД -->
-        <a href="t-mid.html" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
-        <h1>ФЛЕШКА TYPE-C НА MID</h1>
-    </header>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="t-mid.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
-    <main id="mirage-t-flash-mid">
+    <div class="header-title">ФЛЕШКА TYPE-C НА MID</div>
 
-        <div class="desktop-tip">
-            <p>💡 <strong>Порада для телефонів:</strong> Відкрий меню браузера (3 крапки) та постав галочку <strong>«Версія для комп'ютера»</strong>.</p>
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- ⚠️ ВАЖЛИВИЙ ТАКТИЧНИЙ БЛОК -->
-        <div class="warning-box">
-            <span class="warning-text">⚠️ Сліпить практично всі позиції, база під вихід тімейта!</span>
+        <div class="tip-box" style="border-left-color: #ffb830;">
+            ⚠️ <b>Важливо:</b> Сліпить практично всі позиції, це ідеальна база під вихід тіммейта!
         </div>
 
-        <!-- 1. ПОЗИЦІЯ -->
-        <div class="single-img-card">
-            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
-            <button class="fav-star-btn" data-id="mirage-t-flash-mid" onclick="toggleFavoriteCard(this, 'mirage-t-flash-mid', 'MIRAGE T: Флешка Type-C на Mid', 't-flash-mid.html')">☆</button>
-
-            <h3>📍 1. ПОЗИЦІЯ</h3>
-            <div class="img-container">
-                <img src="фото/t-flash-mid-pos.png" alt="Позиція для флешки" onerror="this.src='фото/t-flash-mid-pos.jpg'">
+        <!-- ЄДИНА КАРТКА РОЗКИДКИ -->
+        <div class="step-card" id="mirage-t-flash-mid">
+            
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-flash-mid', 'Флешка Type-C на Mid')" title="Сховати цю розкидку">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-flash-mid" onclick="toggleFavoriteCard(this, 'mirage-t-flash-mid', 'MIRAGE T: Флешка Type-C на Mid', 't-flash-mid.html')">☆</button>
             </div>
-            <p class="img-label">ПІДІЙДІТЬ ВПРИТУЛ ДО ВКАЗАНОГО МІСЦЯ</p>
+
+            <div class="step-title">⚡ ФЛЕШКА TYPE-C</div>
+
+            <!-- 1. ПОЗИЦІЯ -->
+            <div style="margin-bottom: 25px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 1. ПОЗИЦІЯ (ПІДІЙДІТЬ ВПРИТУЛ)</div>
+                <img src="фото/t-flash-mid-pos.png" alt="Позиція для флешки" class="step-img" onerror="this.src='фото/t-flash-mid-pos.jpg'">
+            </div>
+
+            <!-- 2. ПРИЦІЛ -->
+            <div style="margin-bottom: 25px;">
+                <div class="step-description" style="margin-bottom: 8px;">🎯 2. ЦІЛЬСЯ ТУТ</div>
+                <img src="фото/t-flash-mid-aim.png" alt="Приціл для флешки" class="step-img" onerror="this.src='фото/t-flash-mid-aim.jpg'">
+            </div>
+
+            <!-- 3. ПРОБІЖКА -->
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">🏃 3. ПРОБІЖИ ПРИБЛИЗНО ДО ЦІЄЇ ВІДМІТКИ</div>
+                <img src="фото/t-flash-mid-throw.png" alt="Кидок гранати" class="step-img" onerror="this.src='фото/t-flash-mid-throw.jpg'">
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ПРОБІЖКА + JUMPTHROW + ЛКМ</div>
+
         </div>
 
-        <!-- 2. ПРИЦІЛ -->
-        <div class="single-img-card">
-            <h3>🎯 2. ЦІЛЬСЯ ТУТ</h3>
-            <div class="img-container">
-                <img src="фото/t-flash-mid-aim.png" alt="Приціл для флешки" onerror="this.src='фото/t-flash-mid-aim.jpg'">
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
             </div>
-            <p class="img-label">НАВЕДЬ ПРИЦІЛ ЗА ВИКОНАНИМ ОРІЄНТИРОМ</p>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
-        <!-- 3. ПРОБІЖКА ТА КИДОК -->
-        <div class="single-img-card">
-            <h3>⚡ 3. ПРОБІЖКА ТА КИДОК</h3>
-            <div class="img-container">
-                <img src="фото/t-flash-mid-throw.png" alt="Кидок гранати" onerror="this.src='фото/t-flash-mid-throw.jpg'">
-            </div>
-            <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ ПРОБІЖИ ПРИБЛИЗНО ДО ЦІЄЇ ВІДМІТКИ ТА НАТИСНИ JUMPTHROW + ЛКМ</span>
-            </div>
-        </div>
-
-    </main>
+    </div>
 
     <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
     <script src="favorites.js"></script>

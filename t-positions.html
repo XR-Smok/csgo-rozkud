@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — ПОЗИЦІЇ (T)</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         .cards-grid {
             display: grid;
@@ -23,8 +23,8 @@
 </head>
 <body>
 
-    <!-- КНОПКА НАЗАД -->
-    <a href="side.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">MIRAGE — ПОЗИЦІЇ (T)</div>
 

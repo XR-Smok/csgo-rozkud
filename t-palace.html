@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — PALACE</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         /* Сітка для розміщення двох фотографій в один ряд по горизонталі */
         .grid-2-col {
@@ -35,7 +35,12 @@
         </div>
 
         <!-- 1. ПОЗИЦІЯ (ДЕ СТАТИ) -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-palace-stand">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-palace-stand', '1. Позиція Palace')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-palace-stand" onclick="toggleFavoriteCard(this, 'mirage-t-palace-stand', 'MIRAGE T: Позиція Palace (Палац)', 't-palace.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 1. ПОЗИЦІЯ (ДЕ СТАТИ)</div>
             <div class="grid-2-col">
                 <img src="фото/palace-stand-1.jpg" alt="Загальний вид" class="step-img" onerror="this.src='фото/palace-stand-1.png'">
@@ -45,7 +50,10 @@
 
         <!-- 2. ПРИЦІЛ ТА КИДОК (ГОЛОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
         <div class="step-card" id="mirage-t-palace-smoke">
-            <button class="fav-star-btn" data-id="mirage-t-palace-smoke" onclick="toggleFavoriteCard(this, 'mirage-t-palace-smoke', 'MIRAGE T: One Way Smoke з Palace (Палац)', 't-palace.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-palace-smoke', '2. Приціл Palace')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-palace-smoke" onclick="toggleFavoriteCard(this, 'mirage-t-palace-smoke', 'MIRAGE T: One Way Smoke з Palace (Палац)', 't-palace.html')">☆</button>
+            </div>
 
             <div class="step-title">🎯 2. ПРИЦІЛ ТА КИДОК</div>
             
@@ -56,7 +64,12 @@
         </div>
 
         <!-- 3. ВИД З ДИМУ -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-palace-view">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-palace-view', '3. Вид з диму Palace')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-palace-view" onclick="toggleFavoriteCard(this, 'mirage-t-palace-view', 'MIRAGE T: Вид з диму Palace (Палац)', 't-palace.html')">☆</button>
+            </div>
+
             <div class="step-title">👁️ 3. ВИД З ДИМУ</div>
 
             <div class="step-description" style="margin-bottom: 10px;">👁️ ТВІЙ ВИД (ШО ТИ БАЧИШ) — ПОЗИЦІЯ 1</div>
@@ -68,6 +81,15 @@
             <div class="tip-box" style="margin-top: 20px;">
                 📌 <b>Порада:</b> Чекай, поки дим повністю розкриється, просочись в нього по драбині і шукай легкий kill!
             </div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

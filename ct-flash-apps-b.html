@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ФЛЕШКА В APPS ПІД ТІММЕЙТА [B]</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -21,7 +21,10 @@
 
         <!-- 1. ЦІЛЬСЯ ТУТ (ГОЛОВНИЙ БЛОК РОЗКИДКИ) -->
         <div class="step-card" id="ct-b-flash-apps">
-            <button class="fav-star-btn" data-id="ct-b-flash-apps" onclick="toggleFavoriteCard(this, 'ct-b-flash-apps', 'MIRAGE CT: Флешка в Apps під тіммейта [B]', 'ct-flash-apps-b.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ct-b-flash-apps', '1. Флешка в Apps (Приціл)')" title="Сховати цей блок">👁️</button>
+                <button class="fav-star-btn" data-id="ct-b-flash-apps" onclick="toggleFavoriteCard(this, 'ct-b-flash-apps', 'MIRAGE CT: Флешка в Apps під тіммейта [B]', 'ct-flash-apps-b.html')">☆</button>
+            </div>
             
             <div class="step-title">🎯 1. ЦІЛЬСЯ ТУТ</div>
             <img src="фото/ct-flash-apps-b.png" alt="Приціл для флешки" class="step-img" onerror="this.src='фото/ct-flash-apps-b.jpg'">
@@ -29,10 +32,24 @@
         </div>
 
         <!-- 2. ТРАЄКТОРІЯ ФЛЕШКИ -->
-        <div class="step-card">
+        <div class="step-card" id="ct-b-flash-pop">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ct-b-flash-pop', '2. Траєкторія флешки')" title="Сховати цей блок">👁️</button>
+                <button class="fav-star-btn" data-id="ct-b-flash-pop" onclick="toggleFavoriteCard(this, 'ct-b-flash-pop', 'MIRAGE CT: Траєкторія флешки в Apps [B]', 'ct-flash-apps-b.html')">☆</button>
+            </div>
+
             <div class="step-title">💥 2. ТРАЄКТОРІЯ ФЛЕШКИ</div>
             <img src="фото/ct-flash-pop.png" alt="Флешка падає за стіну" class="step-img" onerror="this.src='фото/ct-flash-pop.jpg'">
             <div class="step-description">ФЛЕШКА ПАДАЄ ЗА СТІНОЮ І НЕ СЛІПИТЬ ТІММЕЙТА! ТІММЕЙТА НЕ СЛІПИТЬ ВЗАГАЛІ — ЦЕ ДАЄ МОЖЛИВІСТЬ ЗРОБИТИ ЛЕГКИЙ КІЛ!</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIRAGE — РОЗКИД MID</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=6">
     <style>
         /* Блок для розміщення двох фото в один ряд (по горизонталі) */
         .grid-2-col {
@@ -35,7 +35,12 @@
         </div>
 
         <!-- 1. ПОЗИЦІЯ ГРАВЦЯ -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-mid-stand">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-mid-stand', 'Позиція гравця [Mid]')" title="Сховати цю картку">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-mid-stand" onclick="toggleFavoriteCard(this, 'mirage-t-mid-stand', 'MIRAGE T: Позиція гравця [Mid]', 't-mid.html')">☆</button>
+            </div>
+
             <div class="step-title">📍 1. ПОЗИЦІЯ ГРАВЦЯ</div>
             <img src="фото/t-mid-full-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/t-mid-full-stand.png'">
             <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ БІЛЯ ДВЕРЕЙ)</div>
@@ -43,7 +48,10 @@
 
         <!-- 2. СМОК НА ШОРТ -->
         <div class="step-card" id="mirage-t-smoke-short">
-            <button class="fav-star-btn" data-id="mirage-t-smoke-short" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-short', 'MIRAGE T: Смок на Шорт (Short)', 't-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-smoke-short', 'Смок на Шорт (Short)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-smoke-short" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-short', 'MIRAGE T: Смок на Шорт (Short)', 't-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 СМОК НА ШОРТ (SHORT)</div>
 
@@ -63,7 +71,10 @@
 
         <!-- 3. СМОК У ВІКНО -->
         <div class="step-card" id="mirage-t-smoke-window-mid">
-            <button class="fav-star-btn" data-id="mirage-t-smoke-window-mid" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-window-mid', 'MIRAGE T: Смок у Вікно з респи (Window)', 't-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-smoke-window-mid', 'Смок у Вікно (Window)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-smoke-window-mid" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-window-mid', 'MIRAGE T: Смок у Вікно з респи (Window)', 't-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 СМОК У ВІКНО (WINDOW)</div>
 
@@ -83,7 +94,10 @@
 
         <!-- 4. СМОК У КОННЕКТОР -->
         <div class="step-card" id="mirage-t-smoke-connector">
-            <button class="fav-star-btn" data-id="mirage-t-smoke-connector" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-connector', 'MIRAGE T: Смок у Коннектор (Connector)', 't-mid.html')">☆</button>
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-smoke-connector', 'Смок у Коннектор (Connector)')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-smoke-connector" onclick="toggleFavoriteCard(this, 'mirage-t-smoke-connector', 'MIRAGE T: Смок у Коннектор (Connector)', 't-mid.html')">☆</button>
+            </div>
 
             <div class="step-title">🔥 СМОК У КОННЕКТОР (CONNECTOR)</div>
 
@@ -99,6 +113,15 @@
             </div>
 
             <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
         </div>
 
     </div>
