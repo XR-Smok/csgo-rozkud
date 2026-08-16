@@ -157,6 +157,69 @@
             transform: translateY(-2px);
         }
 
+        /* ПОЛЕ ВИБОРУ КЛАВІШІ */
+        .key-selector-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+        }
+
+        .key-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .key-custom-input {
+            background: #0b0c10;
+            border: 1.5px solid #4b69ff;
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: 800;
+            padding: 8px 12px;
+            border-radius: 8px;
+            outline: none;
+            width: 120px;
+            text-transform: lowercase;
+            font-family: monospace;
+        }
+
+        .key-custom-input:focus {
+            box-shadow: 0 0 12px rgba(75, 105, 255, 0.5);
+        }
+
+        .quick-key-btn {
+            background: #14161d;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #6cd0ff;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: monospace;
+        }
+
+        .quick-key-btn:hover {
+            background: #4b69ff;
+            color: #ffffff;
+            border-color: #4b69ff;
+        }
+
+        .quick-key-btn.active {
+            background: #4b69ff;
+            color: #ffffff;
+            border-color: #4b69ff;
+            box-shadow: 0 0 10px rgba(75, 105, 255, 0.4);
+        }
+
         /* 3. КОНСТРУКТОР CFG */
         .prac-box { border-left: 4px solid #00e676; }
 
@@ -251,14 +314,14 @@
         .code-row {
             font-family: 'Consolas', 'Courier New', monospace;
             color: #6cd0ff;
-            font-size: 13.5px;
+            font-size: 14px;
             font-weight: bold;
             word-break: break-all;
             line-height: 1.4;
             user-select: all;
         }
 
-        .key-tag {
+        .key-active-tag {
             color: #ffd700;
             background: rgba(255, 215, 0, 0.15);
             padding: 2px 6px;
@@ -309,6 +372,7 @@
 
         @media (max-width: 550px) {
             .nade-tabs { grid-template-columns: repeat(3, 1fr); }
+            .key-custom-input { width: 100%; }
         }
     </style>
 </head>
@@ -322,7 +386,7 @@
     <div class="binds-container">
 
         <div class="tip-box">
-            💡 Обирай потрібний бінд, тисни <b>«Скопіювати»</b>, відкривай консоль у грі (<code>~</code>) і тисни <code>Ctrl + V</code>. Замість <span class="key-tag">"ТВОЯ_КНОПКА"</span> підстав свою клавішу (наприклад: <code>c</code>, <code>v</code>, <code>f</code>, <code>mouse4</code>).
+            💡 Обирай клавішу зі списку або пиши власну, тисни <b>«Скопіювати»</b> і вставляй у консоль гри (<code>~</code>).
         </div>
 
         <!-- ================= 1. БІНД НА РОЗВОРОТ 180° ================= -->
@@ -343,7 +407,7 @@
             <!-- СЛАЙДЕР -->
             <input type="range" id="sensRange" class="sens-slider" min="0.01" max="5.00" step="0.01" value="0.50" oninput="onSliderChange()">
 
-            <!-- ШВИДКІ ПРЕСЕТИ (0.4, 0.5, 0.6 НА ПОЧАТКУ) -->
+            <!-- ШВИДКІ ПРЕСЕТИ СЕНСИ -->
             <div class="preset-chips">
                 <button class="preset-btn" onclick="setPreset(0.4)">0.4</button>
                 <button class="preset-btn active" onclick="setPreset(0.5)">0.5</button>
@@ -355,10 +419,27 @@
                 <button class="preset-btn" onclick="setPreset(2.0)">2.0</button>
             </div>
 
+            <!-- ПОЛЕ ДЛЯ КЛАВІШІ РОЗВОРОТУ -->
+            <div class="key-selector-box" style="border-left: 3px solid #ff4655;">
+                <div style="font-size: 13px; font-weight: 700; color: #fff;">
+                    ⌨️ Призначити на клавішу:
+                </div>
+                <div class="key-input-row">
+                    <input type="text" id="turnKeyInput" class="key-custom-input" value="mouse4" oninput="updateTurnBindCode()" placeholder="клавіша">
+                    <button class="quick-key-btn" onclick="setTurnKey('mouse4')">mouse4</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('mouse5')">mouse5</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('z')">z</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('x')">x</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('c')">c</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('v')">v</button>
+                    <button class="quick-key-btn" onclick="setTurnKey('f')">f</button>
+                </div>
+            </div>
+
             <!-- РЕЗУЛЬТАТ БІНДУ -->
             <div class="code-action-box">
                 <div class="code-row" id="code-turn180">
-                    bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
+                    bind "<span id="turnKeyDisplay" class="key-active-tag">mouse4</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
                 </div>
                 <button class="copy-big-btn" onclick="copyCode('code-turn180', this)">
                     📋 Скопіювати бінд 180°
@@ -375,7 +456,7 @@
 
         <div class="bind-box nades-box">
             <div style="font-weight: 700; font-size: 14px; color: #fff;">
-                👇 Торкнись гранати, щоб отримати готовий бінд:
+                👇 1. Оберіть гранату:
             </div>
 
             <!-- Вкладки-іконки -->
@@ -402,13 +483,30 @@
                 </button>
             </div>
 
-            <!-- Активний бінд для вибраної гранати -->
+            <!-- ПОЛЕ ДЛЯ КЛАВІШІ ГРАНАТИ З ПОВНИМ НАБОРОМ КНОПОК -->
+            <div class="key-selector-box" style="border-left: 3px solid #4b69ff;">
+                <div style="font-size: 13px; font-weight: 700; color: #fff;">
+                    ⌨️ 2. Вкажи свою клавішу або обери зі списку:
+                </div>
+                <div class="key-input-row">
+                    <input type="text" id="nadeKeyInput" class="key-custom-input" value="mouse4" oninput="updateNadeBindCode()" placeholder="напр: mouse4">
+                    <button class="quick-key-btn" onclick="setNadeKey('mouse4')">mouse4</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('mouse5')">mouse5</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('z')">z</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('x')">x</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('c')">c</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('v')">v</button>
+                    <button class="quick-key-btn" onclick="setNadeKey('f')">f</button>
+                </div>
+            </div>
+
+            <!-- ГОТОВИЙ БІНД -->
             <div class="code-action-box">
                 <div style="font-size: 13px; color: #ffd700; font-weight: 800;" id="nadeTitle">
                     ☁️ СМОК (SMOKE GRENADE — SLOT 8)
                 </div>
                 <div class="code-row" id="nadeCode">
-                    bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "slot8"
+                    bind "<span id="nadeKeyDisplay" class="key-active-tag">mouse4</span>" "slot8"
                 </div>
                 <button class="copy-big-btn" id="nadeCopyBtn" onclick="copyCode('nadeCode', this)">
                     📋 Скопіювати бінд на Смок
@@ -547,7 +645,7 @@
                             <span style="font-weight:700; font-size:13px; color:#fff;">🕊️ Політ крізь стіни (Noclip)</span>
                         </div>
                         <div style="font-size: 11.5px; color:#8c93a8;">Швидко долетіти до місця падіння гранати.</div>
-                        <div class="code-row" id="cmd-noclip">bind "<span class="key-tag">N</span>" "noclip"</div>
+                        <div class="code-row" id="cmd-noclip">bind "<span class="key-active-tag">n</span>" "noclip"</div>
                         <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-noclip', this)">Скопіювати Noclip</button>
                     </div>
 
@@ -556,8 +654,8 @@
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-weight:700; font-size:13px; color:#fff;">🔄 Повтор останньої гранати (Rethrow)</span>
                         </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату, щоб ти перевірив її збоку (чи сліпить флешка, чи є щілини в смоку).</div>
-                        <div class="code-row" id="cmd-rethrow">bind "<span class="key-tag">H</span>" "sv_rethrow_last_grenade"</div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату, щоб перевірити чи сліпить флешка або чи є щілини в смоку.</div>
+                        <div class="code-row" id="cmd-rethrow">bind "<span class="key-active-tag">h</span>" "sv_rethrow_last_grenade"</div>
                         <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-rethrow', this)">Скопіювати Rethrow</button>
                     </div>
 
@@ -566,8 +664,8 @@
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-weight:700; font-size:13px; color:#fff;">➕ Приціл на весь екран для смоків</span>
                         </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран, щоб ідеально рівно цілитися по дахах та вікнах будівель.</div>
-                        <div class="code-row" id="cmd-cross">bind "<span class="key-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран для точного прицілювання по орієнтирах.</div>
+                        <div class="code-row" id="cmd-cross">bind "<span class="key-active-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
                         <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-cross', this)">Скопіювати Smoke Crosshair</button>
                     </div>
 
@@ -590,14 +688,27 @@
             decoy: { title: '🎯 ДЕКОЙ / ФЕЙК (SLOT 9)', slot: 'slot9', name: 'Декой' }
         };
 
+        let currentSelectedNade = 'smoke';
+
         function selectNade(type, btn) {
             document.querySelectorAll('.nade-tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const item = nadesData[type];
+            currentSelectedNade = type;
+            updateNadeBindCode();
+        }
+
+        function updateNadeBindCode() {
+            let key = document.getElementById('nadeKeyInput').value.trim() || 'mouse4';
+            const item = nadesData[currentSelectedNade];
             document.getElementById('nadeTitle').innerText = item.title;
-            document.getElementById('nadeCode').innerHTML = `bind "<span class="key-tag">ТВОЯ_КНОПКА</span>" "${item.slot}"`;
+            document.getElementById('nadeCode').innerHTML = `bind "<span class="key-active-tag">${key}</span>" "${item.slot}"`;
             document.getElementById('nadeCopyBtn').innerHTML = `📋 Скопіювати бінд на ${item.name}`;
+        }
+
+        function setNadeKey(key) {
+            document.getElementById('nadeKeyInput').value = key;
+            updateNadeBindCode();
         }
 
         // 2. КАЛЬКУЛЯТОР 180°
@@ -608,12 +719,24 @@
             return 16364;
         }
 
+        function updateTurnBindCode() {
+            let key = document.getElementById('turnKeyInput').value.trim() || 'mouse4';
+            let sens = parseFloat(document.getElementById('userSens').value.replace(',', '.')) || 0.5;
+            let yaw = calculateYaw(sens);
+            document.getElementById('code-turn180').innerHTML = `bind "<span class="key-active-tag">${key}</span>" "yaw -<span id="yawValue" style="color:#ff4655;">${yaw}</span> 1 1"`;
+        }
+
+        function setTurnKey(key) {
+            document.getElementById('turnKeyInput').value = key;
+            updateTurnBindCode();
+        }
+
         function updateYawOnly(sens) {
             let s = parseFloat(sens);
             if (!isNaN(s) && s > 0) {
-                document.getElementById('yawValue').innerText = calculateYaw(s);
                 let rangeVal = Math.min(5.0, Math.max(0.01, s));
                 document.getElementById('sensRange').value = rangeVal;
+                updateTurnBindCode();
             }
         }
 
@@ -621,9 +744,9 @@
             let text = document.getElementById('userSens').value.replace(',', '.');
             let s = parseFloat(text);
             if (!isNaN(s) && s > 0) {
-                document.getElementById('yawValue').innerText = calculateYaw(s);
                 document.getElementById('sensRange').value = Math.min(5.0, Math.max(0.01, s));
                 updatePresetActive(s);
+                updateTurnBindCode();
             }
         }
 
@@ -708,7 +831,7 @@
             const text = el.innerText || el.textContent;
             navigator.clipboard.writeText(text.trim()).then(() => {
                 const originalHtml = btn.innerHTML;
-                btn.innerHTML = '✅ СКОПІЙОВАНО В БУФЕР!';
+                btn.innerHTML = '✅ СКОПІЙОВАНО!';
                 btn.classList.add('copied');
                 setTimeout(() => {
                     btn.innerHTML = originalHtml;
@@ -719,6 +842,7 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             updateYawOnly(0.5);
+            updateNadeBindCode();
             buildCustomCfg();
         });
     </script>
