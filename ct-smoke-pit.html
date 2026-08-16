@@ -98,8 +98,8 @@
 </head>
 <body>
 
-    <!-- ПЛАВАЮЧА КНОПКА НАЗАД -->
-    <a href="ct-positions.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="ct-positions.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">ONE WAY У PIT [A]</div>
 
@@ -119,8 +119,10 @@
             <div class="step-description">ПІДІЙДІТЬ ДО ВКАЗАНОЇ ПОЗИЦІЇ</div>
         </div>
 
-        <!-- 2. ЦІЛЬСЯ ТУТ -->
-        <div class="step-card">
+        <!-- 2. ЦІЛЬСЯ ТУТ (ОСНОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
+        <div class="step-card" id="ct-pit-oneway">
+            <button class="fav-star-btn" data-id="ct-pit-oneway" onclick="toggleFavoriteCard(this, 'ct-pit-oneway', 'MIRAGE CT: One Way у Pit [A]', 'ct-smoke-pit.html')">☆</button>
+
             <div class="step-title">🎯 2. ЦІЛЬСЯ ТУТ</div>
             <img src="фото/ct-pit-aim.png" 
                  alt="Приціл для One Way" 
@@ -141,7 +143,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ МІЙ РАУНД — ШВИДКИЙ ДОСТУП</title>
+    <title>⚡ МІЙ РАУНД — ТАКТИЧНИЙ СЕТАП</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .my-round-container {
@@ -12,14 +12,13 @@
             padding: 0 15px;
             display: flex;
             flex-direction: column;
-            gap: 12px; /* Відстань між довгими плашками */
+            gap: 12px;
         }
 
-        /* Довга, широка, але невисока плашка */
         .round-strip {
             background: #14161d;
             border: 1px solid #232733;
-            border-left: 4px solid #ff4655; /* Червоний акцент зліва */
+            border-left: 4px solid #ffd700; /* Золотий акцент обраного */
             border-radius: 8px;
             padding: 14px 20px;
             display: flex;
@@ -27,15 +26,13 @@
             justify-content: space-between;
             text-decoration: none;
             transition: all 0.25s ease;
-            position: relative;
         }
 
-        /* 💥 ЕФЕКТ ПРИ НАВЕДЕННІ (HOVER) */
         .round-strip:hover {
-            border-color: #ff4655;
+            border-color: #ffd700;
             background: #1c1f2b;
-            transform: translateX(6px); /* Легкий зсув вправо для ефекту клікабельності */
-            box-shadow: 0 4px 15px rgba(255, 70, 85, 0.25);
+            transform: translateX(6px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
         }
 
         .strip-content {
@@ -46,22 +43,21 @@
 
         .strip-icon {
             font-size: 22px;
-            line-height: 1;
+            color: #ffd700;
         }
 
         .strip-title {
             color: #ffffff;
             font-weight: bold;
-            font-size: 17px;
+            font-size: 16px;
             margin: 0;
             transition: color 0.2s ease;
         }
 
         .round-strip:hover .strip-title {
-            color: #ff4655; /* Текст стає червоним при наведенні */
+            color: #ffd700;
         }
 
-        /* Кнопка видалення (хрестик) */
         .strip-remove {
             background: rgba(255, 70, 85, 0.1);
             color: #ff4655;
@@ -76,7 +72,6 @@
             justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
-            z-index: 5;
         }
 
         .strip-remove:hover {
@@ -105,8 +100,8 @@
         <div id="roundList" class="my-round-container"></div>
 
         <div id="emptyMsg" class="empty-msg" style="display: none;">
-            <p>😴 Список порожній!</p>
-            <p>Заходь на будь-яку позицію і тискай <strong>«⭐ ДОДАТИ В МІЙ РАУНД»</strong>.</p>
+            <p>😴 Твій сетап порожній!</p>
+            <p>Тисни зірочку <strong>★</strong> на будь-якому смоку чи флешці, щоб додати його сюди.</p>
         </div>
 
     </main>
@@ -115,7 +110,7 @@
         function loadFavorites() {
             const listContainer = document.getElementById('roundList');
             const emptyMsg = document.getElementById('emptyMsg');
-            let favs = JSON.parse(localStorage.getItem('myRound')) || [];
+            let favs = JSON.parse(localStorage.getItem('myRoundCards')) || [];
 
             listContainer.innerHTML = '';
 
@@ -127,27 +122,26 @@
             emptyMsg.style.display = 'none';
 
             favs.forEach(item => {
-                const strip = document.createElement('div');
-                strip.className = 'round-strip-wrapper';
-                strip.style.position = 'relative';
+                const stripWrapper = document.createElement('div');
+                stripWrapper.className = 'round-strip-wrapper';
 
-                strip.innerHTML = `
+                stripWrapper.innerHTML = `
                     <a href="${item.url}" class="round-strip">
                         <div class="strip-content">
-                            <span class="strip-icon">⭐</span>
+                            <span class="strip-icon">★</span>
                             <h3 class="strip-title">${item.title}</h3>
                         </div>
-                        <button class="strip-remove" onclick="event.preventDefault(); removeItem('${item.id}')" title="Видалити з раунду">✕</button>
+                        <button class="strip-remove" onclick="event.preventDefault(); removeItem('${item.id}')" title="Видалити">✕</button>
                     </a>
                 `;
-                listContainer.appendChild(strip);
+                listContainer.appendChild(stripWrapper);
             });
         }
 
         function removeItem(id) {
-            let favs = JSON.parse(localStorage.getItem('myRound')) || [];
+            let favs = JSON.parse(localStorage.getItem('myRoundCards')) || [];
             favs = favs.filter(item => item.id !== id);
-            localStorage.setItem('myRound', JSON.stringify(favs));
+            localStorage.setItem('myRoundCards', JSON.stringify(favs));
             loadFavorites();
         }
 

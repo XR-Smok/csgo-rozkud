@@ -45,6 +45,12 @@
             margin-top: 50px;
             margin-bottom: 25px;
             text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         header h1 {
@@ -73,6 +79,7 @@
             display: flex;
             flex-direction: column;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
 
         .guide-card:hover {
@@ -126,17 +133,20 @@
 </head>
 <body>
 
-    <!-- ФІКСОВАНА КНОПКА НАЗАД -->
-    <a href="dust2-ct-side.html" class="fixed-back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА ФІКСОВАНА КНОПКА НАЗАД -->
+    <a href="dust2-ct-side.html" class="fixed-back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <header>
         <h1>ONE WAY SMOKE A (DUST II)</h1>
     </header>
 
-    <main class="guide-container">
+    <main class="guide-container" id="d2-ct-oneway-a">
 
         <!-- 1. ВСТАВАЙ ТУТ (ВЕРХНЯ НА ВСЮ ШИРИНУ) -->
         <div class="guide-card">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="d2-ct-oneway-a" onclick="toggleFavoriteCard(this, 'd2-ct-oneway-a', 'DUST II CT: One Way Smoke A', 'dust2-ct-smoke-a.html')" style="top: 8px; right: 10px;">☆</button>
+
             <h3 class="guide-card-title">1. Вставай тут</h3>
             <div class="guide-card-img-wrapper">
                 <img src="фото/dust2-ct-smoke-a-stand.jpg" alt="Вставай тут" onerror="this.src='фото/dust2-ct-smoke-a-stand.png'">
@@ -166,7 +176,8 @@
 
     </main>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

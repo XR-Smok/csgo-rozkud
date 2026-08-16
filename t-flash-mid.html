@@ -12,6 +12,7 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 25px;
+            position: relative;
         }
 
         .single-img-card h3 {
@@ -83,11 +84,12 @@
 <body>
 
     <header>
-        <a href="t-mid.html">← НАЗАД</a>
+        <!-- РОЗУМНА КНОПКА НАЗАД -->
+        <a href="t-mid.html" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
         <h1>ФЛЕШКА TYPE-C НА MID</h1>
     </header>
 
-    <main>
+    <main id="mirage-t-flash-mid">
 
         <div class="desktop-tip">
             <p>💡 <strong>Порада для телефонів:</strong> Відкрий меню браузера (3 крапки) та постав галочку <strong>«Версія для комп'ютера»</strong>.</p>
@@ -95,14 +97,17 @@
 
         <!-- ⚠️ ВАЖЛИВИЙ ТАКТИЧНИЙ БЛОК -->
         <div class="warning-box">
-            <span class="warning-text">⚠️ Сліпить практично всі позиції, база під виход тімейта !</span>
+            <span class="warning-text">⚠️ Сліпить практично всі позиції, база під вихід тімейта!</span>
         </div>
 
         <!-- 1. ПОЗИЦІЯ -->
         <div class="single-img-card">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="mirage-t-flash-mid" onclick="toggleFavoriteCard(this, 'mirage-t-flash-mid', 'MIRAGE T: Флешка Type-C на Mid', 't-flash-mid.html')">☆</button>
+
             <h3>📍 1. ПОЗИЦІЯ</h3>
             <div class="img-container">
-                <img src="фото/t-flash-mid-pos.png" alt="Позиція для флешки">
+                <img src="фото/t-flash-mid-pos.png" alt="Позиція для флешки" onerror="this.src='фото/t-flash-mid-pos.jpg'">
             </div>
             <p class="img-label">ПІДІЙДІТЬ ВПРИТУЛ ДО ВКАЗАНОГО МІСЦЯ</p>
         </div>
@@ -111,7 +116,7 @@
         <div class="single-img-card">
             <h3>🎯 2. ЦІЛЬСЯ ТУТ</h3>
             <div class="img-container">
-                <img src="фото/t-flash-mid-aim.png" alt="Приціл для флешки">
+                <img src="фото/t-flash-mid-aim.png" alt="Приціл для флешки" onerror="this.src='фото/t-flash-mid-aim.jpg'">
             </div>
             <p class="img-label">НАВЕДЬ ПРИЦІЛ ЗА ВИКОНАНИМ ОРІЄНТИРОМ</p>
         </div>
@@ -120,16 +125,17 @@
         <div class="single-img-card">
             <h3>⚡ 3. ПРОБІЖКА ТА КИДОК</h3>
             <div class="img-container">
-                <img src="фото/t-flash-mid-throw.png" alt="Кидок гранати">
+                <img src="фото/t-flash-mid-throw.png" alt="Кидок гранати" onerror="this.src='фото/t-flash-mid-throw.jpg'">
             </div>
             <div class="jumpthrow-box">
-                <span class="jumpthrow-text">⚡ ПРОБІЖЬ ПРИБЛИЗНО ДО ЦІЄЇ ВІДМІТКИ ТА НАТИСНИ JUMPTHROW + ЛКМ</span>
+                <span class="jumpthrow-text">⚡ ПРОБІЖИ ПРИБЛИЗНО ДО ЦІЄЇ ВІДМІТКИ ТА НАТИСНИ JUMPTHROW + ЛКМ</span>
             </div>
         </div>
 
     </main>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

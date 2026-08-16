@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — ТЕРОРИСТИ (T)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .side-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .side-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 850px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .side-card img {
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="dust2.html" class="back-btn">← НАЗАД</a>
+
+    <div class="header-title">DUST II — ТЕРОРИСТИ (T)</div>
+
+    <div class="guide-container" style="max-width: 1200px;">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- 1. РОЗКИД B -->
+            <a href="dust2-t-b.html" style="text-decoration: none;">
+                <div class="step-card side-card">
+                    <img src="фото/dust2-t-b.jpg" alt="Розкид B" onerror="this.src='фото/dust2-t-b.png'">
+                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД B</div>
+                </div>
+            </a>
+
+            <!-- 2. РОЗКИД MID -->
+            <a href="dust2-t-mid.html" style="text-decoration: none;">
+                <div class="step-card side-card">
+                    <img src="фото/dust2-t-mid.jpg" alt="Розкид Mid" onerror="this.src='фото/dust2-t-mid.png'">
+                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД MID</div>
+                </div>
+            </a>
+
+            <!-- 3. РОЗКИД LONG -->
+            <a href="dust2-t-long.html" style="text-decoration: none;">
+                <div class="step-card side-card">
+                    <img src="фото/dust2-t-long.jpg" alt="Розкид Long" onerror="this.src='фото/dust2-t-long.png'">
+                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД LONG</div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

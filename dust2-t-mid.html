@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — РОЗКИД MID (T)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        @media (max-width: 600px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- РОЗУМНА КНОПКА НАЗАД (ПОВЕРТАЄ ТУДИ, ЗВІДКИ ПРИЙШОВ) -->
+    <a href="dust2-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title">DUST II — РОЗКИД MID</div>
+
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <!-- ================= 1. СМОК ДВЕРІ (ВАРІАНТ 1) ================= -->
+        <div class="step-card" id="d2-mid-smoke1">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="d2-mid-smoke1" onclick="toggleFavoriteCard(this, 'd2-mid-smoke1', 'DUST II: Смок двері (Варіант 1)', 'dust2-t-mid.html')">☆</button>
+
+            <div class="step-title">🌫️ 1. СМОК ДВЕРІ (ВАРІАНТ 1)</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА ДО ТРІЩИНИ)</div>
+                <img src="фото/dust2-mid-smoke1-stand.jpg" alt="Позиція гравця 1" class="step-img" onerror="this.src='фото/dust2-mid-smoke1-stand.png'">
+            </div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/dust2-mid-smoke1-aim.jpg" alt="Приціл 1" class="step-img" onerror="this.src='фото/dust2-mid-smoke1-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/dust2-mid-smoke1-drop.jpg" alt="Результат 1" class="step-img" onerror="this.src='фото/dust2-mid-smoke1-drop.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- ================= 2. СМОК ДВЕРІ (ВАРІАНТ 2) ================= -->
+        <div class="step-card" id="d2-mid-smoke2">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="d2-mid-smoke2" onclick="toggleFavoriteCard(this, 'd2-mid-smoke2', 'DUST II: Смок двері (Варіант 2)', 'dust2-t-mid.html')">☆</button>
+
+            <div class="step-title">🌫️ 2. СМОК ДВЕРІ (ВАРІАНТ 2)</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА)</div>
+                <img src="фото/dust2-mid-smoke2-stand.jpg" alt="Позиція гравця 2" class="step-img" onerror="this.src='фото/dust2-mid-smoke2-stand.png'">
+            </div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/dust2-mid-smoke2-aim.jpg" alt="Приціл 2" class="step-img" onerror="this.src='фото/dust2-mid-smoke2-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/dust2-t-mid.jpg" alt="Результат" class="step-img" onerror="this.src='фото/dust2-t-mid.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- ================= 3. СМОК КТ ================= -->
+        <div class="step-card" id="d2-mid-ct">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="d2-mid-ct" onclick="toggleFavoriteCard(this, 'd2-mid-ct', 'DUST II: Смок CT (КТ)', 'dust2-t-mid.html')">☆</button>
+
+            <div class="step-title">🌫️ 3. СМОК КТ (CT SPWAN / MID)</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА)</div>
+                <img src="фото/dust2-mid-smoke3-stand.jpg" alt="Позиція гравця 3" class="step-img" onerror="this.src='фото/dust2-mid-smoke3-stand.png'">
+            </div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/dust2-mid-smoke3-aim.jpg" alt="Приціл 3" class="step-img" onerror="this.src='фото/dust2-mid-smoke3-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/dust2-mid-smoke3-drop.jpg" alt="Результат 3" class="step-img" onerror="this.src='фото/dust2-mid-smoke3-drop.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: CTRL + JUMPTHROW + ЛКМ</div>
+        </div>
+
+    </div>
+
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
+    <script src="gallery.js"></script>
+
+</body>
+</html>

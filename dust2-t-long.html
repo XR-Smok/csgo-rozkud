@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — РОЗКИД LONG (T)</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Блок для розміщення двох фото в один ряд (по горизонталі) */
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2-col {
+                grid-template-columns: 1fr; /* На малих екранах фото стануть одне під одним */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="dust2-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title">DUST II — РОЗКИД LONG</div>
+
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <!-- 1. ПОЗИЦІЯ ГРАВЦЯ (ВЕРХНЯ НА ВСЮ ШИРИНУ) -->
+        <div class="step-card">
+            <div class="step-title">📍 1. ПОЗИЦІЯ ГРАВЦЯ</div>
+            <img src="фото/dust2-long-stand.jpg" alt="Позиція гравця" class="step-img" onerror="this.src='фото/dust2-long-stand.png'">
+            <div class="step-description">СТАВАЙ ТУТ (ДО УПОРА)</div>
+        </div>
+
+        <!-- 2. РОЗКИДКА (ГОЛОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
+        <div class="step-card" id="d2-t-long-smoke">
+            <button class="fav-star-btn" data-id="d2-t-long-smoke" onclick="toggleFavoriteCard(this, 'd2-t-long-smoke', 'DUST II T: Розкид Long (Смок)', 'dust2-t-long.html')">☆</button>
+
+            <div class="step-title">🔥 2. КИДОК ГРАНАТИ</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="фото/dust2-long-aim.jpg" alt="Приціл" class="step-img" onerror="this.src='фото/dust2-long-aim.png'">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="фото/dust2-t-long.jpg" alt="Результат" class="step-img" onerror="this.src='фото/dust2-t-long.png'">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ЛКМ</div>
+        </div>
+
+    </div>
+
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
+    <script src="gallery.js"></script>
+
+</body>
+</html>

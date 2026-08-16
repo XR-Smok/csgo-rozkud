@@ -23,7 +23,8 @@
 </head>
 <body>
 
-    <a href="ancient-t-side.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="ancient-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">ANCIENT — B SITE</div>
 
@@ -44,7 +45,8 @@
         </div>
 
         <!-- 1. ПЕРШИЙ СМОК -->
-        <div class="step-card">
+        <div class="step-card" id="anc-b-smoke1">
+            <button class="fav-star-btn" data-id="anc-b-smoke1" onclick="toggleFavoriteCard(this, 'anc-b-smoke1', 'ANCIENT B: Перший смок (Шорт)', 'ancient-b-site.html')">☆</button>
             <div class="step-title">☁️ 1. ПЕРШИЙ СМОК</div>
             
             <div class="grid-2-col">
@@ -62,7 +64,8 @@
         </div>
 
         <!-- 2. ДРУГИЙ СМОК -->
-        <div class="step-card">
+        <div class="step-card" id="anc-b-smoke2">
+            <button class="fav-star-btn" data-id="anc-b-smoke2" onclick="toggleFavoriteCard(this, 'anc-b-smoke2', 'ANCIENT B: Другий смок (Лонг)', 'ancient-b-site.html')">☆</button>
             <div class="step-title">☁️ 2. ДРУГИЙ СМОК</div>
 
             <div class="grid-2-col">
@@ -76,11 +79,12 @@
                 </div>
             </div>
 
-            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+            <div class="action-badge">⚡ КИДОК: ЛКМ</div>
         </div>
 
         <!-- 3. ПЕРШИЙ МОЛОТОВ -->
-        <div class="step-card">
+        <div class="step-card" id="anc-b-molo1">
+            <button class="fav-star-btn" data-id="anc-b-molo1" onclick="toggleFavoriteCard(this, 'anc-b-molo1', 'ANCIENT B: Перший молотов', 'ancient-b-site.html')">☆</button>
             <div class="step-title">🔥 3. ПЕРШИЙ МОЛОТОВ</div>
 
             <div class="grid-2-col">
@@ -98,7 +102,8 @@
         </div>
 
         <!-- 4. ДРУГИЙ МОЛОТОВ -->
-        <div class="step-card">
+        <div class="step-card" id="anc-b-molo2">
+            <button class="fav-star-btn" data-id="anc-b-molo2" onclick="toggleFavoriteCard(this, 'anc-b-molo2', 'ANCIENT B: Другий молотов', 'ancient-b-site.html')">☆</button>
             <div class="step-title">🔥 4. ДРУГИЙ МОЛОТОВ</div>
 
             <div class="grid-2-col">
@@ -116,7 +121,8 @@
         </div>
 
         <!-- 5. ФЛЕШКА -->
-        <div class="step-card">
+        <div class="step-card" id="anc-b-flash">
+            <button class="fav-star-btn" data-id="anc-b-flash" onclick="toggleFavoriteCard(this, 'anc-b-flash', 'ANCIENT B: Флешка на вихід', 'ancient-b-site.html')">☆</button>
             <div class="step-title">⚡ 5. ФЛЕШКА</div>
 
             <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
@@ -131,7 +137,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

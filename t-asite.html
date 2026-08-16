@@ -23,7 +23,8 @@
 </head>
 <body>
 
-    <a href="t-positions.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="t-positions.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">MIRAGE — A SITE</div>
 
@@ -41,7 +42,9 @@
         </div>
 
         <!-- РОЗКИДКА №1 -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-asite-1">
+            <button class="fav-star-btn" data-id="mirage-t-asite-1" onclick="toggleFavoriteCard(this, 'mirage-t-asite-1', 'MIRAGE T: A Site — Розкидка №1', 't-asite.html')">☆</button>
+
             <div class="step-title">🔥 РОЗКИДКА №1</div>
             
             <div class="grid-2-col">
@@ -59,7 +62,9 @@
         </div>
 
         <!-- РОЗКИДКА №2 -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-asite-2">
+            <button class="fav-star-btn" data-id="mirage-t-asite-2" onclick="toggleFavoriteCard(this, 'mirage-t-asite-2', 'MIRAGE T: A Site — Розкидка №2', 't-asite.html')">☆</button>
+
             <div class="step-title">🔥 РОЗКИДКА №2</div>
 
             <div class="grid-2-col">
@@ -77,7 +82,9 @@
         </div>
 
         <!-- РОЗКИДКА №3 -->
-        <div class="step-card">
+        <div class="step-card" id="mirage-t-asite-3">
+            <button class="fav-star-btn" data-id="mirage-t-asite-3" onclick="toggleFavoriteCard(this, 'mirage-t-asite-3', 'MIRAGE T: A Site — Розкидка №3', 't-asite.html')">☆</button>
+
             <div class="step-title">🔥 РОЗКИДКА №3</div>
 
             <div class="grid-2-col">
@@ -100,7 +107,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

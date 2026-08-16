@@ -32,8 +32,8 @@
 </head>
 <body>
 
-    <!-- КНОПКА НАЗАД -->
-    <a href="dust2-ct-side.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="dust2-ct-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">DUST II — RETAKE B SITE</div>
 
@@ -45,7 +45,9 @@
         </div>
 
         <!-- 1. СМОК НА ВИХІД -->
-        <div class="step-card">
+        <div class="step-card" id="d2-ct-retake-b-smoke">
+            <button class="fav-star-btn" data-id="d2-ct-retake-b-smoke" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-smoke', 'DUST II CT: Смок на вихід (B Exit)', 'dust2-ct-retake-b.html')">☆</button>
+
             <div class="step-title">🌫️ 1. СМОК НА ВИХІД (B EXIT)</div>
 
             <!-- Вставай тут зверху -->
@@ -70,7 +72,9 @@
         </div>
 
         <!-- 2. МОЛОТОВ НА X -->
-        <div class="step-card">
+        <div class="step-card" id="d2-ct-retake-b-molly-x">
+            <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-x" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-x', 'DUST II CT: Молотов на X [B]', 'dust2-ct-retake-b.html')">☆</button>
+
             <div class="step-title">🔥 2. МОЛОТОВ НА X</div>
 
             <!-- Вставай тут зверху -->
@@ -95,8 +99,10 @@
             <div class="note-text">⚠️ Потрібно кидати в таймінг. Потренуйся!</div>
         </div>
 
-        <!-- 3. ФЛЕШ НА ВИХІД (2 ФОТО ПО ГОРИЗОНТАЛІ) -->
-        <div class="step-card">
+        <!-- 3. ФЛЕШ НА ВИХІД -->
+        <div class="step-card" id="d2-ct-retake-b-flash">
+            <button class="fav-star-btn" data-id="d2-ct-retake-b-flash" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-flash', 'DUST II CT: Флеш на вихід [B]', 'dust2-ct-retake-b.html')">☆</button>
+
             <div class="step-title">⚡ 3. ФЛЕШ НА ВИХІД</div>
 
             <div class="grid-2-col">
@@ -114,7 +120,9 @@
         </div>
 
         <!-- 4. МОЛІК НА МАШИНУ -->
-        <div class="step-card">
+        <div class="step-card" id="d2-ct-retake-b-molly-car">
+            <button class="fav-star-btn" data-id="d2-ct-retake-b-molly-car" onclick="toggleFavoriteCard(this, 'd2-ct-retake-b-molly-car', 'DUST II CT: Молік на машину (Car) [B]', 'dust2-ct-retake-b.html')">☆</button>
+
             <div class="step-title">🔥 4. МОЛІК НА МАШИНУ (CAR)</div>
 
             <!-- Вставай тут зверху -->
@@ -141,7 +149,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

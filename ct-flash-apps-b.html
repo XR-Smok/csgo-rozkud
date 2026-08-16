@@ -8,8 +8,8 @@
 </head>
 <body>
 
-    <!-- ПЛАВАЮЧА КНОПКА НАЗАД -->
-    <a href="ct-positions.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="ct-positions.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">ФЛЕШКА В APPS ПІД ТІММЕЙТА [B]</div>
 
@@ -19,8 +19,10 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- 1. ЦІЛЬСЯ ТУТ -->
-        <div class="step-card">
+        <!-- 1. ЦІЛЬСЯ ТУТ (ГОЛОВНИЙ БЛОК РОЗКИДКИ) -->
+        <div class="step-card" id="ct-b-flash-apps">
+            <button class="fav-star-btn" data-id="ct-b-flash-apps" onclick="toggleFavoriteCard(this, 'ct-b-flash-apps', 'MIRAGE CT: Флешка в Apps під тіммейта [B]', 'ct-flash-apps-b.html')">☆</button>
+            
             <div class="step-title">🎯 1. ЦІЛЬСЯ ТУТ</div>
             <img src="фото/ct-flash-apps-b.png" alt="Приціл для флешки" class="step-img" onerror="this.src='фото/ct-flash-apps-b.jpg'">
             <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
@@ -35,7 +37,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>

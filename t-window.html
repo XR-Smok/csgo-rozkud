@@ -8,7 +8,8 @@
 </head>
 <body>
 
-    <a href="t-mid.html" class="back-btn">← НАЗАД</a>
+    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <a href="t-mid.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">MIRAGE — СМОК У ВІКНО</div>
 
@@ -25,8 +26,11 @@
             <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ БІЛЯ ДВЕРЕЙ)</div>
         </div>
 
-        <!-- 2. ЦІЛЬСЯ ТУТ -->
-        <div class="step-card">
+        <!-- 2. ЦІЛЬСЯ ТУТ (ГОЛОВНИЙ БЛОК ДЛЯ ЗБЕРЕЖЕННЯ) -->
+        <div class="step-card" id="mirage-t-window-solo">
+            <!-- ЗІРОЧКА СПРАВА ЗВЕРХУ -->
+            <button class="fav-star-btn" data-id="mirage-t-window-solo" onclick="toggleFavoriteCard(this, 'mirage-t-window-solo', 'MIRAGE T: Смок у Вікно (Window)', 't-window.html')">☆</button>
+
             <div class="step-title">🎯 2. ЦІЛЬСЯ ТУТ</div>
             <img src="фото/t-mid-window-aim.jpg" alt="Приціл смок у вікно" class="step-img" onerror="this.src='фото/t-mid-window-aim.png'">
             <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
@@ -40,7 +44,8 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ ГАЛЕРЕЇ ЗІ СТРІЛОЧКАМИ ТА СВАЙПАМИ -->
+    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 
 </body>
