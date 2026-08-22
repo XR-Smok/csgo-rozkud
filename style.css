@@ -482,3 +482,15 @@ h1::after, .header-title::after {
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
+/* Анімація плавної появи картки при поверненні */
+.card-restoring {
+    animation: restoreCardAnim 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, highlightFlash 1.6s ease-out 0.2s;
+}
+
+@keyframes restoreCardAnim {
+    0% {  }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
