@@ -36,7 +36,6 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
         }
 
-        /* 1. РОЗВОРОТ НА 180° */
         .turn-box { border-left: 4px solid #ff4655; }
 
         .stepper-control {
@@ -120,7 +119,6 @@
             transform: translateY(-1px);
         }
 
-        /* 2. ГРАНАТИ */
         .nades-box { border-left: 4px solid #4b69ff; }
 
         .nade-tabs {
@@ -157,7 +155,6 @@
             transform: translateY(-2px);
         }
 
-        /* ПОЛЕ ВИБОРУ КЛАВІШІ */
         .key-selector-box {
             display: flex;
             flex-direction: column;
@@ -220,7 +217,6 @@
             box-shadow: 0 0 10px rgba(75, 105, 255, 0.4);
         }
 
-        /* 3. КОНСТРУКТОР CFG */
         .prac-box { border-left: 4px solid #00e676; }
 
         .accordion-trigger {
@@ -300,7 +296,6 @@
             line-height: 1.4;
         }
 
-        /* РЯДКИ КОДУ ТА КНОПКИ */
         .code-action-box {
             background: #0b0c10;
             border: 1px solid #232733;
@@ -378,7 +373,6 @@
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД -->
     <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">⌨️ БІНДИ ТА КОМАНДИ</div>
@@ -389,7 +383,7 @@
             💡 Обирай клавішу зі списку або пиши власну, тисни <b>«Скопіювати»</b> і вставляй у консоль гри (<code>~</code>).
         </div>
 
-        <!-- ================= 1. БІНД НА РОЗВОРОТ 180° ================= -->
+        <!-- 1. РОЗВОРОТ 180° -->
         <div class="section-header">🔄 1. Швидкий розворот на 180°</div>
 
         <div class="bind-box turn-box">
@@ -397,17 +391,14 @@
                 🎯 Введи або обери свою чутливість (Sensitivity):
             </div>
 
-            <!-- ВЕЛИКІ КНОПКИ ДЛЯ ТЕЛЕФОНУ -->
             <div class="stepper-control">
                 <button type="button" class="step-btn" onclick="adjustSens(-0.01)">−</button>
                 <input type="text" id="userSens" class="sens-display-input" value="0.50" oninput="onManualInput()" onblur="onInputBlur()" placeholder="Сенса">
                 <button type="button" class="step-btn" onclick="adjustSens(0.01)">+</button>
             </div>
 
-            <!-- СЛАЙДЕР -->
             <input type="range" id="sensRange" class="sens-slider" min="0.01" max="5.00" step="0.01" value="0.50" oninput="onSliderChange()">
 
-            <!-- ШВИДКІ ПРЕСЕТИ СЕНСИ -->
             <div class="preset-chips">
                 <button class="preset-btn" onclick="setPreset(0.4)">0.4</button>
                 <button class="preset-btn active" onclick="setPreset(0.5)">0.5</button>
@@ -419,7 +410,6 @@
                 <button class="preset-btn" onclick="setPreset(2.0)">2.0</button>
             </div>
 
-            <!-- ПОЛЕ ДЛЯ КЛАВІШІ РОЗВОРОТУ -->
             <div class="key-selector-box" style="border-left: 3px solid #ff4655;">
                 <div style="font-size: 13px; font-weight: 700; color: #fff;">
                     ⌨️ Призначити на клавішу:
@@ -436,7 +426,6 @@
                 </div>
             </div>
 
-            <!-- РЕЗУЛЬТАТ БІНДУ -->
             <div class="code-action-box">
                 <div class="code-row" id="code-turn180">
                     bind "<span id="turnKeyDisplay" class="key-active-tag">mouse4</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
@@ -451,7 +440,7 @@
             </div>
         </div>
 
-        <!-- ================= 2. БІНДИ НА ГРАНАТИ ================= -->
+        <!-- 2. ГРАНАТИ -->
         <div class="section-header">💣 2. Швидкий вибір гранат</div>
 
         <div class="bind-box nades-box">
@@ -459,7 +448,6 @@
                 👇 1. Оберіть гранату:
             </div>
 
-            <!-- Вкладки-іконки -->
             <div class="nade-tabs">
                 <button class="nade-tab-btn active" onclick="selectNade('smoke', this)">
                     <span class="icon">☁️</span>
@@ -483,7 +471,6 @@
                 </button>
             </div>
 
-            <!-- ПОЛЕ ДЛЯ КЛАВІШІ ГРАНАТИ З ПОВНИМ НАБОРОМ КНОПОК -->
             <div class="key-selector-box" style="border-left: 3px solid #4b69ff;">
                 <div style="font-size: 13px; font-weight: 700; color: #fff;">
                     ⌨️ 2. Вкажи свою клавішу або обери зі списку:
@@ -500,7 +487,6 @@
                 </div>
             </div>
 
-            <!-- ГОТОВИЙ БІНД -->
             <div class="code-action-box">
                 <div style="font-size: 13px; color: #ffd700; font-weight: 800;" id="nadeTitle">
                     ☁️ СМОК (SMOKE GRENADE — SLOT 8)
@@ -514,12 +500,11 @@
             </div>
         </div>
 
-        <!-- ================= 3. КОНСТРУКТОР CFG ДЛЯ ТРЕНУВАНЬ ================= -->
-        <div class="section-header">🛠️ 3. Тренування та конфіги</div>
+        <!-- 3. ТРЕНУВАННЯ ТА БІНДИ -->
+        <div class="section-header">🛠️ 3. Тренування та бінди</div>
 
         <div class="bind-box prac-box">
             
-            <!-- Заголовок-спойлер -->
             <div class="accordion-trigger" onclick="togglePracAccordion()">
                 <div>
                     <div style="font-weight: 800; font-size: 15px; color: #fff;">
@@ -532,7 +517,6 @@
                 <span id="pracArrow" class="accordion-arrow open">▼</span>
             </div>
 
-            <!-- Розгортання з чекбоксами -->
             <div id="pracBody">
                 
                 <div class="cfg-checklist">
@@ -591,9 +575,9 @@
                         <input type="checkbox" id="cfg-buy" checked onchange="buildCustomCfg()">
                         <div class="check-content">
                             <div class="check-title">
-                                💰 Купівля скрізь і максимум грошей <span class="check-code-badge">mp_buy_anywhere 1; mp_maxmoney 60000</span>
+                                💰 Купівля скрізь і максимум грошей <span class="check-code-badge">mp_buy_anywhere 1; mp_buytime 60000; mp_maxmoney 60000</span>
                             </div>
-                            <div class="check-desc">Можна відкрити магазин та купити будь-яку зброю в будь-якій точці карти.</div>
+                            <div class="check-desc">Можна відкрити магазин і купувати будь-коли без обмеження в 20 секунд.</div>
                         </div>
                     </label>
 
@@ -619,13 +603,12 @@
 
                 </div>
 
-                <!-- ЗГЕНЕРОВАНИЙ КОД -->
                 <div class="code-action-box">
                     <div style="font-size: 12px; color: #ffd700; font-weight: 800;">
                         📋 ТВІЙ ПІДСУМКОВИЙ КОНФІГ:
                     </div>
                     <div class="code-row" id="customCfgCode">
-                        sv_cheats 1; bot_kick; mp_warmup_end; mp_freezetime 0; mp_roundtime 60; mp_roundtime_defuse 60; sv_infinite_ammo 1; mp_buy_anywhere 1; mp_maxmoney 60000; mp_startmoney 60000; sv_grenade_trajectory_prac_pipreview 1; sv_showimpacts 1; mp_restartgame 1
+                        sv_cheats 1; bot_kick; mp_warmup_end; mp_freezetime 0; mp_roundtime 60; mp_roundtime_defuse 60; sv_infinite_ammo 1; mp_buy_anywhere 1; mp_buytime 60000; mp_maxmoney 60000; mp_startmoney 60000; mp_afterroundmoney 60000; sv_grenade_trajectory_prac_pipreview 1; sv_showimpacts 1; mp_restartgame 1
                     </div>
                     <button class="copy-big-btn" style="background:#00c853;" onclick="copyCode('customCfgCode', this)">
                         🚀 Скопіювати обраний конфіг
@@ -634,7 +617,7 @@
 
                 <!-- ОКРЕМІ ТАКТИЧНІ БІНДИ -->
                 <div style="font-size: 13px; font-weight: 800; color: #ffd700; margin-top: 20px; margin-bottom: 10px;">
-                    ⚡ Окремі корисні бінди для тренування:
+                    ⚡ Окремі корисні бінди для гри та тренувань:
                 </div>
 
                 <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -654,7 +637,7 @@
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-weight:700; font-size:13px; color:#fff;">🔄 Повтор останньої гранати (Rethrow)</span>
                         </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату, щоб перевірити чи сліпить флешка або чи є щілини в смоку.</div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату для перевірки флешки чи смоку.</div>
                         <div class="code-row" id="cmd-rethrow">bind "<span class="key-active-tag">h</span>" "sv_rethrow_last_grenade"</div>
                         <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-rethrow', this)">Скопіювати Rethrow</button>
                     </div>
@@ -664,7 +647,7 @@
                         <div style="display:flex; justify-content:space-between; align-items:center;">
                             <span style="font-weight:700; font-size:13px; color:#fff;">➕ Приціл на весь екран для смоків</span>
                         </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран для точного прицілювання по орієнтирах.</div>
+                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран для точного прицілювання.</div>
                         <div class="code-row" id="cmd-cross">bind "<span class="key-active-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
                         <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-cross', this)">Скопіювати Smoke Crosshair</button>
                     </div>
@@ -679,7 +662,6 @@
 
     <!-- СКРИПТИ -->
     <script>
-        // 1. ДАНІ ГРАНАТ
         const nadesData = {
             smoke: { title: '☁️ СМОК (SMOKE GRENADE — SLOT 8)', slot: 'slot8', name: 'Смок' },
             flash: { title: '⚡ ФЛЕШКА (FLASHBANG — SLOT 7)', slot: 'slot7', name: 'Флешку' },
@@ -711,7 +693,6 @@
             updateNadeBindCode();
         }
 
-        // 2. КАЛЬКУЛЯТОР 180°
         function calculateYaw(sens) {
             if (sens > 0) {
                 return Math.round(180 / (0.022 * sens));
@@ -792,7 +773,6 @@
             });
         }
 
-        // 3. КОНСТРУКТОР CFG
         function buildCustomCfg() {
             const commands = [];
 
@@ -803,7 +783,7 @@
             }
             if (document.getElementById('cfg-ammo').checked) commands.push('sv_infinite_ammo 1');
             if (document.getElementById('cfg-buy').checked) {
-                commands.push('mp_buy_anywhere 1', 'mp_maxmoney 60000', 'mp_startmoney 60000');
+                commands.push('mp_buy_anywhere 1', 'mp_buytime 60000', 'mp_maxmoney 60000', 'mp_startmoney 60000', 'mp_afterroundmoney 60000');
             }
             if (document.getElementById('cfg-pip').checked) commands.push('sv_grenade_trajectory_prac_pipreview 1');
             if (document.getElementById('cfg-impacts').checked) commands.push('sv_showimpacts 1');
@@ -825,7 +805,6 @@
             }
         }
 
-        // 4. КОПІЮВАННЯ В 1 КЛІК
         function copyCode(elementId, btn) {
             const el = document.getElementById(elementId);
             const text = el.innerText || el.textContent;

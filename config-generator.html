@@ -27,6 +27,11 @@
 
         .card-header {
             margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .card-title {
@@ -39,6 +44,28 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+
+        .section-toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 800;
+            color: #00e676;
+            background: rgba(0, 230, 118, 0.1);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .section-toggle-label input[type="checkbox"] {
+            accent-color: #00e676;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
         }
 
         .cfg-grid-2 {
@@ -57,6 +84,8 @@
             font-size: 12.5px;
             font-weight: 700;
             color: #ffffff;
+            display: flex;
+            justify-content: space-between;
         }
 
         .cfg-text-input, .cfg-select {
@@ -77,7 +106,6 @@
             box-shadow: 0 0 12px rgba(0, 230, 118, 0.3);
         }
 
-        /* Велика виразна панель вибору номера конфігу */
         .slot-selector-row {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -152,7 +180,96 @@
             border-color: #00e676;
         }
 
-        /* 🖱️ ВІЗУАЛЬНИЙ БЛОК МИШІ */
+        /* Спойлер прицілу */
+        .spoiler-header {
+            background: rgba(255, 70, 85, 0.12);
+            border: 1px dashed #ff4655;
+            border-radius: 8px;
+            padding: 12px 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13.5px;
+            font-weight: 800;
+            color: #ff6b78;
+            user-select: none;
+            transition: all 0.2s ease;
+        }
+
+        .spoiler-header:hover {
+            background: rgba(255, 70, 85, 0.2);
+        }
+
+        .spoiler-body {
+            display: none;
+            background: #090c14;
+            border: 1px solid #1c2333;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 10px;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .ch-preview-screen {
+            width: 100%;
+            height: 140px;
+            background: radial-gradient(circle at center, #1a2538 0%, #090c14 85%);
+            border: 1px solid #232d42;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ch-svg-canvas {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .cfg-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #232733;
+            outline: none;
+            accent-color: #00e676;
+            cursor: pointer;
+            margin: 4px 0;
+        }
+
+        .color-palette-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #0c101a;
+            border: 1px solid #1f2738;
+            padding: 8px 12px;
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .color-picker-input {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 44px;
+            height: 38px;
+            border: 2px solid #ffd700;
+            border-radius: 6px;
+            background: transparent;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+        }
+
+        .color-picker-input::-webkit-color-swatch-wrapper { padding: 0; }
+        .color-picker-input::-webkit-color-swatch { border: none; border-radius: 4px; }
+
         .mouse-guide-card {
             background: #0d1017;
             border: 1px solid #232a3b;
@@ -180,7 +297,6 @@
             border-radius: 4px;
         }
 
-        /* ТАБИ ГРАНАТ */
         .nade-tabs-compact {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -258,6 +374,8 @@
             gap: 10px;
             cursor: pointer;
             user-select: none;
+            margin: 0;
+            width: 100%;
         }
 
         .opt-main-row input[type="checkbox"] {
@@ -590,7 +708,6 @@
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД -->
     <a href="index.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">⚙️ ГЕНЕРАТОР КОНФІГУ AUTOEXEC.CFG</div>
@@ -632,7 +749,7 @@
             </div>
         </div>
 
-        <!-- 2. СЕНСА, 180° РОЗВОРОТ ТА ЗРОЗУМІЛЕ ПОЯСНЕННЯ МИШІ -->
+        <!-- 2. СЕНСА ТА 180° РОЗВОРОТ -->
         <div class="cfg-card" style="border-left-color: #ff4655;">
             <div class="card-header">
                 <h3 class="card-title">🎯 2. Чутливість миші та розворот на 180°</h3>
@@ -666,7 +783,7 @@
                 </div>
             </div>
 
-            <!-- 🖱️ ПРОСТЕ ПОЯСНЕННЯ БОКОВИХ КНОПОК МИШІ -->
+            <!-- ШПАРГАЛКА МИШІ -->
             <div class="mouse-guide-card">
                 <div style="font-size: 13px; font-weight: 800; color: #ffd700; margin-bottom: 2px;">
                     🖱️ Яка кнопка де знаходиться під великим пальцем:
@@ -689,25 +806,149 @@
             </div>
         </div>
 
-        <!-- 3. РОЗДІЛЬНА ЗДАТНІСТЬ ТА FULLSCREEN (ПРЯМО В CFG) -->
+        <!-- 3. РОЗКРИВНИЙ КОНСТРУКТОР ПРИЦІЛУ З ГОЛОВНИМ ТУМБЛЕРОМ -->
+        <div class="cfg-card" style="border-left-color: #ff4655;">
+            <div class="card-header">
+                <h3 class="card-title">🎯 3. Налаштування прицілу</h3>
+                <label class="section-toggle-label">
+                    <input type="checkbox" id="includeCrosshairToggle" onchange="buildAutoexec()">
+                    <span>Включати приціл у конфіг</span>
+                </label>
+            </div>
+
+            <div class="spoiler-header" onclick="toggleCrosshairSpoiler()">
+                <span>🎨 Налаштувати стилі, колір та Т-подібний приціл</span>
+                <span id="chSpoilerArrow">▼ РОЗГОРНУТИ</span>
+            </div>
+
+            <div class="spoiler-body" id="chSpoilerBody">
+                
+                <!-- Векторний SVG прев'ю екран -->
+                <div class="ch-preview-screen">
+                    <svg class="ch-svg-canvas" viewBox="0 0 200 140">
+                        <g id="chSvgGroup" transform="translate(100, 70)">
+                            <!-- Центр (0,0) -->
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Пресети прицілів -->
+                <div class="input-group">
+                    <label class="input-label">Готові стилі та типажі прицілу:</label>
+                    <div class="chips-row">
+                        <span class="chip-btn active" onclick="setChPreset('pro')">🔥 Класичний Pro</span>
+                        <span class="chip-btn" onclick="setChPreset('t_shape')">🎯 Т-подібний (Без верху)</span>
+                        <span class="chip-btn" onclick="setChPreset('dot')">⚪ Крапка (Dot Only)</span>
+                        <span class="chip-btn" onclick="setChPreset('wide')">➕ Широкий хрестик</span>
+                        <span class="chip-btn" onclick="setChPreset('tight')">🔹 Маленький точний</span>
+                    </div>
+                </div>
+
+                <!-- Палітра кольорів -->
+                <div class="input-group">
+                    <label class="input-label">Колір прицілу:</label>
+                    <div class="color-palette-bar">
+                        <input type="color" id="chCustomColorPicker" class="color-picker-input" value="#00ff00" oninput="onCustomColorPicked(this.value)">
+                        <div style="display:flex; flex-direction:column; gap:2px;">
+                            <span style="font-size:12px; font-weight:bold; color:#fff;">Палітра кольорів</span>
+                            <span id="hexColorLabel" style="font-size:11px; font-family:monospace; color:#ffd700;">HEX: #00FF00 (RGB: 0, 255, 0)</span>
+                        </div>
+
+                        <div class="chips-row" style="margin-left:auto;">
+                            <span class="chip-btn active" style="border-color:#00ff00; color:#00ff00;" onclick="quickSelectColor('#00ff00', this)">Зелений</span>
+                            <span class="chip-btn" style="border-color:#00ffff; color:#00ffff;" onclick="quickSelectColor('#00ffff', this)">Ціан</span>
+                            <span class="chip-btn" style="border-color:#ff4655; color:#ff4655;" onclick="quickSelectColor('#ff4655', this)">Червоний</span>
+                            <span class="chip-btn" style="border-color:#ffd700; color:#ffd700;" onclick="quickSelectColor('#ffd700', this)">Жовтий</span>
+                            <span class="chip-btn" style="border-color:#bd00ff; color:#bd00ff;" onclick="quickSelectColor('#bd00ff', this)">Фіолетовий</span>
+                            <span class="chip-btn" style="border-color:#ff00ea; color:#ff00ea;" onclick="quickSelectColor('#ff00ea', this)">Рожевий</span>
+                            <span class="chip-btn" style="border-color:#ffffff; color:#ffffff;" onclick="quickSelectColor('#ffffff', this)">Білий</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Повзунки розміру і зазору -->
+                <div class="cfg-grid-2">
+                    <div class="input-group">
+                        <div class="input-label">
+                            <span>Довжина ліній (Size):</span>
+                            <span id="chSizeValText" style="color:#6cd0ff;">2.0</span>
+                        </div>
+                        <input type="range" id="chSize" class="cfg-slider" min="0.5" max="6.0" step="0.5" value="2.0" oninput="onChSliderChange()">
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-label">
+                            <span>Зазор між лініями (Gap):</span>
+                            <span id="chGapValText" style="color:#6cd0ff;">-2.0</span>
+                        </div>
+                        <input type="range" id="chGap" class="cfg-slider" min="-5.0" max="4.0" step="0.5" value="-2.0" oninput="onChSliderChange()">
+                    </div>
+                </div>
+
+                <!-- Опції прицілу -->
+                <div style="display:flex; flex-direction:column; gap:8px; margin-top:4px;">
+                    <label class="opt-main-row" style="color:#ffd700;">
+                        <input type="checkbox" id="chkChTStyle" onchange="onChCheckboxChange()">
+                        <span>🚫 <b>Прибрати верхню лінію прицілу (Т-подібний приціл)</b> (<code>cl_crosshair_t 1</code>)</span>
+                    </label>
+
+                    <label class="opt-main-row" style="color:#fff;">
+                        <input type="checkbox" id="chkChDot" onchange="onChCheckboxChange()">
+                        <span>⚪ <b>Крапка по центру</b> (<code>cl_crosshairdot 1</code>)</span>
+                    </label>
+
+                    <label class="opt-main-row" style="color:#fff;">
+                        <input type="checkbox" id="chkChOutline" checked onchange="onChCheckboxChange()">
+                        <span>🖤 <b>Чорне обведення</b> (<code>cl_crosshair_drawoutline 1</code> — чітка видимість)</span>
+                    </label>
+
+                    <label class="opt-main-row" style="color:#fff;">
+                        <input type="checkbox" id="cfgFollowRecoil" onchange="buildAutoexec()">
+                        <span>🎯 <b>Слідування прицілу за віддачею / спреєм</b> (<code>cl_crosshair_recoil 1</code>)</span>
+                    </label>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 4. РОЗДІЛЬНА ЗДАТНІСТЬ ТА FULLSCREEN -->
         <div class="cfg-card" style="border-left-color: #00d2ff;">
-            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                <h3 class="card-title" style="margin:0;">🖥️ 3. Роздільна здатність та режим екрана</h3>
-                <span id="resStatusBadge" style="font-size: 11px; font-weight: 800; background: rgba(0, 230, 118, 0.15); color: #00e676; border: 1px solid #00e676; padding: 3px 8px; border-radius: 6px;">
-                    ✅ Стандартний режим
-                </span>
+            <div class="card-header">
+                <h3 class="card-title">🖥️ 4. Роздільна здатність та режим екрана</h3>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span id="resStatusBadge" style="font-size: 11px; font-weight: 800; background: rgba(0, 230, 118, 0.15); color: #00e676; border: 1px solid #00e676; padding: 3px 8px; border-radius: 6px;">
+                        ✅ Стандартний режим
+                    </span>
+                    <label class="section-toggle-label">
+                        <input type="checkbox" id="includeResToggle" onchange="buildAutoexec()">
+                        <span>Включати роздільну здатність у конфіг</span>
+                    </label>
+                </div>
             </div>
 
             <div class="cfg-grid-2">
                 <div class="input-group">
-                    <label class="input-label">Співвідношення та пресети:</label>
+                    <label class="input-label">Співвідношення та класичні пресети:</label>
                     <select id="cfgResPreset" class="cfg-select" onchange="onResPresetChange()">
-                        <option value="1280x960" selected>4:3 — 1280 x 960 (Топ кіберспорту)</option>
-                        <option value="1024x768">4:3 — 1024 x 768 (Максимальний FPS)</option>
+                        <!-- 4:3 -->
+                        <option value="1280x960" selected>4:3 — 1280 x 960 (Топ вибір Pro-гравців)</option>
                         <option value="1440x1080">4:3 — 1440 x 1080 (Кастомне чітке 4:3)</option>
+                        <option value="1024x768">4:3 — 1024 x 768 (Максимальний FPS)</option>
+                        
+                        <!-- 5:4 -->
+                        <option value="1280x1024">5:4 — 1280 x 1024 (Класика, найширші моделі)</option>
+                        
+                        <!-- 16:10 -->
+                        <option value="1680x1050">16:10 — 1680 x 1050 (Широкий кіберспорт)</option>
+                        <option value="1600x1024">16:10 — 1600 x 1024 (Чіткий широкий баланс)</option>
+                        <option value="1440x900">16:10 — 1440 x 900 (Баланс FPS та ширини)</option>
+                        
+                        <!-- 16:9 -->
                         <option value="1920x1080">16:9 — 1920 x 1080 (Full HD дефолт)</option>
+                        <option value="1600x900">16:9 — 1600 x 900 (HD+ буст FPS)</option>
                         <option value="2560x1440">16:9 — 2560 x 1440 (2K QHD)</option>
-                        <option value="1680x1050">16:10 — 1680 x 1050 (Широкі моделі)</option>
+                        
+                        <!-- Кастомне -->
                         <option value="custom" disabled>✏️ Власна (Введена вручну)</option>
                     </select>
                 </div>
@@ -722,7 +963,6 @@
                 </div>
             </div>
 
-            <!-- РЕЖИМ FULLSCREEN ЧИ ВІКНО -->
             <div style="margin-top: 14px;">
                 <label class="input-label">Режим відображення гри:</label>
                 <div class="chips-row">
@@ -736,7 +976,7 @@
             </div>
 
             <div class="custom-res-faq-trigger" onclick="toggleResGuide()">
-                <span>❓ Як додати кастомне розширення (1440x1080), якщо його немає в списку CS2?</span>
+                <span>❓ Як додати кастомне розширення (1440x1080 або 1280x1024), якщо його немає в списку CS2?</span>
                 <span id="resGuideArrow">▼</span>
             </div>
 
@@ -745,7 +985,7 @@
                 1. ПКМ по робочому столу → <b>Панель керування NVIDIA</b>.<br>
                 2. <i>«Зміна роздільної здатності»</i> → кнопка <b>«Налаштування» (Customize)</b>.<br>
                 3. Постав галочку <i>«Дозволити режими, які не підтримуються дисплеєм»</i> → <b>«Створити власну роздільну здатність»</b>.<br>
-                4. Вкажи <b>1440</b> по горизонталі та <b>1080</b> по вертикалі і частоту Гц → збережи.
+                4. Вкажи потрібні пікселі (наприклад <b>1440</b> × <b>1080</b> або <b>1280</b> × <b>1024</b>) і частоту Гц → збережи.
 
                 <h4>🔵 Для ноутбуків (Intel Graphics):</h4>
                 1. Відкрий <b>Центр керування графікою Intel</b> (Intel Graphics Command Center).<br>
@@ -754,10 +994,14 @@
             </div>
         </div>
 
-        <!-- 4. КОМПАКТНІ ГРАНАТИ (ТАБИ) -->
+        <!-- 5. КОМПАКТНІ ГРАНАТИ З КНОПКАМИ МАСОВОГО КЕРУВАННЯ -->
         <div class="cfg-card" style="border-left-color: #ffd700;">
             <div class="card-header">
-                <h3 class="card-title">💣 4. Швидкий вибір гранат (В один клік)</h3>
+                <h3 class="card-title">💣 5. Швидкий вибір гранат</h3>
+                <div class="chips-row" style="margin: 0;">
+                    <span class="chip-btn" style="color:#ff4655; border-color:#ff4655;" onclick="toggleAllNades(false)">✕ Вимкнути всі</span>
+                    <span class="chip-btn" style="color:#00e676; border-color:#00e676;" onclick="toggleAllNades(true)">✓ Увімкнути всі</span>
+                </div>
             </div>
 
             <div class="nade-tabs-compact">
@@ -785,8 +1029,8 @@
 
             <div class="nade-editor-box">
                 <div class="nade-editor-row">
-                    <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
-                        <input type="checkbox" id="activeNadeCheck" checked onchange="onNadeCheckChange()">
+                    <label class="opt-main-row" style="width: auto;">
+                        <input type="checkbox" id="activeNadeCheck" onchange="onNadeCheckChange()">
                         <span style="font-weight:800; font-size:13px; color:#ffd700;" id="activeNadeTitle">☁️ СМОК (SMOKE GRENADE — SLOT 8)</span>
                     </label>
                     
@@ -808,40 +1052,30 @@
             </div>
         </div>
 
-        <!-- 5. СТРІЛЬБА, СНАЙПЕРКИ ТА ПРИЦІЛИ -->
+        <!-- 6. ТАКТИЧНІ БІНДИ ТА СТРІЛЬБА -->
         <div class="cfg-card" style="border-left-color: #4b69ff;">
             <div class="card-header">
-                <h3 class="card-title">🔫 5. Стрільба, снайперки та приціли</h3>
+                <h3 class="card-title">⚡ 6. Тактичні бінди та рух</h3>
             </div>
 
             <div class="options-list">
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgFollowRecoil')">
-                        <input type="checkbox" id="cfgFollowRecoil" onchange="buildAutoexec()">
-                        <div class="opt-content">
-                            <div class="opt-title">🎯 Слідування прицілу за спреєм кулями <span class="opt-cmd-badge">cl_crosshair_recoil 1</span></div>
-                            <div class="opt-desc">Хрестик зміщується за траєкторією куль при затиску.</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgNoAutoRezoom')">
-                        <input type="checkbox" id="cfgNoAutoRezoom" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgNoAutoRezoom" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">🚫 Вимкнути повторний авто-зум з AWP <span class="opt-cmd-badge">cl_sniper_auto_rezoom 0</span></div>
                             <div class="opt-desc">Приціл снайперки не відкривається сам після пострілу.</div>
                         </div>
-                    </div>
+                    </label>
                 </div>
 
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgSmokeCross')">
-                        <input type="checkbox" id="cfgSmokeCross" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgSmokeCross" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">➕ Приціл на весь екран для розкидок смоків <span class="opt-cmd-badge">toggle cl_crosshairsize</span></div>
                         </div>
-                    </div>
+                    </label>
                     <div class="key-assign-box">
                         <span style="font-size: 12px; color: #aaa;">Клавіша:</span>
                         <input type="text" id="keySmokeCross" class="key-input-inline" value="alt" oninput="buildAutoexec()">
@@ -851,12 +1085,12 @@
                 </div>
 
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgSwitchHands')">
-                        <input type="checkbox" id="cfgSwitchHands" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgSwitchHands" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">🔄 Зміна руки (Ліва / Права) <span class="opt-cmd-badge">switchhands</span></div>
                         </div>
-                    </div>
+                    </label>
                     <div class="key-assign-box">
                         <span style="font-size: 12px; color: #aaa;">Клавіша:</span>
                         <input type="text" id="keySwitchHands" class="key-input-inline" value="h" oninput="buildAutoexec()">
@@ -867,48 +1101,48 @@
                 </div>
 
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgJumpWheel')">
-                        <input type="checkbox" id="cfgJumpWheel" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgJumpWheel" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">🦘 Стрибок на коліщатко вниз <span class="opt-cmd-badge">bind "mwheeldown" "+jump"</span></div>
                         </div>
-                    </div>
+                    </label>
                 </div>
             </div>
         </div>
 
-        <!-- 6. РАДАР ТА FPS ОПТИМІЗАЦІЯ -->
+        <!-- 7. РАДАР ТА FPS ОПТИМІЗАЦІЯ -->
         <div class="cfg-card" style="border-left-color: #8855ff;">
             <div class="card-header">
-                <h3 class="card-title">🚀 6. Pro Радар, Клатч-Звук та FPS</h3>
+                <h3 class="card-title">🚀 7. Pro Радар, Клатч-Звук та FPS</h3>
             </div>
 
             <div class="options-list">
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgProRadar')">
-                        <input type="checkbox" id="cfgProRadar" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgProRadar" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">🗺️ Pro Радар (Огляд усієї мапи без сліпих зон) <span class="opt-cmd-badge">cl_radar_scale 0.38</span></div>
                         </div>
-                    </div>
+                    </label>
                 </div>
 
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgFpsBoost')">
-                        <input type="checkbox" id="cfgFpsBoost" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgFpsBoost" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">⚡ Зняття ліміту кадрів та плавний відгук <span class="opt-cmd-badge">fps_max 0</span></div>
                         </div>
-                    </div>
+                    </label>
                 </div>
 
                 <div class="opt-item-advanced">
-                    <div class="opt-main-row" onclick="toggleCheck('cfgMuteToggle')">
-                        <input type="checkbox" id="cfgMuteToggle" checked onchange="buildAutoexec()">
+                    <label class="opt-main-row">
+                        <input type="checkbox" id="cfgMuteToggle" onchange="buildAutoexec()">
                         <div class="opt-content">
                             <div class="opt-title">🔇 Клатч-мут голосового чату <span class="opt-cmd-badge">voice_modenable_toggle</span></div>
                         </div>
-                    </div>
+                    </label>
                     <div class="key-assign-box">
                         <span style="font-size: 12px; color: #aaa;">Клавіша:</span>
                         <input type="text" id="keyMute" class="key-input-inline" value="k" oninput="buildAutoexec()">
@@ -919,7 +1153,7 @@
             </div>
         </div>
 
-        <!-- 7. ПРЕВ'Ю ТА ЗАВАНТАЖЕННЯ -->
+        <!-- 8. ПРЕВ'Ю ТА ЗАВАНТАЖЕННЯ -->
         <div class="cfg-card" style="border-left-color: #00e676;">
             <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                 <h3 class="card-title" style="margin: 0;">📄 Твій файл: <span id="previewFileLabel" style="color:#00e676;">autoexec1.cfg</span></h3>
@@ -935,7 +1169,7 @@
             </div>
         </div>
 
-        <!-- 8. ПРОСТА ІНСТРУКЦІЯ -->
+        <!-- 9. ПРОСТА ІНСТРУКЦІЯ -->
         <div class="cfg-card" style="border-left-color: #ffd700;">
             <div class="card-header">
                 <h3 class="card-title">📖 Як користуватися збереженими конфігами:</h3>
@@ -956,9 +1190,6 @@
                     <div>● Для 3-го: <span style="color:#ffd700;">exec autoexec3</span></div>
                     <div>● Для 4-го: <span style="color:#ffd700;">exec autoexec4</span></div>
                 </div>
-                <div style="margin-top: 6px; font-size: 12px; color: #a0a5b5;">
-                    <i>(Після натискання Enter гра миттєво виставить сенсу, розширення та всі бінди!)</i>
-                </div>
             </div>
         </div>
 
@@ -976,11 +1207,11 @@
         </div>
         <div class="ai-chat-body" id="aiChatBody">
             <div class="ai-msg bot">
-                Привіт! 👋 Я AI-помічник по CS2. Запитай мене будь-що: як вмикати конфіги 1, 2, 3, 4 через команду <code>exec</code>, як створити кастомну роздільну здатність або як підняти FPS!
+                Привіт! 👋 Я AI-помічник по CS2. Запитай мене будь-що: як вмикати конфіги 1, 2, 3, 4 через команду <code>exec</code>, які роздільні здатності (4:3, 5:4, 16:10, 16:9) обирають про-гравці або як оптимізувати FPS!
                 <div class="ai-quick-prompts">
+                    <span class="ai-chip-prompt" onclick="askAiPrompt('Яка різниця між 4:3, 5:4 та 16:10?')">4:3 vs 5:4 vs 16:10</span>
                     <span class="ai-chip-prompt" onclick="askAiPrompt('Як перемикати конфіги 1, 2, 3, 4 в консолі?')">Як вмикати 1, 2, 3, 4?</span>
-                    <span class="ai-chip-prompt" onclick="askAiPrompt('Куди закидати файли autoexec?')">Куди закинути файл?</span>
-                    <span class="ai-chip-prompt" onclick="askAiPrompt('Як зробити кастомне розширення?')">Кастомне 4:3</span>
+                    <span class="ai-chip-prompt" onclick="askAiPrompt('Як зробити кастомне розширення?')">Кастомне розширення</span>
                     <span class="ai-chip-prompt" onclick="askAiPrompt('Як підняти FPS?')">Буст FPS</span>
                 </div>
             </div>
@@ -996,17 +1227,24 @@
         let currentSlotNum = '1';
         let isFullscreenMode = 1;
 
+        let currentChColorHex = '#00ff00';
+        let currentChR = 0;
+        let currentChG = 255;
+        let currentChB = 0;
+
         const standardResolutions = [
-            "1280x960", "1024x768", "1440x1080", 
-            "1920x1080", "2560x1440", "1680x1050"
+            "1280x960", "1440x1080", "1024x768",
+            "1280x1024",
+            "1680x1050", "1600x1024", "1440x900",
+            "1920x1080", "1600x900", "2560x1440"
         ];
 
         const nadesStore = {
-            smoke: { title: '☁️ СМОК (SMOKE GRENADE — SLOT 8)', slot: 'slot8', key: 'c', enabled: true },
-            flash: { title: '⚡ ФЛЕШКА (FLASHBANG — SLOT 7)', slot: 'slot7', key: 'v', enabled: true },
-            molly: { title: '🔥 МОЛОТОВ / ЗАПАЛЬНА (SLOT 10)', slot: 'slot10', key: 'x', enabled: true },
-            he:    { title: '💥 УЛАМКОВА ГРАНАТА (HE — SLOT 6)', slot: 'slot6', key: '4', enabled: true },
-            bomb:  { title: '📦 ШВИДКИЙ ДРОП БОМБИ (SLOT 5; DROP)', slot: 'slot5; drop', key: 'b', enabled: true }
+            smoke: { title: '☁️ СМОК (SMOKE GRENADE — SLOT 8)', slot: 'slot8', key: 'c', enabled: false },
+            flash: { title: '⚡ ФЛЕШКА (FLASHBANG — SLOT 7)', slot: 'slot7', key: 'v', enabled: false },
+            molly: { title: '🔥 МОЛОТОВ / ЗАПАЛЬНА (SLOT 10)', slot: 'slot10', key: 'x', enabled: false },
+            he:    { title: '💥 УЛАМКОВА ГРАНАТА (HE — SLOT 6)', slot: 'slot6', key: '4', enabled: false },
+            bomb:  { title: '📦 ШВИДКИЙ ДРОП БОМБИ (SLOT 5; DROP)', slot: 'slot5; drop', key: 'b', enabled: false }
         };
 
         let currentNadeTab = 'smoke';
@@ -1022,6 +1260,122 @@
             document.getElementById('downloadBtnMain').innerText = `📥 ЗАВАНТАЖИТИ ${fileName.toUpperCase()}.CFG`;
 
             buildAutoexec();
+        }
+
+        /* Спойлер прицілу */
+        function toggleCrosshairSpoiler() {
+            const body = document.getElementById('chSpoilerBody');
+            const arrow = document.getElementById('chSpoilerArrow');
+            if (body.style.display === 'flex') {
+                body.style.display = 'none';
+                arrow.innerText = '▼ РОЗГОРНУТИ';
+            } else {
+                body.style.display = 'flex';
+                arrow.innerText = '▲ ЗГОРНУТИ';
+                renderCrosshairPreview();
+            }
+        }
+
+        function hexToRgb(hex) {
+            let clean = hex.replace('#', '');
+            if (clean.length === 3) {
+                clean = clean.split('').map(c => c + c).join('');
+            }
+            const num = parseInt(clean, 16);
+            return {
+                r: (num >> 16) & 255,
+                g: (num >> 8) & 255,
+                b: num & 255
+            };
+        }
+
+        function onCustomColorPicked(hex) {
+            currentChColorHex = hex;
+            const rgb = hexToRgb(hex);
+            currentChR = rgb.r;
+            currentChG = rgb.g;
+            currentChB = rgb.b;
+
+            document.getElementById('hexColorLabel').innerText = `HEX: ${hex.toUpperCase()} (RGB: ${currentChR}, ${currentChG}, ${currentChB})`;
+            document.querySelectorAll('.color-palette-bar .chip-btn').forEach(b => b.classList.remove('active'));
+
+            renderCrosshairPreview();
+            buildAutoexec();
+        }
+
+        function quickSelectColor(hex, btn) {
+            document.getElementById('chCustomColorPicker').value = hex;
+            btn.parentElement.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            onCustomColorPicked(hex);
+        }
+
+        function setChPreset(preset) {
+            const size = document.getElementById('chSize');
+            const gap = document.getElementById('chGap');
+            const dot = document.getElementById('chkChDot');
+            const outline = document.getElementById('chkChOutline');
+            const tStyle = document.getElementById('chkChTStyle');
+
+            if (preset === 'pro') {
+                size.value = 2.0; gap.value = -2.0; dot.checked = false; outline.checked = true; tStyle.checked = false;
+            } else if (preset === 't_shape') {
+                size.value = 2.5; gap.value = -1.5; dot.checked = false; outline.checked = true; tStyle.checked = true;
+            } else if (preset === 'dot') {
+                size.value = 0.5; gap.value = -5.0; dot.checked = true; outline.checked = true; tStyle.checked = false;
+            } else if (preset === 'wide') {
+                size.value = 3.5; gap.value = 1.0; dot.checked = false; outline.checked = true; tStyle.checked = false;
+            } else if (preset === 'tight') {
+                size.value = 1.5; gap.value = -3.0; dot.checked = false; outline.checked = false; tStyle.checked = false;
+            }
+
+            onChSliderChange();
+        }
+
+        function onChSliderChange() {
+            document.getElementById('chSizeValText').innerText = parseFloat(document.getElementById('chSize').value).toFixed(1);
+            document.getElementById('chGapValText').innerText = parseFloat(document.getElementById('chGap').value).toFixed(1);
+            renderCrosshairPreview();
+            buildAutoexec();
+        }
+
+        function onChCheckboxChange() {
+            renderCrosshairPreview();
+            buildAutoexec();
+        }
+
+        /* ВЕКТОРНИЙ РЕНДЕР ПРИЦІЛУ */
+        function renderCrosshairPreview() {
+            const size = parseFloat(document.getElementById('chSize').value);
+            const gap = parseFloat(document.getElementById('chGap').value);
+            const isDot = document.getElementById('chkChDot').checked;
+            const isOutline = document.getElementById('chkChOutline').checked;
+            const isTShape = document.getElementById('chkChTStyle').checked;
+
+            const len = Math.max(3, size * 5);
+            const offset = Math.max(2, (gap + 5) * 2.5);
+            const thick = 2;
+            const halfThick = thick / 2;
+
+            const strokeColor = isOutline ? '#000000' : 'none';
+            const strokeWidth = isOutline ? '1' : '0';
+
+            const svgGroup = document.getElementById('chSvgGroup');
+            let svgHtml = '';
+
+            if (!isTShape) {
+                svgHtml += `<rect x="${-halfThick}" y="${-(offset + len)}" width="${thick}" height="${len}" fill="${currentChColorHex}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+            }
+
+            svgHtml += `<rect x="${-halfThick}" y="${offset}" width="${thick}" height="${len}" fill="${currentChColorHex}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+            svgHtml += `<rect x="${-(offset + len)}" y="${-halfThick}" width="${len}" height="${thick}" fill="${currentChColorHex}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+            svgHtml += `<rect x="${offset}" y="${-halfThick}" width="${len}" height="${thick}" fill="${currentChColorHex}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+
+            if (isDot) {
+                svgHtml += `<rect x="-1.5" y="-1.5" width="3" height="3" rx="0.5" fill="${currentChColorHex}" stroke="${strokeColor}" stroke-width="${strokeWidth}" />`;
+            }
+
+            svgGroup.innerHTML = svgHtml;
         }
 
         function setScreenMode(val) {
@@ -1049,6 +1403,14 @@
 
         function onNadeCheckChange() {
             nadesStore[currentNadeTab].enabled = document.getElementById('activeNadeCheck').checked;
+            buildAutoexec();
+        }
+
+        function toggleAllNades(state) {
+            Object.keys(nadesStore).forEach(k => {
+                nadesStore[k].enabled = state;
+            });
+            document.getElementById('activeNadeCheck').checked = state;
             buildAutoexec();
         }
 
@@ -1146,12 +1508,6 @@
             buildAutoexec();
         }
 
-        function toggleCheck(id) {
-            const el = document.getElementById(id);
-            el.checked = !el.checked;
-            buildAutoexec();
-        }
-
         function buildAutoexec() {
             const sens = parseFloat(document.getElementById('cfgSens').value.replace(',', '.')) || 0.5;
             const turnKey = document.getElementById('cfgTurnKey').value.trim() || 'mouse4';
@@ -1160,6 +1516,15 @@
 
             const w = document.getElementById('resWidth').value || '1280';
             const h = document.getElementById('resHeight').value || '960';
+
+            const includeCrosshair = document.getElementById('includeCrosshairToggle').checked;
+            const includeRes = document.getElementById('includeResToggle').checked;
+
+            const chSize = document.getElementById('chSize').value;
+            const chGap = document.getElementById('chGap').value;
+            const isChDot = document.getElementById('chkChDot').checked ? 1 : 0;
+            const isChOutline = document.getElementById('chkChOutline').checked ? 1 : 0;
+            const isTShape = document.getElementById('chkChTStyle').checked ? 1 : 0;
 
             let lines = [];
             lines.push("// =====================================================");
@@ -1173,55 +1538,70 @@
             lines.push(`bind "${turnKey}" "yaw -${yaw} 1 1"`);
             lines.push("");
 
-            // 2. Роздільна здатність та екран
-            lines.push("// --- 2. РОЗДІЛЬНА ЗДАТНІСТЬ ТА ЕКРАН ---");
-            lines.push(`r_fullscreen "${isFullscreenMode}"`);
-            lines.push(`r_screen_width "${w}"`);
-            lines.push(`r_screen_height "${h}"`);
-            lines.push("");
-
-            // 3. Гранати
-            lines.push("// --- 3. ШВИДКИЙ ВИБІР ГРАНАТ ---");
-            Object.keys(nadesStore).forEach(k => {
-                const item = nadesStore[k];
-                if (item.enabled) {
-                    lines.push(`bind "${item.key}" "${item.slot}"`);
+            // 2. Приціл
+            if (includeCrosshair) {
+                lines.push("// --- 2. НАЛАШТУВАННЯ ПРИЦІЛУ ---");
+                lines.push("cl_crosshairstyle 4");
+                lines.push("cl_crosshaircolor 5");
+                lines.push(`cl_crosshaircolor_r ${currentChR}`);
+                lines.push(`cl_crosshaircolor_g ${currentChG}`);
+                lines.push(`cl_crosshaircolor_b ${currentChB}`);
+                lines.push(`cl_crosshairsize ${chSize}`);
+                lines.push(`cl_crosshairgap ${chGap}`);
+                lines.push("cl_crosshairthickness 1");
+                lines.push(`cl_crosshair_t ${isTShape}`);
+                lines.push(`cl_crosshairdot ${isChDot}`);
+                lines.push(`cl_crosshair_drawoutline ${isChOutline}`);
+                if (document.getElementById('cfgFollowRecoil').checked) {
+                    lines.push("cl_crosshair_recoil 1");
+                } else {
+                    lines.push("cl_crosshair_recoil 0");
                 }
-            });
-            lines.push("");
-
-            // 4. Стрільба та бінди
-            lines.push("// --- 4. СТРІЛЬБА ТА ТАКТИКА ---");
-            if (document.getElementById('cfgFollowRecoil').checked) {
-                lines.push("cl_crosshair_recoil 1        // Приціл слідує за спреєм");
-            } else {
-                lines.push("cl_crosshair_recoil 0");
+                lines.push("");
             }
 
-            if (document.getElementById('cfgNoAutoRezoom').checked) {
-                lines.push("cl_sniper_auto_rezoom 0      // Вимкнено авто-зум AWP");
-            } else {
-                lines.push("cl_sniper_auto_rezoom 1");
+            // 3. Роздільна здатність
+            if (includeRes) {
+                lines.push("// --- 3. РОЗДІЛЬНА ЗДАТНІСТЬ ТА ЕКРАН ---");
+                lines.push(`r_fullscreen "${isFullscreenMode}"`);
+                lines.push(`r_screen_width "${w}"`);
+                lines.push(`r_screen_height "${h}"`);
+                lines.push("");
             }
 
+            // 4. Гранати
+            let activeNades = Object.keys(nadesStore).filter(k => nadesStore[k].enabled);
+            if (activeNades.length > 0) {
+                lines.push("// --- 4. ШВИДКИЙ ВИБІР ГРАНАТ ---");
+                activeNades.forEach(k => {
+                    const item = nadesStore[k];
+                    lines.push(`bind "${item.key}" "${item.slot}"`);
+                });
+                lines.push("");
+            }
+
+            // 5. Тактичні бінди
+            let tacticalLines = [];
+            if (document.getElementById('cfgNoAutoRezoom').checked) tacticalLines.push("cl_sniper_auto_rezoom 0");
             if (document.getElementById('cfgSmokeCross').checked) {
                 let k = document.getElementById('keySmokeCross').value.trim() || 'alt';
-                lines.push(`bind "${k}" "toggle cl_crosshairsize 1.5 1000" // Великий приціл для смоків`);
+                tacticalLines.push(`bind "${k}" "toggle cl_crosshairsize 1.5 1000"`);
             }
-
             if (document.getElementById('cfgSwitchHands').checked) {
                 let k = document.getElementById('keySwitchHands').value.trim() || 'h';
-                lines.push(`bind "${k}" "switchhands"        // Зміна руки`);
+                tacticalLines.push(`bind "${k}" "switchhands"`);
+            }
+            if (document.getElementById('cfgJumpWheel').checked) tacticalLines.push('bind "mwheeldown" "+jump"');
+
+            if (tacticalLines.length > 0) {
+                lines.push("// --- 5. ТАКТИКА ТА БІНДИ ---");
+                lines.push(...tacticalLines);
+                lines.push("");
             }
 
-            if (document.getElementById('cfgJumpWheel').checked) {
-                lines.push('bind "mwheeldown" "+jump"    // Стрибок на коліщатко');
-            }
-            lines.push("");
-
-            // 5. Радар
+            // 6. Радар
             if (document.getElementById('cfgProRadar').checked) {
-                lines.push("// --- 5. PRO РАДАР ---");
+                lines.push("// --- 6. PRO РАДАР ---");
                 lines.push("cl_radar_always_centered 0");
                 lines.push("cl_radar_scale 0.38");
                 lines.push("cl_hud_radar_scale 1.15");
@@ -1230,17 +1610,22 @@
                 lines.push("");
             }
 
-            // 6. Оптимізація
-            lines.push("// --- 6. ОПТИМІЗАЦІЯ ТА ЗВУК ---");
+            // 7. Оптимізація
+            let optLines = [];
             if (document.getElementById('cfgFpsBoost').checked) {
-                lines.push("fps_max 0");
-                lines.push("engine_low_latency_sleep_after_client_tick true");
+                optLines.push("fps_max 0");
+                optLines.push("engine_low_latency_sleep_after_client_tick true");
             }
             if (document.getElementById('cfgMuteToggle').checked) {
                 let k = document.getElementById('keyMute').value.trim() || 'k';
-                lines.push(`bind "${k}" "voice_modenable_toggle" // Клатч-мут чату`);
+                optLines.push(`bind "${k}" "voice_modenable_toggle"`);
             }
-            lines.push("");
+
+            if (optLines.length > 0) {
+                lines.push("// --- 7. ОПТИМІЗАЦІЯ ТА ЗВУК ---");
+                lines.push(...optLines);
+                lines.push("");
+            }
 
             lines.push("host_writeconfig");
             lines.push('echo "========================================="');
@@ -1312,14 +1697,25 @@
         function getSmartAiResponse(q) {
             q = q.toLowerCase();
 
+            if (q.includes('різниц') || q.includes('5:4') || q.includes('4:3') || q.includes('16:10') || q.includes('1280x1024')) {
+                return "🖥️ <b>Порівняння форматів екрана в CS2:</b><br>" +
+                       "• <b>4:3 (1280x960, 1440x1080):</b> Моделі ширші на 33%, стандарт кіберспорту.<br>" +
+                       "• <b>5:4 (1280x1024):</b> Найширші моделі гравців (навіть ширші ніж 4:3), легше цілитись по головах.<br>" +
+                       "• <b>16:10 (1680x1050, 1600x1024):</b> Золота середина між чіткістю 16:9 та широкими моделями 4:3.";
+            }
+
             if (q.includes('1') || q.includes('2') || q.includes('3') || q.includes('4') || q.includes('перемик') || q.includes('exec')) {
                 return "⚡ <b>Як перемикати конфіги в грі через консоль:</b><br>" +
                        "Закинь усі файли в папку <code>csgo\\cfg</code> і просто пиши в консолі <code>~</code>:<br>" +
                        "• <code>exec autoexec1</code> — вмикає 1-й конфіг.<br>" +
                        "• <code>exec autoexec2</code> — вмикає 2-й конфіг.<br>" +
                        "• <code>exec autoexec3</code> — вмикає 3-й конфіг.<br>" +
-                       "• <code>exec autoexec4</code> — вмикає 4-й конфіг.<br>" +
-                       "Гра моментально виставить сенсу, розширення та всі бінди!";
+                       "• <code>exec autoexec4</code> — вмикає 4-й конфіг.";
+            }
+
+            if (q.includes('приціл') || q.includes('crosshair') || q.includes('колір') || q.includes('палітр') || q.includes('т-подібний')) {
+                return "🎨 <b>Конструктор прицілу в CS2:</b><br>" +
+                       "Ти можеш повністю вимкнути або увімкнути блок прицілу тумблером зверху, обрати будь-який відтінок через RGB-палітру та прибрати верхню риску галочкою (<code>cl_crosshair_t 1</code>).";
             }
 
             if (q.includes('куди') || q.includes('закинути') || q.includes('встановити') || q.includes('cfg') || q.includes('папк')) {
@@ -1343,7 +1739,10 @@
             return "💡 <b>AI-Підказка:</b> Я можу розповісти, як перемикати конфіги 1, 2, 3, 4 за допомогою команди <code>exec</code>, як розтягнути 4:3 або налаштувати бінди на розворот 180°!";
         }
 
-        document.addEventListener('DOMContentLoaded', buildAutoexec);
+        document.addEventListener('DOMContentLoaded', () => {
+            onCustomColorPicked('#00ff00');
+            buildAutoexec();
+        });
     </script>
 
 </body>
