@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lb.innerHTML = `
         <span class="lightbox-close" id="lb-close">&times;</span>
         <button class="lightbox-btn lightbox-prev" id="lb-prev" type="button">&#10094;</button>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Збільшене images">
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Збільшене зображення">
         <button class="lightbox-btn lightbox-next" id="lb-next" type="button">&#10095;</button>
         <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
     `;
@@ -25,39 +25,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnNext = document.getElementById("lb-next");
     const btnClose = document.getElementById("lb-close");
 
-    // Відкриття галереї тільки з ВИДИМИМИ images сторінки (ігнорує приховані картки)
+    // Відкриття галереї тільки для картинок усередині активних розкидок
     window.openGalleryByImg = function(targetImg) {
-        const guideContainer = document.querySelector(".guide-container") || document.body;
+        const guideContainer = document.querySelector(".guide-container");
+        if (!guideContainer) return; // Якщо ми на сторінці меню — не відкриваємо
         
-        // Збираємо картинки тільки з тих карток, які не сховані
-        const allImgs = Array.from(guideContainer.querySelectorAll(".step-img, .guide-card img, .step-card img, img:not(#lightbox-img):not(.side-img)"));
+        // Збираємо картинки тільки з карток розкидок, які не знаходяться всередині посилань <a>
+        const allImgs = Array.from(guideContainer.querySelectorAll(".step-card img, .step-img")).filter(img => !img.closest("a"));
+        
         currentGroup = allImgs.filter(img => {
-            const card = img.closest('.step-card, .guide-card');
+            const card = img.closest('.step-card');
             return !card || card.style.display !== 'none';
         });
 
-        // Прибираємо дублікати
         currentGroup = [...new Set(currentGroup)];
 
-        if (currentGroup.length === 0) {
-            currentGroup = [targetImg];
-        }
+        if (currentGroup.length === 0) return;
 
         currentIndex = currentGroup.indexOf(targetImg);
         if (currentIndex === -1) currentIndex = 0;
 
         updateView();
         lb.style.display = "flex";
-    };
-
-    window.openLightbox = function(src) {
-        let foundImg = Array.from(document.querySelectorAll("img")).find(img => img.src === src || img.getAttribute("src") === src);
-        if (foundImg) {
-            window.openGalleryByImg(foundImg);
-        } else {
-            lbImg.src = src;
-            lb.style.display = "flex";
-        }
     };
 
     function updateView() {
@@ -100,12 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
     btnPrev.addEventListener("click", showPrev);
     btnClose.addEventListener("click", closeLB);
 
-    // Закриття кліком на темний фон
     lb.addEventListener("click", (e) => {
         if (e.target === lb) closeLB();
     });
 
-    // Керування клавіатурою (←, →, Esc)
     document.addEventListener("keydown", (e) => {
         if (lb.style.display === "flex") {
             if (e.key === "ArrowRight") showNext();
@@ -114,42 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Гортання мишкою (Drag & Drop)
-    let isMouseDown = false;
-    let startMouseX = 0;
-
-    lb.addEventListener("mousedown", (e) => {
-        if (e.target === btnPrev || e.target === btnNext || e.target === btnClose) return;
-        isMouseDown = true;
-        startMouseX = e.clientX;
-    });
-
-    lb.addEventListener("mouseup", (e) => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        let diff = e.clientX - startMouseX;
-        if (diff < -40) showNext();
-        if (diff > 40) showPrev();
-    });
-
-    // Свайпи на смартфонах
-    let touchStartX = 0;
-    lb.addEventListener("touchstart", (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lb.addEventListener("touchend", (e) => {
-        let touchEndX = e.changedTouches[0].screenX;
-        let diff = touchEndX - touchStartX;
-        if (diff < -40) showNext();
-        if (diff > 40) showPrev();
-    }, { passive: true });
-
-    // Підключення кліку до картинок
-    document.querySelectorAll(".step-img, .guide-card img, .step-card img").forEach(img => {
-        img.addEventListener("click", (e) => {
-            e.stopPropagation();
-            window.openGalleryByImg(img);
-        });
+    // Підключаємо збільшення ТІЛЬКИ до картинок всередині розкидок (ігноруючи кліки-посилання)
+    document.querySelectorAll(".step-card img, .step-img").forEach(img => {
+        if (!img.closest("a")) {
+            img.addEventListener("click", (e) => {
+                e.stopPropagation();
+                window.openGalleryByImg(img);
+            });
+        }
     });
 });
