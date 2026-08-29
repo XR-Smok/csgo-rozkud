@@ -27,6 +27,7 @@ h1, .header-title {
     text-transform: uppercase;
     letter-spacing: 2px;
     background: linear-gradient(90deg, #ff4655, #8855ff, #4b69ff);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-bottom: 12px;
@@ -482,13 +483,17 @@ h1::after, .header-title::after {
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
+
 /* Анімація плавної появи картки при поверненні */
 .card-restoring {
     animation: restoreCardAnim 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, highlightFlash 1.6s ease-out 0.2s;
 }
 
 @keyframes restoreCardAnim {
-    0% {  }
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
