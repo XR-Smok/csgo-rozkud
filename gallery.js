@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lb.innerHTML = `
         <span class="lightbox-close" id="lb-close">&times;</span>
         <button class="lightbox-btn lightbox-prev" id="lb-prev" type="button">&#10094;</button>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Збільшене фото">
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Збільшене images">
         <button class="lightbox-btn lightbox-next" id="lb-next" type="button">&#10095;</button>
         <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
     `;
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnNext = document.getElementById("lb-next");
     const btnClose = document.getElementById("lb-close");
 
-    // Відкриття галереї тільки з ВИДИМИМИ фото сторінки (ігнорує приховані картки)
+    // Відкриття галереї тільки з ВИДИМИМИ images сторінки (ігнорує приховані картки)
     window.openGalleryByImg = function(targetImg) {
         const guideContainer = document.querySelector(".guide-container") || document.body;
         
