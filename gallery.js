@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Створюємо розмітку лайтбокса
+    // 1. Працюємо ТІЛЬКИ на сторінках самих гайдів (де є розкидки всередині .guide-container)
+    const guideContainer = document.querySelector(".guide-container");
+    if (!guideContainer) return;
+
+    // 2. Створюємо розмітку лайтбокса
     let lb = document.getElementById("lightbox");
     if (!lb) {
         lb = document.createElement("div");
@@ -25,13 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnNext = document.getElementById("lb-next");
     const btnClose = document.getElementById("lb-close");
 
-    // Відкриття галереї тільки для картинок усередині активних розкидок
     window.openGalleryByImg = function(targetImg) {
-        const guideContainer = document.querySelector(".guide-container");
-        if (!guideContainer) return; // Якщо ми на сторінці меню — не відкриваємо
-        
-        // Збираємо картинки тільки з карток розкидок, які не знаходяться всередині посилань <a>
-        const allImgs = Array.from(guideContainer.querySelectorAll(".step-card img, .step-img")).filter(img => !img.closest("a"));
+        // Беремо тільки видимі зображення, що не є навігаційними посиланнями <a>
+        const allImgs = Array.from(guideContainer.querySelectorAll(".step-card img, .step-img"))
+            .filter(img => !img.closest("a"));
         
         currentGroup = allImgs.filter(img => {
             const card = img.closest('.step-card');
@@ -101,8 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Підключаємо збільшення ТІЛЬКИ до картинок всередині розкидок (ігноруючи кліки-посилання)
-    document.querySelectorAll(".step-card img, .step-img").forEach(img => {
+    // Вішаємо клік виключно на зображення розкидок поза посиланнями
+    guideContainer.querySelectorAll(".step-card img, .step-img").forEach(img => {
         if (!img.closest("a")) {
             img.addEventListener("click", (e) => {
                 e.stopPropagation();
