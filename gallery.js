@@ -1,21 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. Працюємо ТІЛЬКИ на сторінках самих гайдів (де є розкидки всередині .guide-container)
+    // 1. Працюємо ТІЛЬКИ на сторінках самих гайдів з розкидками
     const guideContainer = document.querySelector(".guide-container");
     if (!guideContainer) return;
 
-    // 2. Створюємо розмітку лайтбокса
+    // 2. Створюємо розмітку лайтбокса з жорстким приховуванням
     let lb = document.getElementById("lightbox");
     if (!lb) {
         lb = document.createElement("div");
         lb.id = "lightbox";
         lb.className = "lightbox";
+        lb.style.display = "none"; // Запобігає спалаху при створенні
         document.body.appendChild(lb);
     }
 
     lb.innerHTML = `
         <span class="lightbox-close" id="lb-close">&times;</span>
         <button class="lightbox-btn lightbox-prev" id="lb-prev" type="button">&#10094;</button>
-        <img id="lightbox-img" class="lightbox-content" src="" alt="Збільшене зображення">
+        <img id="lightbox-img" class="lightbox-content" alt="Збільшене зображення">
         <button class="lightbox-btn lightbox-next" id="lb-next" type="button">&#10095;</button>
         <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
     `;
@@ -29,8 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnNext = document.getElementById("lb-next");
     const btnClose = document.getElementById("lb-close");
 
+    // Функція повного закриття лайтбокса
+    function closeLB(e) {
+        if (e) e.stopPropagation();
+        lb.style.display = "none";
+        if (lbImg) lbImg.removeAttribute("src"); // Очищаємо картинку, щоб не було спалаху
+    }
+
     window.openGalleryByImg = function(targetImg) {
-        // Беремо тільки видимі зображення, що не є навігаційними посиланнями <a>
+        // Беремо тільки зображення всередині карток розкидок, які не є посиланнями
         const allImgs = Array.from(guideContainer.querySelectorAll(".step-card img, .step-img"))
             .filter(img => !img.closest("a"));
         
@@ -40,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         currentGroup = [...new Set(currentGroup)];
-
         if (currentGroup.length === 0) return;
 
         currentIndex = currentGroup.indexOf(targetImg);
@@ -81,11 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
         updateView();
     }
 
-    function closeLB(e) {
-        if (e) e.stopPropagation();
-        lb.style.display = "none";
-    }
-
     btnNext.addEventListener("click", showNext);
     btnPrev.addEventListener("click", showPrev);
     btnClose.addEventListener("click", closeLB);
@@ -102,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Вішаємо клік виключно на зображення розкидок поза посиланнями
+    // Підключаємо клік тільки до картинок розкидок
     guideContainer.querySelectorAll(".step-card img, .step-img").forEach(img => {
         if (!img.closest("a")) {
             img.addEventListener("click", (e) => {
@@ -110,5 +112,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.openGalleryByImg(img);
             });
         }
+    });
+
+    // 3. Запобігання мерехтінню при навігації "Назад" (кеш сторінки)
+    window.addEventListener("pageshow", () => {
+        closeLB();
+    });
+    window.addEventListener("beforeunload", () => {
+        closeLB();
     });
 });
