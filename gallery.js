@@ -153,3 +153,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+// Автоматичне відновлення всіх фотографій на сайті
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function() {
+            let src = this.getAttribute('src');
+            if (!src) return;
+
+            // Отримуємо чисте ім'я файлу (наприклад "ancient-a-site.jpg")
+            let filename = src.split('/').pop();
+
+            // По черзі перевіряємо всі можливі варіанти розташування
+            if (!this.dataset.step) {
+                this.dataset.step = "1";
+                this.src = 'images/' + filename;
+            } else if (this.dataset.step === "1") {
+                this.dataset.step = "2";
+                this.src = 'фото/' + filename;
+            } else if (this.dataset.step === "2") {
+                this.dataset.step = "3";
+                this.src = filename;
+            } else if (this.dataset.step === "3") {
+                this.dataset.step = "4";
+                this.src = 'images/' + filename.replace(/\.(jpg|png)$/i, '.png');
+            }
+        });
+    });
+});
