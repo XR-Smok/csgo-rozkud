@@ -43,25 +43,39 @@
         .side-card-title {
             padding: 15px;
             text-align: center;
-            color: #ff4655;
             font-weight: bold;
             font-size: 16px;
             margin: 0;
             background: #14161d;
         }
 
-        /* АНІМАЦІЯ ПРИ НАВЕДЕННІ */
-        .side-card:hover {
+        /* T-SIDE СТИЛІ */
+        .side-card.t-side .side-card-title {
+            color: #ff4655;
+        }
+
+        .side-card.t-side:hover {
             border-color: #ff4655;
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.2);
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.25);
+        }
+
+        /* CT-SIDE СТИЛІ */
+        .side-card.ct-side .side-card-title {
+            color: #4b69ff;
+        }
+
+        .side-card.ct-side:hover {
+            border-color: #4b69ff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(75, 105, 255, 0.25);
         }
 
         .side-card:hover img {
             transform: scale(1.08);
         }
 
-        /* Неактивний CT */
+        /* Неактивні картки */
         .side-card.disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -95,21 +109,21 @@
 
         <div class="sides-grid">
 
-            <!-- ВЕДЕ НА ancient-t-side.html -->
-            <a href="ancient-t-side.html" class="side-card">
+            <!-- TERRORISTS (T) -->
+            <a href="ancient-t-side.html" class="side-card t-side">
                 <div class="side-card-img-wrapper">
                     <img src="images/t-side.jpg" alt="Terrorists" class="step-img">
                 </div>
                 <h3 class="side-card-title">Terrorists (T)</h3>
             </a>
 
-            <!-- СТ (СКОРО) -->
-            <div class="side-card disabled">
+            <!-- COUNTER-TERRORISTS (CT) — ТЕПЕР АКТИВНО -->
+            <a href="ancient-ct-side.html" class="side-card ct-side">
                 <div class="side-card-img-wrapper">
-                    <img src="images/ct-side.jpg" alt="CT" class="step-img">
+                    <img src="images/ct-side.jpg" alt="Counter-Terrorists" class="step-img">
                 </div>
-                <h3 class="side-card-title">CT (Скоро)</h3>
-            </div>
+                <h3 class="side-card-title">Counter-Terrorists (CT)</h3>
+            </a>
 
         </div>
 

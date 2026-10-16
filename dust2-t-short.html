@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUST II — SHORT (T) 💣</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <style>
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2-col { grid-template-columns: 1fr; }
+        }
+
+        .section-separator {
+            color: #ff9800;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #232733;
+        }
+
+        .combo-badge {
+            display: inline-block;
+            background: rgba(255, 152, 0, 0.15);
+            border: 1px solid #ff9800;
+            color: #ffb74d;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="dust2-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title">DUST II — SHORT (T) 💣</div>
+
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <div class="tip-box" style="border-left-color: #ff9800;">
+            🎯 <b>Тактика виходу:</b> Весь цей розкид може виконувати одна людина. Спочатку дається стіна з двох смоків, після чого летить молотов і хаєшка для вибивання суперника.
+        </div>
+
+        <!-- ================= БЛОК 1: ПОДВІЙНИЙ СМОК ================= -->
+        <div class="section-separator">🌫️ ЕТАП 1: ДОРОЖКА ЗІ СМОКІВ</div>
+
+        <div class="step-card" id="d2-t-short-smokes">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-short-smokes', 'Дорожка зі смоків на Short')" title="Сховати цю розкидку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-short-smokes" onclick="toggleFavoriteCard(this, 'd2-t-short-smokes', 'DUST II: Дорожка зі смоків Short', 'dust2-t-short.html')">☆</button>
+            </div>
+
+            <div class="step-title">🌫️ СТІНА ЗІ СМОКІВ НА SHORT</div>
+            <div class="combo-badge">👤 ВИКОНУЄ ОДИН ГРАВЕЦЬ</div>
+
+            <!-- ПЕРШИЙ СМОК -->
+            <div style="background: #14161f; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #ff9800;">
+                <div style="font-weight: bold; color: #ff9800; margin-bottom: 10px;">1️⃣ ПЕРШИЙ СМОК:</div>
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ</div>
+                        <img src="images/dust2-t-short-smoke1-stand.jpg" alt="Позиція 1" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                        <img src="images/dust2-t-short-smoke1-aim.jpg" alt="Приціл 1" class="step-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ДРУГИЙ СМОК -->
+            <div style="background: #14161f; padding: 12px; border-radius: 8px; margin-bottom: 15px; border-left: 3px solid #ff9800;">
+                <div style="font-weight: bold; color: #ff9800; margin-bottom: 10px;">2️⃣ ДРУГИЙ СМОК:</div>
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ</div>
+                        <img src="images/dust2-t-short-smoke2-stand.jpg" alt="Позиція 2" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                        <img src="images/dust2-t-short-smoke2-aim.jpg" alt="Приціл 2" class="step-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- РЕЗУЛЬТАТ ОБИДВОХ -->
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ (ПОДВІЙНИЙ СМОК ПЕРЕКРИВАЄ ШОРТ)</div>
+                <img src="images/dust2-t-short-smokes-drop.jpg" alt="Стіна смоків" class="step-img">
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ЛКМ (З МІСЦЯ)</div>
+        </div>
+
+        <!-- ================= БЛОК 2: МОЛІК + ХАЄШКА ================= -->
+        <div class="section-separator">🔥 ЕТАП 2: ЗАЧИСТКА ПЛЕНТА (МОЛОТОВ + ГРАНАТА)</div>
+
+        <div class="step-card" id="d2-t-short-nades">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-short-nades', 'Молотов + Граната в A Site')" title="Сховати цю розкидку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-short-nades" onclick="toggleFavoriteCard(this, 'd2-t-short-nades', 'DUST II: Молотов + Граната в сайт', 'dust2-t-short.html')">☆</button>
+            </div>
+
+            <div class="step-title">🔥 МОЛОТОВ + 💣 ГРАНАТА В САЙТ</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ</div>
+                    <img src="images/dust2-t-short-nade-stand.jpg" alt="Позиція під гранати" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="images/dust2-t-short-nade-aim.jpg" alt="Приціл під гранати" class="step-img">
+                </div>
+            </div>
+
+            <div class="tip-box" style="margin: 10px 0; border-left-color: #f44336;">
+                ⚠️ <b>Як кидати:</b> Спочатку кидається <b>Молотов</b>, і одразу слідом — <b>Граната</b>. Шкода від гранати сильно сповільнює суперника, не даючи йому швидко втекти з полум'я. Приціл однаковий!
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- БЛОК ПРИХОВАНИХ РОЗКИДОК -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
+        </div>
+
+    </div>
+
+    <!-- СКРИПТИ -->
+    <script src="favorites.js"></script>
+    <script src="gallery.js"></script>
+
+</body>
+</html>

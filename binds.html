@@ -15,6 +15,41 @@
             gap: 20px;
         }
 
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+
+        .filter-chip {
+            background: #14161d;
+            border: 1px solid #232733;
+            color: #8fa0c7;
+            padding: 9px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            border-color: #ffd700;
+            color: #ffffff;
+        }
+
+        .filter-chip.active {
+            background: #ffd700 !important;
+            border-color: #ffd700 !important;
+            color: #0b0c10 !important;
+        }
+
         .section-header {
             font-size: 1.1rem;
             font-weight: 800;
@@ -37,6 +72,9 @@
         }
 
         .turn-box { border-left: 4px solid #ff4655; }
+        .nades-box { border-left: 4px solid #4b69ff; }
+        .prac-box { border-left: 4px solid #00e676; }
+        .demo-box { border-left: 4px solid #9c27b0; }
 
         .stepper-control {
             display: flex;
@@ -119,8 +157,6 @@
             transform: translateY(-1px);
         }
 
-        .nades-box { border-left: 4px solid #4b69ff; }
-
         .nade-tabs {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -187,10 +223,6 @@
             font-family: monospace;
         }
 
-        .key-custom-input:focus {
-            box-shadow: 0 0 12px rgba(75, 105, 255, 0.5);
-        }
-
         .quick-key-btn {
             background: #14161d;
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -204,20 +236,7 @@
             font-family: monospace;
         }
 
-        .quick-key-btn:hover {
-            background: #4b69ff;
-            color: #ffffff;
-            border-color: #4b69ff;
-        }
-
-        .quick-key-btn.active {
-            background: #4b69ff;
-            color: #ffffff;
-            border-color: #4b69ff;
-            box-shadow: 0 0 10px rgba(75, 105, 255, 0.4);
-        }
-
-        .prac-box { border-left: 4px solid #00e676; }
+        .quick-key-btn:hover { background: #4b69ff; color: #ffffff; }
 
         .accordion-trigger {
             display: flex;
@@ -254,10 +273,7 @@
             border-radius: 6px;
             background: rgba(255, 255, 255, 0.02);
             cursor: pointer;
-            transition: background 0.2s ease;
         }
-
-        .check-item:hover { background: rgba(0, 230, 118, 0.06); }
 
         .check-item input[type="checkbox"] {
             width: 18px;
@@ -309,10 +325,10 @@
         .code-row {
             font-family: 'Consolas', 'Courier New', monospace;
             color: #6cd0ff;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             word-break: break-all;
-            line-height: 1.4;
+            line-height: 1.45;
             user-select: all;
         }
 
@@ -341,18 +357,13 @@
             justify-content: center;
             gap: 8px;
             transition: all 0.2s ease;
-            box-shadow: 0 4px 15px rgba(75, 105, 255, 0.3);
         }
 
-        .copy-big-btn:hover {
-            background: #3855eb;
-            box-shadow: 0 0 20px rgba(75, 105, 255, 0.6);
-        }
+        .copy-big-btn:hover { background: #3855eb; }
 
         .copy-big-btn.copied {
             background: #00e676 !important;
             color: #0d0e12 !important;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.6) !important;
         }
 
         .info-hint {
@@ -364,6 +375,38 @@
             padding: 10px 14px;
             margin-top: 10px;
         }
+
+        .keys-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .key-card {
+            background: #0b0c10;
+            border: 1px solid #232733;
+            border-radius: 8px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .key-badge {
+            background: #9c27b0;
+            color: #ffffff;
+            font-family: monospace;
+            font-weight: 900;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 5px;
+            min-width: 32px;
+            text-align: center;
+        }
+
+        .key-badge-arrow { background: #ff9800; }
+        .key-desc { font-size: 12.5px; color: #e0e0e0; font-weight: 600; }
 
         @media (max-width: 550px) {
             .nade-tabs { grid-template-columns: repeat(3, 1fr); }
@@ -379,295 +422,337 @@
 
     <div class="binds-container">
 
+        <!-- ВЕРХНІ ПЛАШКИ-ФІЛЬТРИ -->
+        <div class="filter-bar">
+            <button class="filter-chip active" id="tab-game" type="button" onclick="switchSection('game')">⚡ Ігрові бінди</button>
+            <button class="filter-chip" id="tab-demos" type="button" onclick="switchSection('demos')">🎬 Демки Faceit / Реплеї</button>
+            <button class="filter-chip" id="tab-prac" type="button" onclick="switchSection('prac')">🎯 Тренування</button>
+        </div>
         <div class="tip-box">
-            💡 Обирай клавішу зі списку або пиши власну, тисни <b>«Скопіювати»</b> і вставляй у консоль гри (<code>~</code>).
+            💡 Обирай потрібний розділ, тисни <b>«Скопіювати»</b> і вставляй готовий рядок у консоль CS2 (<code>~</code>).
         </div>
 
-        <!-- 1. РОЗВОРОТ 180° -->
-        <div class="section-header">🔄 1. Швидкий розворот на 180°</div>
+       <!-- ================= БЛОК 1: ІГРОВІ БІНДИ ================= -->
+        <div id="section-game" style="display: flex; flex-direction: column; gap: 20px;">
 
-        <div class="bind-box turn-box">
-            <div style="text-align: center; font-weight: 700; font-size: 14px; color: #fff;">
-                🎯 Введи або обери свою чутливість (Sensitivity):
-            </div>
-
-            <div class="stepper-control">
-                <button type="button" class="step-btn" onclick="adjustSens(-0.01)">−</button>
-                <input type="text" id="userSens" class="sens-display-input" value="0.50" oninput="onManualInput()" onblur="onInputBlur()" placeholder="Сенса">
-                <button type="button" class="step-btn" onclick="adjustSens(0.01)">+</button>
-            </div>
-
-            <input type="range" id="sensRange" class="sens-slider" min="0.01" max="5.00" step="0.01" value="0.50" oninput="onSliderChange()">
-
-            <div class="preset-chips">
-                <button class="preset-btn" onclick="setPreset(0.4)">0.4</button>
-                <button class="preset-btn active" onclick="setPreset(0.5)">0.5</button>
-                <button class="preset-btn" onclick="setPreset(0.6)">0.6</button>
-                <button class="preset-btn" onclick="setPreset(0.8)">0.8</button>
-                <button class="preset-btn" onclick="setPreset(1.0)">1.0</button>
-                <button class="preset-btn" onclick="setPreset(1.25)">1.25</button>
-                <button class="preset-btn" onclick="setPreset(1.5)">1.5</button>
-                <button class="preset-btn" onclick="setPreset(2.0)">2.0</button>
-            </div>
-
-            <div class="key-selector-box" style="border-left: 3px solid #ff4655;">
-                <div style="font-size: 13px; font-weight: 700; color: #fff;">
-                    ⌨️ Призначити на клавішу:
+            <!-- 1. РОЗВОРОТ 180° -->
+            <div class="section-header">🔄 1. Швидкий розворот на 180°</div>
+            <div class="bind-box turn-box">
+                <div style="text-align: center; font-weight: 700; font-size: 14px; color: #fff;">
+                    🎯 Чутливість (Sensitivity):
                 </div>
-                <div class="key-input-row">
-                    <input type="text" id="turnKeyInput" class="key-custom-input" value="mouse4" oninput="updateTurnBindCode()" placeholder="клавіша">
-                    <button class="quick-key-btn" onclick="setTurnKey('mouse4')">mouse4</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('mouse5')">mouse5</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('z')">z</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('x')">x</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('c')">c</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('v')">v</button>
-                    <button class="quick-key-btn" onclick="setTurnKey('f')">f</button>
+                <div class="stepper-control">
+                    <button type="button" class="step-btn" onclick="adjustSens(-0.01)">−</button>
+                    <input type="text" id="userSens" class="sens-display-input" value="0.50" oninput="onManualInput()" onblur="onInputBlur()">
+                    <button type="button" class="step-btn" onclick="adjustSens(0.01)">+</button>
                 </div>
-            </div>
-
-            <div class="code-action-box">
-                <div class="code-row" id="code-turn180">
-                    bind "<span id="turnKeyDisplay" class="key-active-tag">mouse4</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
+                <input type="range" id="sensRange" class="sens-slider" min="0.01" max="5.00" step="0.01" value="0.50" oninput="onSliderChange()">
+                <div class="preset-chips">
+                    <button class="preset-btn" onclick="setPreset(0.4)">0.4</button>
+                    <button class="preset-btn active" onclick="setPreset(0.5)">0.5</button>
+                    <button class="preset-btn" onclick="setPreset(0.6)">0.6</button>
+                    <button class="preset-btn" onclick="setPreset(0.8)">0.8</button>
+                    <button class="preset-btn" onclick="setPreset(1.0)">1.0</button>
+                    <button class="preset-btn" onclick="setPreset(1.25)">1.25</button>
+                    <button class="preset-btn" onclick="setPreset(1.5)">1.5</button>
+                    <button class="preset-btn" onclick="setPreset(2.0)">2.0</button>
                 </div>
-                <button class="copy-big-btn" onclick="copyCode('code-turn180', this)">
-                    📋 Скопіювати бінд 180°
-                </button>
-            </div>
-
-            <div class="info-hint">
-                ⚙️ <b>Як перевірити:</b> Натисни бінд перед стіною. Якщо <b>не докрутило</b> — трохи збільши число в команді. Якщо <b>перекрутило</b> — зменши.
-            </div>
-        </div>
-
-        <!-- 2. ГРАНАТИ -->
-        <div class="section-header">💣 2. Швидкий вибір гранат</div>
-
-        <div class="bind-box nades-box">
-            <div style="font-weight: 700; font-size: 14px; color: #fff;">
-                👇 1. Оберіть гранату:
-            </div>
-
-            <div class="nade-tabs">
-                <button class="nade-tab-btn active" onclick="selectNade('smoke', this)">
-                    <span class="icon">☁️</span>
-                    <span>Смок</span>
-                </button>
-                <button class="nade-tab-btn" onclick="selectNade('flash', this)">
-                    <span class="icon">⚡</span>
-                    <span>Флешка</span>
-                </button>
-                <button class="nade-tab-btn" onclick="selectNade('molly', this)">
-                    <span class="icon">🔥</span>
-                    <span>Молік</span>
-                </button>
-                <button class="nade-tab-btn" onclick="selectNade('he', this)">
-                    <span class="icon">💥</span>
-                    <span>Хаєшка</span>
-                </button>
-                <button class="nade-tab-btn" onclick="selectNade('decoy', this)">
-                    <span class="icon">🎯</span>
-                    <span>Декой</span>
-                </button>
-            </div>
-
-            <div class="key-selector-box" style="border-left: 3px solid #4b69ff;">
-                <div style="font-size: 13px; font-weight: 700; color: #fff;">
-                    ⌨️ 2. Вкажи свою клавішу або обери зі списку:
-                </div>
-                <div class="key-input-row">
-                    <input type="text" id="nadeKeyInput" class="key-custom-input" value="mouse4" oninput="updateNadeBindCode()" placeholder="напр: mouse4">
-                    <button class="quick-key-btn" onclick="setNadeKey('mouse4')">mouse4</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('mouse5')">mouse5</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('z')">z</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('x')">x</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('c')">c</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('v')">v</button>
-                    <button class="quick-key-btn" onclick="setNadeKey('f')">f</button>
-                </div>
-            </div>
-
-            <div class="code-action-box">
-                <div style="font-size: 13px; color: #ffd700; font-weight: 800;" id="nadeTitle">
-                    ☁️ СМОК (SMOKE GRENADE — SLOT 8)
-                </div>
-                <div class="code-row" id="nadeCode">
-                    bind "<span id="nadeKeyDisplay" class="key-active-tag">mouse4</span>" "slot8"
-                </div>
-                <button class="copy-big-btn" id="nadeCopyBtn" onclick="copyCode('nadeCode', this)">
-                    📋 Скопіювати бінд на Смок
-                </button>
-            </div>
-        </div>
-
-        <!-- 3. ТРЕНУВАННЯ ТА БІНДИ -->
-        <div class="section-header">🛠️ 3. Тренування та бінди</div>
-
-        <div class="bind-box prac-box">
-            
-            <div class="accordion-trigger" onclick="togglePracAccordion()">
-                <div>
-                    <div style="font-weight: 800; font-size: 15px; color: #fff;">
-                        🎯 Конструктор Practice CFG (Налаштуй під себе)
-                    </div>
-                    <div style="font-size: 12px; color: #a0a5b5; margin-top: 2px;">
-                        Всі галочки стоять за замовчуванням. Знімай зайве, щоб згенерувати свій код!
+                <div class="key-selector-box" style="border-left: 3px solid #ff4655;">
+                    <div style="font-size: 13px; font-weight: 700; color: #fff;">⌨️ Призначити на клавішу:</div>
+                    <div class="key-input-row">
+                        <input type="text" id="turnKeyInput" class="key-custom-input" value="mouse4" oninput="updateTurnBindCode()">
+                        <button class="quick-key-btn" onclick="setTurnKey('mouse4')">mouse4</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('mouse5')">mouse5</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('z')">z</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('x')">x</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('c')">c</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('v')">v</button>
+                        <button class="quick-key-btn" onclick="setTurnKey('f')">f</button>
                     </div>
                 </div>
-                <span id="pracArrow" class="accordion-arrow open">▼</span>
-            </div>
-
-            <div id="pracBody">
-                
-                <div class="cfg-checklist">
-                    
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-cheats" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                🔓 Дозвіл чітів для тренування <span class="check-code-badge">sv_cheats 1</span>
-                            </div>
-                            <div class="check-desc">Обов'язкова база, без неї не працюють noclip та інші команди.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-ammo" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                ♾️ Нескінченні гранати та патрони <span class="check-code-badge">sv_infinite_ammo 1</span>
-                            </div>
-                            <div class="check-desc">Гранати ніколи не закінчуються, не потрібно купувати їх знову.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-pip" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                📐 Прев'ю траєкторії в кутку екрану <span class="check-code-badge">sv_grenade_trajectory_prac_pipreview 1</span>
-                            </div>
-                            <div class="check-desc">Показує маленьке віконце в кутку: ти бачиш, куди впаде граната, ще до кидка!</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-time" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                ⏳ 60 хвилин розминка без зупинки <span class="check-code-badge">mp_roundtime 60; mp_warmup_end</span>
-                            </div>
-                            <div class="check-desc">Раунд ніколи не завершується раптово.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-bots" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                🚫 Кік усіх ботів <span class="check-code-badge">bot_kick</span>
-                            </div>
-                            <div class="check-desc">Прибирає ботів з сервера, щоб ніхто не заважав кидати гранати.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-buy" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                💰 Купівля скрізь і максимум грошей <span class="check-code-badge">mp_buy_anywhere 1; mp_buytime 60000; mp_maxmoney 60000</span>
-                            </div>
-                            <div class="check-desc">Можна відкрити магазин і купувати будь-коли без обмеження в 20 секунд.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-impacts" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                🎯 Показ слідів від куль <span class="check-code-badge">sv_showimpacts 1</span>
-                            </div>
-                            <div class="check-desc">Показує кольорові маркери, куди саме прилітають кулі крізь стіни чи дим.</div>
-                        </div>
-                    </label>
-
-                    <label class="check-item">
-                        <input type="checkbox" id="cfg-restart" checked onchange="buildCustomCfg()">
-                        <div class="check-content">
-                            <div class="check-title">
-                                🔄 Миттєвий перезапуск раунду <span class="check-code-badge">mp_restartgame 1</span>
-                            </div>
-                            <div class="check-desc">Застосовує всі команди одразу після натискання Enter.</div>
-                        </div>
-                    </label>
-
-                </div>
-
                 <div class="code-action-box">
-                    <div style="font-size: 12px; color: #ffd700; font-weight: 800;">
-                        📋 ТВІЙ ПІДСУМКОВИЙ КОНФІГ:
+                    <div class="code-row" id="code-turn180">
+                        bind "<span id="turnKeyDisplay" class="key-active-tag">mouse4</span>" "yaw -<span id="yawValue" style="color:#ff4655;">16364</span> 1 1"
                     </div>
-                    <div class="code-row" id="customCfgCode">
-                        sv_cheats 1; bot_kick; mp_warmup_end; mp_freezetime 0; mp_roundtime 60; mp_roundtime_defuse 60; sv_infinite_ammo 1; mp_buy_anywhere 1; mp_buytime 60000; mp_maxmoney 60000; mp_startmoney 60000; mp_afterroundmoney 60000; sv_grenade_trajectory_prac_pipreview 1; sv_showimpacts 1; mp_restartgame 1
+                    <button class="copy-big-btn" onclick="copyCode('code-turn180', this)">📋 Скопіювати бінд 180°</button>
+                </div>
+            </div>
+
+            <!-- 2. ГРАНАТИ -->
+            <div class="section-header">💣 2. Швидкий вибір гранат</div>
+            <div class="bind-box nades-box">
+                <div class="nade-tabs">
+                    <button class="nade-tab-btn active" onclick="selectNade('smoke', this)"><span class="icon">☁️</span><span>Смок</span></button>
+                    <button class="nade-tab-btn" onclick="selectNade('flash', this)"><span class="icon">⚡</span><span>Флешка</span></button>
+                    <button class="nade-tab-btn" onclick="selectNade('molly', this)"><span class="icon">🔥</span><span>Молік</span></button>
+                    <button class="nade-tab-btn" onclick="selectNade('he', this)"><span class="icon">💥</span><span>Хаєшка</span></button>
+                    <button class="nade-tab-btn" onclick="selectNade('decoy', this)"><span class="icon">🎯</span><span>Декой</span></button>
+                </div>
+                <div class="key-selector-box" style="border-left: 3px solid #4b69ff;">
+                    <div style="font-size: 13px; font-weight: 700; color: #fff;">⌨️ Клавіша:</div>
+                    <div class="key-input-row">
+                        <input type="text" id="nadeKeyInput" class="key-custom-input" value="mouse4" oninput="updateNadeBindCode()">
+                        <button class="quick-key-btn" onclick="setNadeKey('mouse4')">mouse4</button>
+                        <button class="quick-key-btn" onclick="setNadeKey('mouse5')">mouse5</button>
+                        <button class="quick-key-btn" onclick="setNadeKey('z')">z</button>
+                        <button class="quick-key-btn" onclick="setNadeKey('x')">x</button>
+                        <button class="quick-key-btn" onclick="setNadeKey('c')">c</button>
+                        <button class="quick-key-btn" onclick="setNadeKey('v')">v</button>
                     </div>
-                    <button class="copy-big-btn" style="background:#00c853;" onclick="copyCode('customCfgCode', this)">
-                        🚀 Скопіювати обраний конфіг
+                </div>
+                <div class="code-action-box">
+                    <div style="font-size: 13px; color: #ffd700; font-weight: 800;" id="nadeTitle">☁️ СМОК (SMOKE — SLOT 8)</div>
+                    <div class="code-row" id="nadeCode">bind "<span id="nadeKeyDisplay" class="key-active-tag">mouse4</span>" "slot8"</div>
+                    <button class="copy-big-btn" id="nadeCopyBtn" onclick="copyCode('nadeCode', this)">📋 Скопіювати бінд на Смок</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ================= БЛОК 2: ДЕМКИ FACEIT ТА РЕПЛЕЇ ================= -->
+        <!-- (Тут залишається твій налаштований блок id="section-demos", де є повзунки й кнопки demo) -->
+
+        <!-- ================= БЛОК 3: ТРЕНУВАННЯ ТА КОНФІГ ================= -->
+        <div id="section-prac" style="display: none; flex-direction: column; gap: 20px;">
+
+            <div class="section-header">🎯 Конфіг для тренування (Practice CFG)</div>
+            <div class="bind-box prac-box">
+                <div class="accordion-trigger" onclick="togglePracAccordion()">
+                    <div>
+                        <div style="font-weight: 800; font-size: 15px; color: #fff;">
+                            🎯 Конструктор Practice CFG (Налаштуй під себе)
+                        </div>
+                        <div style="font-size: 12px; color: #a0a5b5; margin-top: 2px;">
+                            Знімай галочки, якщо якась опція не потрібна.
+                        </div>
+                    </div>
+                    <span id="pracArrow" class="accordion-arrow open">▼</span>
+                </div>
+
+                <div id="pracBody">
+                    <div class="cfg-checklist">
+                        <label class="check-item"><input type="checkbox" id="cfg-cheats" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">🔓 sv_cheats 1</div><div class="check-desc">Обов'язковий дозвіл чітів для тренувань.</div></div></label>
+                        <label class="check-item"><input type="checkbox" id="cfg-ammo" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">♾️ sv_infinite_ammo 1</div><div class="check-desc">Нескінченні гранати та патрони.</div></div></label>
+                        <label class="check-item"><input type="checkbox" id="cfg-pip" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">📐 Траєкторія PIP (прев'ю в кутку)</div><div class="check-desc">Віконце, що показує падіння гранати до кидка.</div></div></label>
+                        <label class="check-item"><input type="checkbox" id="cfg-time" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">⏳ 60 хв розминка</div><div class="check-desc">Раунд ніколи не зупиняється.</div></div></label>
+                        <label class="check-item"><input type="checkbox" id="cfg-bots" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">🚫 bot_kick</div><div class="check-desc">Кік ботів з сервера.</div></div></label>
+                        <label class="check-item"><input type="checkbox" id="cfg-buy" checked onchange="buildCustomCfg()"><div class="check-content"><div class="check-title">💰 Купівля скрізь</div><div class="check-desc">Магазин доступний у будь-якій точці карти.</div></div></label>
+                    </div>
+
+                    <div class="code-action-box">
+                        <div style="font-size: 12px; color: #ffd700; font-weight: 800;">📋 ТВІЙ ТРЕНУВАЛЬНИЙ КОНФІГ:</div>
+                        <div class="code-row" id="customCfgCode">sv_cheats 1; bot_kick; mp_warmup_end; mp_freezetime 0; mp_roundtime 60; mp_roundtime_defuse 60; sv_infinite_ammo 1; mp_buy_anywhere 1; mp_buytime 60000; mp_maxmoney 60000; mp_startmoney 60000; mp_afterroundmoney 60000; sv_grenade_trajectory_prac_pipreview 1; mp_restartgame 1</div>
+                        <button class="copy-big-btn" style="background:#00c853;" onclick="copyCode('customCfgCode', this)">🚀 Скопіювати тренувальний конфіг</button>
+                    </div>
+
+                    <div style="font-size: 13px; font-weight: 800; color: #ffd700; margin-top: 20px; margin-bottom: 10px;">
+                        ⚡ Окремі бінди для тренувань:
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div class="code-action-box" style="padding: 10px;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">🕊️ Політ крізь стіни (Noclip)</span>
+                            <div class="code-row" id="cmd-noclip">bind "<span class="key-active-tag">n</span>" "noclip"</div>
+                            <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-noclip', this)">Скопіювати Noclip</button>
+                        </div>
+                        <div class="code-action-box" style="padding: 10px;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">🔄 Повтор останньої гранати (Rethrow)</span>
+                            <div class="code-row" id="cmd-rethrow">bind "<span class="key-active-tag">h</span>" "sv_rethrow_last_grenade"</div>
+                            <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-rethrow', this)">Скопіювати Rethrow</button>
+                        </div>
+                        <div class="code-action-box" style="padding: 10px;">
+                            <span style="font-weight:700; font-size:13px; color:#fff;">➕ Великий приціл для розкидки</span>
+                            <div class="code-row" id="cmd-cross">bind "<span class="key-active-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
+                            <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-cross', this)">Скопіювати Smoke Crosshair</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- ================= БЛОК 2: ДЕМКИ FACEIT ================= -->
+    <!-- ================= БЛОК 2: ДЕМКИ FACEIT ТА РЕПЛЕЇ ================= -->
+        <div id="section-demos" style="display: none; flex-direction: column; gap: 20px;">
+
+            <div class="section-header">🎬 Керування демками Faceit у CS2</div>
+
+            <div class="bind-box demo-box">
+                <div style="font-size: 14px; color: #fff; font-weight: 700; margin-bottom: 5px;">
+                    🎮 Налаштуй параметри та клавіші під себе:
+                </div>
+                <div style="font-size: 12px; color: #a0a5b5; margin-bottom: 15px;">
+                    Крути повзунки часу й швидкості або змінюй кнопки — консольна команда згенерується миттєво!
+                </div>
+
+                <!-- Блок налаштування значень (ролики/повзунки) -->
+                <div style="background: #0b0c10; padding: 14px; border-radius: 10px; border: 1px solid #232733; margin-bottom: 16px; display: flex; flex-direction: column; gap: 14px;">
+                    
+                    <!-- 1. Секунди перемотки -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 13px; color: #fff; font-weight: 700;">⏱️ Час перемотки (вперед / назад):</span>
+                            <span style="font-size: 13px; color: #ffd700; font-weight: 800; font-family: monospace;" id="val_skip_sec">10 сек</span>
+                        </div>
+                        <input type="range" id="rng_skip_sec" min="2" max="30" step="1" value="10" class="sens-slider" style="accent-color: #ff9800; margin: 0;" oninput="updateDemoBinds()">
+                    </div>
+
+                    <!-- 2. Множник сповільнення -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 13px; color: #fff; font-weight: 700;">🐢 Швидкість сповільнення:</span>
+                            <span style="font-size: 13px; color: #6cd0ff; font-weight: 800; font-family: monospace;" id="val_slow_speed">0.50x</span>
+                        </div>
+                        <input type="range" id="rng_slow_speed" min="0.10" max="0.90" step="0.05" value="0.50" class="sens-slider" style="accent-color: #6cd0ff; margin: 0;" oninput="updateDemoBinds()">
+                    </div>
+
+                    <!-- 3. Множник прискорення -->
+                    <div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <span style="font-size: 13px; color: #fff; font-weight: 700;">⚡ Швидкість прискорення:</span>
+                            <span style="font-size: 13px; color: #00e676; font-weight: 800; font-family: monospace;" id="val_fast_speed">3.0x</span>
+                        </div>
+                        <input type="range" id="rng_fast_speed" min="1.5" max="10.0" step="0.5" value="3.0" class="sens-slider" style="accent-color: #00e676; margin: 0;" oninput="updateDemoBinds()">
+                    </div>
+
+                </div>
+
+                <!-- Сітка клавіш під кожну дію -->
+                <div style="font-size: 13px; color: #fff; font-weight: 700; margin-bottom: 10px;">
+                    ⌨️ Призначення клавіш:
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-bottom: 18px;">
+                    
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">⏸️ Пауза / Плей:</span>
+                        <input type="text" id="k_pause" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="uparrow" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">📺 Меню demoui:</span>
+                        <input type="text" id="k_ui" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="downarrow" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">⏪ Перемотка назад:</span>
+                        <input type="text" id="k_back" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="leftarrow" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">⏩ Перемотка вперед:</span>
+                        <input type="text" id="k_fwd" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="rightarrow" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">🐢 Сповільнення:</span>
+                        <input type="text" id="k_slow" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="f8" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">⚡ Прискорення:</span>
+                        <input type="text" id="k_fast" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="f9" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #232733; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #fff; font-weight: 600;">🎥 Чистий екран (запис):</span>
+                        <input type="text" id="k_hud" class="key-custom-input" style="width: 75px; text-align: center; border-color: #9c27b0;" value="f11" oninput="updateDemoBinds()">
+                    </div>
+
+                    <div style="background: #0b0c10; padding: 9px 12px; border-radius: 8px; border: 1px solid #ff4655; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12.5px; color: #ffd700; font-weight: 700;">🔇 Голосовий чат (тімейтів):</span>
+                        <input type="text" id="k_mute" class="key-custom-input" style="width: 75px; text-align: center; border-color: #ff4655;" value="k" oninput="updateDemoBinds()">
+                    </div>
+
+                </div>
+
+                <!-- Вивід згенерованого коду -->
+                <div class="code-action-box">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 12px; color: #ffd700; font-weight: 800;">📋 РЯДОК ДЛЯ КОНСОЛІ (ВСТАВИТИ В CS2):</span>
+                        <span style="font-size: 11px; color: #00e676;">Оновлюється автоматично</span>
+                    </div>
+                    <div class="code-row" id="code-faceit-demos" style="font-size: 12.5px;"></div>
+                    <button class="copy-big-btn" style="background: #9c27b0;" onclick="copyCode('code-faceit-demos', this)">
+                        📋 Скопіювати команду для демок
                     </button>
                 </div>
 
-                <!-- ОКРЕМІ ТАКТИЧНІ БІНДИ -->
-                <div style="font-size: 13px; font-weight: 800; color: #ffd700; margin-top: 20px; margin-bottom: 10px;">
-                    ⚡ Окремі корисні бінди для гри та тренувань:
+                <div class="info-hint" style="margin-top: 15px;">
+                    🎙️ <b>Як працює кнопка голосового чату:</b> Натискаєш клавішу (за замовчуванням <code>k</code>) — і голоси тімейтів миттєво мутяться, щоб ти міг чисто записати момент без сторонніх криків. Натискаєш ще раз — голосовий чат знову працює!
                 </div>
-
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    
-                    <!-- Noclip -->
-                    <div class="code-action-box" style="padding: 10px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-weight:700; font-size:13px; color:#fff;">🕊️ Політ крізь стіни (Noclip)</span>
-                        </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Швидко долетіти до місця падіння гранати.</div>
-                        <div class="code-row" id="cmd-noclip">bind "<span class="key-active-tag">n</span>" "noclip"</div>
-                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-noclip', this)">Скопіювати Noclip</button>
-                    </div>
-
-                    <!-- Rethrow -->
-                    <div class="code-action-box" style="padding: 10px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-weight:700; font-size:13px; color:#fff;">🔄 Повтор останньої гранати (Rethrow)</span>
-                        </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Сервер сам кине твою останню гранату для перевірки флешки чи смоку.</div>
-                        <div class="code-row" id="cmd-rethrow">bind "<span class="key-active-tag">h</span>" "sv_rethrow_last_grenade"</div>
-                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-rethrow', this)">Скопіювати Rethrow</button>
-                    </div>
-
-                    <!-- Smoke Crosshair -->
-                    <div class="code-action-box" style="padding: 10px;">
-                        <div style="display:flex; justify-content:space-between; align-items:center;">
-                            <span style="font-weight:700; font-size:13px; color:#fff;">➕ Приціл на весь екран для смоків</span>
-                        </div>
-                        <div style="font-size: 11.5px; color:#8c93a8;">Розтягує лінії прицілу на весь екран для точного прицілювання.</div>
-                        <div class="code-row" id="cmd-cross">bind "<span class="key-active-tag">alt</span>" "toggle cl_crosshairsize 1.5 1000"</div>
-                        <button class="copy-big-btn" style="padding: 8px; font-size: 12px;" onclick="copyCode('cmd-cross', this)">Скопіювати Smoke Crosshair</button>
-                    </div>
-
-                </div>
-
             </div>
 
         </div>
 
-    </div>
-
-    <!-- СКРИПТИ -->
+    <!-- СКРИПТИ КЕРУВАННЯ -->
     <script>
+        function updateDemoBinds() {
+            // Отримуємо значення з повзунків
+            const skipSec = parseInt(document.getElementById('rng_skip_sec').value) || 10;
+            const slowVal = parseFloat(document.getElementById('rng_slow_speed').value).toFixed(2);
+            const fastVal = parseFloat(document.getElementById('rng_fast_speed').value).toFixed(1);
+
+            // Оновлюємо текстові підписи над повзунками
+            document.getElementById('val_skip_sec').innerText = `${skipSec} сек`;
+            document.getElementById('val_slow_speed').innerText = `${slowVal}x`;
+            document.getElementById('val_fast_speed').innerText = `${fastVal}x`;
+
+            // Рахуємо тіки (в CS2 стандарт 64 тіки на секунду)
+            const ticks = skipSec * 64;
+
+            // Клавіші
+            const p = (document.getElementById('k_pause').value.trim() || 'uparrow').toLowerCase();
+            const ui = (document.getElementById('k_ui').value.trim() || 'downarrow').toLowerCase();
+            const b = (document.getElementById('k_back').value.trim() || 'leftarrow').toLowerCase();
+            const f = (document.getElementById('k_fwd').value.trim() || 'rightarrow').toLowerCase();
+            const sl = (document.getElementById('k_slow').value.trim() || 'f8').toLowerCase();
+            const fs = (document.getElementById('k_fast').value.trim() || 'f9').toLowerCase();
+            const hud = (document.getElementById('k_hud').value.trim() || 'f11').toLowerCase();
+            const mute = (document.getElementById('k_mute').value.trim() || 'k').toLowerCase();
+
+            // Збираємо фінальний рядок
+            const cmd = `alias "demo_p" "demo_pause; alias demo_t demo_r"; alias "demo_r" "demo_resume; alias demo_t demo_p"; alias "demo_t" "demo_p"; alias "slow_on" "host_timescale ${slowVal}; alias slow_t slow_off"; alias "slow_off" "host_timescale 1; alias slow_t slow_on"; alias slow_t slow_on; alias "fast_on" "host_timescale ${fastVal}; alias fast_t fast_off"; alias fast_off "host_timescale 1; alias fast_t fast_on"; alias fast_t fast_on; alias "voice_toggle" "voice_off"; alias "voice_off" "voice_modenable 0; alias voice_toggle voice_on"; alias "voice_on" "voice_modenable 1; alias voice_toggle voice_off"; bind "${p}" "demo_t"; bind "${ui}" "demoui"; bind "${b}" "demo_goto -${ticks} relative"; bind "${f}" "demo_goto ${ticks} relative"; bind "${sl}" "slow_t"; bind "${fs}" "fast_t"; bind "${hud}" "toggle cl_draw_only_deathnotices 0 1"; bind "${mute}" "voice_toggle"; tv_listen_voice_indices -1; tv_listen_voice_indices_h -1`;
+
+            const container = document.getElementById('code-faceit-demos');
+            if (container) {
+                container.innerText = cmd;
+            }
+        }
+
+        // Викликаємо функцію під час завантаження сторінки
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDemoBinds();
+        });
+       function switchSection(section) {
+            const tabGame = document.getElementById('tab-game');
+            const tabDemos = document.getElementById('tab-demos');
+            const tabPrac = document.getElementById('tab-prac');
+
+            const secGame = document.getElementById('section-game');
+            const secDemos = document.getElementById('section-demos');
+            const secPrac = document.getElementById('section-prac');
+
+            // Скидаємо активність зі всіх кнопок і ховаємо всі блоки
+            [tabGame, tabDemos, tabPrac].forEach(t => t && t.classList.remove('active'));
+            [secGame, secDemos, secPrac].forEach(s => s && (s.style.display = 'none'));
+
+            if (section === 'game') {
+                tabGame.classList.add('active');
+                secGame.style.display = 'flex';
+            } else if (section === 'demos') {
+                tabDemos.classList.add('active');
+                secDemos.style.display = 'flex';
+            } else if (section === 'prac') {
+                tabPrac.classList.add('active');
+                secPrac.style.display = 'flex';
+            }
+        }
+
         const nadesData = {
-            smoke: { title: '☁️ СМОК (SMOKE GRENADE — SLOT 8)', slot: 'slot8', name: 'Смок' },
+            smoke: { title: '☁️ СМОК (SMOKE — SLOT 8)', slot: 'slot8', name: 'Смок' },
             flash: { title: '⚡ ФЛЕШКА (FLASHBANG — SLOT 7)', slot: 'slot7', name: 'Флешку' },
-            molly: { title: '🔥 МОЛОТОВ / ЗАПАЛЬНА (SLOT 10)', slot: 'slot10', name: 'Молотов' },
-            he:    { title: '💥 УЛАМКОВА ГРАНАТА (HE — SLOT 6)', slot: 'slot6', name: 'Хаєшку' },
-            decoy: { title: '🎯 ДЕКОЙ / ФЕЙК (SLOT 9)', slot: 'slot9', name: 'Декой' }
+            molly: { title: '🔥 МОЛОТОВ (SLOT 10)', slot: 'slot10', name: 'Молотов' },
+            he:    { title: '💥 УЛАМКОВА ГРАНАТА (SLOT 6)', slot: 'slot6', name: 'Хаєшку' },
+            decoy: { title: '🎯 ДЕКОЙ (SLOT 9)', slot: 'slot9', name: 'Декой' }
         };
 
         let currentSelectedNade = 'smoke';
@@ -675,7 +760,6 @@
         function selectNade(type, btn) {
             document.querySelectorAll('.nade-tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
             currentSelectedNade = type;
             updateNadeBindCode();
         }
@@ -694,10 +778,7 @@
         }
 
         function calculateYaw(sens) {
-            if (sens > 0) {
-                return Math.round(180 / (0.022 * sens));
-            }
-            return 16364;
+            return sens > 0 ? Math.round(180 / (0.022 * sens)) : 16364;
         }
 
         function updateTurnBindCode() {
@@ -715,15 +796,13 @@
         function updateYawOnly(sens) {
             let s = parseFloat(sens);
             if (!isNaN(s) && s > 0) {
-                let rangeVal = Math.min(5.0, Math.max(0.01, s));
-                document.getElementById('sensRange').value = rangeVal;
+                document.getElementById('sensRange').value = Math.min(5.0, Math.max(0.01, s));
                 updateTurnBindCode();
             }
         }
 
         function onManualInput() {
-            let text = document.getElementById('userSens').value.replace(',', '.');
-            let s = parseFloat(text);
+            let s = parseFloat(document.getElementById('userSens').value.replace(',', '.'));
             if (!isNaN(s) && s > 0) {
                 document.getElementById('sensRange').value = Math.min(5.0, Math.max(0.01, s));
                 updatePresetActive(s);
@@ -732,8 +811,7 @@
         }
 
         function onInputBlur() {
-            let text = document.getElementById('userSens').value.replace(',', '.');
-            let s = parseFloat(text);
+            let s = parseFloat(document.getElementById('userSens').value.replace(',', '.'));
             if (isNaN(s) || s <= 0) s = 0.5;
             document.getElementById('userSens').value = s;
             updateYawOnly(s);
@@ -742,8 +820,7 @@
 
         function adjustSens(delta) {
             let current = parseFloat(document.getElementById('userSens').value.replace(',', '.')) || 0.5;
-            let next = Math.round((current + delta) * 100) / 100;
-            if (next < 0.01) next = 0.01;
+            let next = Math.max(0.01, Math.round((current + delta) * 100) / 100);
             document.getElementById('userSens').value = next;
             updateYawOnly(next);
             updatePresetActive(next);
@@ -765,44 +842,29 @@
         function updatePresetActive(currentVal) {
             document.querySelectorAll('.preset-btn').forEach(btn => {
                 let pVal = parseFloat(btn.innerText);
-                if (Math.abs(pVal - currentVal) < 0.005) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                btn.classList.toggle('active', Math.abs(pVal - currentVal) < 0.005);
             });
         }
 
         function buildCustomCfg() {
             const commands = [];
-
             if (document.getElementById('cfg-cheats').checked) commands.push('sv_cheats 1');
             if (document.getElementById('cfg-bots').checked) commands.push('bot_kick');
-            if (document.getElementById('cfg-time').checked) {
-                commands.push('mp_warmup_end', 'mp_freezetime 0', 'mp_roundtime 60', 'mp_roundtime_defuse 60');
-            }
+            if (document.getElementById('cfg-time').checked) commands.push('mp_warmup_end', 'mp_freezetime 0', 'mp_roundtime 60', 'mp_roundtime_defuse 60');
             if (document.getElementById('cfg-ammo').checked) commands.push('sv_infinite_ammo 1');
-            if (document.getElementById('cfg-buy').checked) {
-                commands.push('mp_buy_anywhere 1', 'mp_buytime 60000', 'mp_maxmoney 60000', 'mp_startmoney 60000', 'mp_afterroundmoney 60000');
-            }
+            if (document.getElementById('cfg-buy').checked) commands.push('mp_buy_anywhere 1', 'mp_buytime 60000', 'mp_maxmoney 60000', 'mp_startmoney 60000', 'mp_afterroundmoney 60000');
             if (document.getElementById('cfg-pip').checked) commands.push('sv_grenade_trajectory_prac_pipreview 1');
-            if (document.getElementById('cfg-impacts').checked) commands.push('sv_showimpacts 1');
-            if (document.getElementById('cfg-restart').checked) commands.push('mp_restartgame 1');
+            commands.push('mp_restartgame 1');
 
-            const finalCode = commands.length > 0 ? commands.join('; ') : '// Оберіть хоча б один пункт вище';
-            document.getElementById('customCfgCode').innerText = finalCode;
+            document.getElementById('customCfgCode').innerText = commands.join('; ');
         }
 
         function togglePracAccordion() {
             const body = document.getElementById('pracBody');
             const arrow = document.getElementById('pracArrow');
-            if (body.style.display === 'none') {
-                body.style.display = 'block';
-                arrow.classList.add('open');
-            } else {
-                body.style.display = 'none';
-                arrow.classList.remove('open');
-            }
+            const isHidden = body.style.display === 'none';
+            body.style.display = isHidden ? 'block' : 'none';
+            arrow.classList.toggle('open', isHidden);
         }
 
         function copyCode(elementId, btn) {
@@ -825,6 +887,5 @@
             buildCustomCfg();
         });
     </script>
-
 </body>
 </html>

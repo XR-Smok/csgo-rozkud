@@ -8,10 +8,11 @@
     <style>
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 20px;
-            max-width: 900px;
-            margin: 0 auto;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
         .card-link {
@@ -27,97 +28,146 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            position: relative;
         }
 
         .map-card-img-wrapper {
             width: 100%;
-            height: 200px;
+            height: 190px;
             overflow: hidden;
+            background: #181b24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .map-card img {
+        .map-card-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
-            margin: 0;
-            border-radius: 0;
-            border: none;
-            transition: transform 0.3s ease;
         }
 
         .map-title {
-            padding: 15px;
+            padding: 14px 10px;
             text-align: center;
             color: #ffffff;
             font-weight: bold;
-            font-size: 17px;
+            font-size: 16px;
             margin: 0;
             background: #14161d;
-            transition: color 0.3s ease;
             letter-spacing: 0.5px;
         }
 
-        .map-card:hover {
+        /* Наведення для активних */
+        .card-link:not(.disabled) .map-card:hover {
             border-color: #4b69ff;
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(75, 105, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(75, 105, 255, 0.25);
         }
 
-        .map-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .map-card:hover .map-title {
+        .card-link:not(.disabled) .map-card:hover .map-title {
             color: #4b69ff;
+        }
+
+        /* Неактивні (Short, Mid) */
+        .card-link.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .card-link.disabled .map-card {
+            opacity: 0.45;
+            filter: grayscale(80%);
+            border-color: #1f232d;
+        }
+
+        .lock-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 17, 23, 0.92);
+            border: 1px solid #ff4b4b;
+            color: #ff7b7b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <!-- КНОПКА НАЗАД -->
     <a href="dust2.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
     <div class="header-title">DUST II — CT ТАКТИКИ 🛡️</div>
 
-    <div class="guide-container" style="max-width: 900px;">
+    <div class="guide-container" style="max-width: 1100px; display: block !important;">
 
-        <!-- ПІДКАЗКА ДЛЯ ТЕЛЕФОНІВ -->
         <div class="tip-box">
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- СІТКА КАРТОК -->
         <div class="cards-grid">
 
-            <!-- 1. ONE WAY SMOKE A -->
-            <a href="dust2-ct-smoke-a.html" class="card-link">
+            <!-- 1. LONG -->
+            <a href="dust2-ct-long.html" class="card-link">
                 <div class="map-card">
                     <div class="map-card-img-wrapper">
-                        <img src="images/dust2-ct-smoke-a.jpg" alt="One Way Smoke A" class="step-img">
+                        <img src="images/dust2-ct-smoke-a.jpg" alt="Long">
                     </div>
-                    <div class="map-title">🌫️ One Way Smoke A</div>
+                    <div class="map-title">🛡️ Long</div>
                 </div>
             </a>
 
-            <!-- 2. RETAKE B -->
+            <!-- 2. SHORT (ЗАБЛОКОВАНИЙ) -->
+            <a href="#" class="card-link disabled">
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="lock-badge">🔒 Скоро</span>
+                    </div>
+                    <div class="map-title">🎯 Short</div>
+                </div>
+            </a>
+
+            <!-- 3. MID (ЗАБЛОКОВАНИЙ) -->
+            <a href="#" class="card-link disabled">
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="lock-badge">🔒 Скоро</span>
+                    </div>
+                    <div class="map-title">⚔️ Mid</div>
+                </div>
+            </a>
+
+            <!-- 4. B SITE (АКТИВНИЙ) -->
+            <a href="dust2-ct-b.html" class="card-link">
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <img src="images/dust2-ct-b.jpg" alt="B Site">
+                    </div>
+                    <div class="map-title">💣 B Site</div>
+                </div>
+            </a>
+
+            <!-- 5. RETAKE B SITE (АКТИВНИЙ) -->
             <a href="dust2-ct-retake-b.html" class="card-link">
                 <div class="map-card">
                     <div class="map-card-img-wrapper">
-                        <img src="images/dust2-ct-retake-b.jpg" alt="Retake B" class="step-img">
+                        <img src="images/dust2-ct-retake-b.jpg" alt="Retake B Site">
                     </div>
-                    <div class="map-title">💣 Retake B Site</div>
+                    <div class="map-title">🔄 Retake B Site</div>
                 </div>
             </a>
 
         </div>
 
     </div>
-
-    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
-    <script src="favorites.js"></script>
-    <script src="gallery.js"></script>
 
 </body>
 </html>

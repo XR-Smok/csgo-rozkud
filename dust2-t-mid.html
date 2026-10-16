@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUST II — РОЗКИД MID (T)</title>
+    <title>DUST II — MID (T) 💣</title>
     <link rel="stylesheet" href="style.css?v=6">
     <style>
         .grid-2-col {
@@ -12,17 +12,106 @@
             gap: 15px;
             margin-bottom: 15px;
         }
+
         @media (max-width: 600px) {
             .grid-2-col { grid-template-columns: 1fr; }
+        }
+
+        /* 1. Верхні плашки фільтрів */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .filter-chip {
+            background: #14161d;
+            border: 1px solid #232733;
+            color: #8fa0c7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            border-color: #ff9800;
+            color: #ffffff;
+        }
+
+        .filter-chip.active {
+            background: #ff9800 !important;
+            border-color: #ff9800 !important;
+            color: #0b0c10 !important;
+        }
+
+        /* 2. Кнопки вибору варіанта для дверей */
+        .variant-switch {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: #0f1118;
+            padding: 6px;
+            border-radius: 8px;
+            border: 1px solid #1f232f;
+        }
+
+        .variant-btn {
+            flex: 1;
+            padding: 10px;
+            background: #181b24;
+            border: 1px solid #262b3a;
+            color: #8fa0c7;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .variant-btn.active {
+            background: #ff9800 !important;
+            border-color: #ff9800 !important;
+            color: #0b0c10 !important;
+        }
+
+        /* 3. Розділювачі секцій */
+        .section-separator {
+            color: #ff9800;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #232733;
+        }
+
+        .is-hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД (ПОВЕРТАЄ ТУДИ, ЗВІДКИ ПРИЙШОВ) -->
+    <!-- КНОПКА НАЗАД -->
     <a href="dust2-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
-    <div class="header-title">DUST II — РОЗКИД MID</div>
+    <div class="header-title">DUST II — MID (T) 💣</div>
 
     <div class="guide-container">
 
@@ -30,91 +119,153 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- ================= 1. СМОК ДВЕРІ (ВАРІАНТ 1) ================= -->
-        <div class="step-card" id="d2-mid-smoke1">
-            <div class="card-top-actions">
-                <button class="hide-card-btn" onclick="hideCard('d2-mid-smoke1', '1. Смок двері (Варіант 1)')" title="Сховати цей смок">👁️</button>
-                <button class="fav-star-btn" data-id="d2-mid-smoke1" onclick="toggleFavoriteCard(this, 'd2-mid-smoke1', 'DUST II: Смок двері (Варіант 1)', 'dust2-t-mid.html')">☆</button>
-            </div>
-
-            <div class="step-title">🌫️ 1. СМОК ДВЕРІ (ВАРІАНТ 1)</div>
-
-            <div style="margin-bottom: 15px;">
-                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА ДО ТРІЩИНИ)</div>
-                <img src="images/dust2-mid-smoke1-stand.jpg" alt="Позиція гравця 1" class="step-img">
-            </div>
-
-            <div class="grid-2-col">
-                <div>
-                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="images/dust2-mid-smoke1-aim.jpg" alt="Приціл 1" class="step-img">
-                </div>
-                <div>
-                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="images/dust2-mid-smoke1-drop.jpg" alt="Результат 1" class="step-img">
-                </div>
-            </div>
-
-            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        <!-- ВЕРХНІ ПЛАШКИ-ФІЛЬТРИ -->
+        <div class="filter-bar">
+            <button class="filter-chip active" id="chip-all" type="button">🔥 Всі розкидки</button>
+            <button class="filter-chip" id="chip-doors" type="button">🚪 Мід Двері</button>
+            <button class="filter-chip" id="chip-ct" type="button">🛡️ КТ Спавн</button>
+            <button class="filter-chip" id="chip-tunnel" type="button">🚇 З танела</button>
         </div>
 
-        <!-- ================= 2. СМОК ДВЕРІ (ВАРІАНТ 2) ================= -->
-        <div class="step-card" id="d2-mid-smoke2">
+        <!-- ================= 1. МІД ДВЕРІ ================= -->
+        <div class="section-separator sec-t-spawn">🎯 Розкид з Т-Спавну</div>
+
+        <div class="step-card target-doors" id="d2-mid-doors-combined">
             <div class="card-top-actions">
-                <button class="hide-card-btn" onclick="hideCard('d2-mid-smoke2', '2. Смок двері (Варіант 2)')" title="Сховати цей смок">👁️</button>
-                <button class="fav-star-btn" data-id="d2-mid-smoke2" onclick="toggleFavoriteCard(this, 'd2-mid-smoke2', 'DUST II: Смок двері (Варіант 2)', 'dust2-t-mid.html')">☆</button>
+                <button class="hide-card-btn" onclick="hideCard('d2-mid-doors-combined', 'Смок двері')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-mid-doors-combined" onclick="toggleFavoriteCard(this, 'd2-mid-doors-combined', 'DUST II: Смок двері', 'dust2-t-mid.html')">☆</button>
             </div>
 
-            <div class="step-title">🌫️ 2. СМОК ДВЕРІ (ВАРІАНТ 2)</div>
+            <div class="step-title">🌫️ СМОК У ДВЕРІ МІДА</div>
 
-            <div style="margin-bottom: 15px;">
-                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА)</div>
-                <img src="images/dust2-mid-smoke2-stand.jpg" alt="Позиція гравця 2" class="step-img">
+            <!-- ПЕРЕМИКАЧ ВАРІАНТІВ -->
+            <div class="variant-switch">
+                <button class="variant-btn active" id="btn-door-v1" type="button">Варіант 1 (Тріщина)</button>
+                <button class="variant-btn" id="btn-door-v2" type="button">Варіант 2 (Кут)</button>
             </div>
 
-            <div class="grid-2-col">
-                <div>
-                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="images/dust2-mid-smoke2-aim.jpg" alt="Приціл 2" class="step-img">
+            <!-- ВАРІАНТ 1 -->
+            <div id="door-view-1">
+                <div style="margin-bottom: 15px;">
+                    <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА ДО ТРІЩИНИ)</div>
+                    <img src="images/dust2-mid-smoke1-stand.jpg" alt="Позиція 1" class="step-img">
                 </div>
-                <div>
-                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="images/dust2-t-mid.jpg" alt="Результат" class="step-img">
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                        <img src="images/dust2-mid-smoke1-aim.jpg" alt="Приціл 1" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                        <img src="images/dust2-mid-smoke1-drop.jpg" alt="Результат 1" class="step-img">
+                    </div>
                 </div>
+                <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
             </div>
 
-            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+            <!-- ВАРІАНТ 2 -->
+            <div id="door-view-2" class="is-hidden">
+                <div style="margin-bottom: 15px;">
+                    <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА)</div>
+                    <img src="images/dust2-mid-smoke2-stand.jpg" alt="Позиція 2" class="step-img">
+                </div>
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                        <img src="images/dust2-mid-smoke2-aim.jpg" alt="Приціл 2" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                        <img src="images/dust2-t-mid.jpg" alt="Результат 2" class="step-img">
+                    </div>
+                </div>
+                <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+            </div>
         </div>
 
-        <!-- ================= 3. СМОК КТ ================= -->
-        <div class="step-card" id="d2-mid-ct">
+        <!-- ================= 2. СМОК КТ ================= -->
+        <div class="step-card target-ct" id="d2-mid-ct">
             <div class="card-top-actions">
-                <button class="hide-card-btn" onclick="hideCard('d2-mid-ct', '3. Смок КТ')" title="Сховати цей смок">👁️</button>
+                <button class="hide-card-btn" onclick="hideCard('d2-mid-ct', 'Смок КТ')" title="Сховати цей смок">👁️</button>
                 <button class="fav-star-btn" data-id="d2-mid-ct" onclick="toggleFavoriteCard(this, 'd2-mid-ct', 'DUST II: Смок CT (КТ)', 'dust2-t-mid.html')">☆</button>
             </div>
 
-            <div class="step-title">🌫️ 3. СМОК КТ (CT SPWAN / MID)</div>
+            <div class="step-title">🌫️ СМОК КТ (CT SPAWN / MID)</div>
 
             <div style="margin-bottom: 15px;">
                 <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ (ДО УПОРА)</div>
-                <img src="images/dust2-mid-smoke3-stand.jpg" alt="Позиція гравця 3" class="step-img">
+                <img src="images/dust2-mid-smoke3-stand.jpg" alt="Позиція КТ" class="step-img">
             </div>
 
             <div class="grid-2-col">
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
-                    <img src="images/dust2-mid-smoke3-aim.jpg" alt="Приціл 3" class="step-img">
+                    <img src="images/dust2-mid-smoke3-aim.jpg" alt="Приціл КТ" class="step-img">
                 </div>
                 <div>
                     <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
-                    <img src="images/dust2-mid-smoke3-drop.jpg" alt="Результат 3" class="step-img">
+                    <img src="images/dust2-mid-smoke3-drop.jpg" alt="Результат КТ" class="step-img">
                 </div>
             </div>
 
             <div class="action-badge">⚡ КИДОК: CTRL + JUMPTHROW + ЛКМ</div>
         </div>
 
-        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <!-- ================= 3. ТАНЕЛ ================= -->
+        <div class="section-separator sec-tunnel">🚇 Вихід з танела (Нижня тьомка)</div>
+
+        <!-- СМОК З ТАНЕЛА -->
+        <div class="step-card target-tunnel" id="d2-t-mid-tunnel-smoke">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-mid-tunnel-smoke', 'Смок з танела на Мід')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-mid-tunnel-smoke" onclick="toggleFavoriteCard(this, 'd2-t-mid-tunnel-smoke', 'DUST II: Смок з танела на Мід', 'dust2-t-mid.html')">☆</button>
+            </div>
+
+            <div class="step-title">🌫️ СМОК З ТАНЕЛА НА МІД</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 1. СТАВАЙ ТУТ (У ТАНЕЛІ)</div>
+                <img src="images/dust2-t-mid-tunnel-smoke-stand.jpg" alt="Позиція в танелі" class="step-img">
+            </div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 2. ЦІЛЬСЯ ТУТ</div>
+                    <img src="images/dust2-t-mid-tunnel-smoke-aim.jpg" alt="Цілься тут" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 3. ВПАДЕ ТУТ</div>
+                    <img src="images/dust2-t-mid-tunnel-smoke-drop.jpg" alt="Результат" class="step-img">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ЛКМ + ПКМ (РАЗОМ)</div>
+        </div>
+
+        <!-- ФЛЕШКА З ТАНЕЛА -->
+        <div class="step-card target-tunnel" id="d2-t-mid-tunnel-flash">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('d2-t-mid-tunnel-flash', 'Флешка з танела під Мід')" title="Сховати цю флешку">👁️</button>
+                <button class="fav-star-btn" data-id="d2-t-mid-tunnel-flash" onclick="toggleFavoriteCard(this, 'd2-t-mid-tunnel-flash', 'DUST II: Флешка з танела під Мід', 'dust2-t-mid.html')">☆</button>
+            </div>
+
+            <div class="step-title">⚡ ФЛЕШКА З ТАНЕЛА ПІД МІД</div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">📍 1. СТАВАЙ ТУТ</div>
+                    <img src="images/dust2-t-mid-tunnel-flash-stand.jpg" alt="Позиція флешки" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 2. ЦІЛЬСЯ ТУТ</div>
+                    <img src="images/dust2-t-mid-tunnel-flash-aim.jpg" alt="Приціл флешки" class="step-img">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ЛКМ</div>
+        </div>
+
+        <!-- БЛОК ПРИХОВАНИХ РОЗКИДОК -->
         <div id="hiddenSection" class="hidden-section" style="display: none;">
             <div class="hidden-section-header">
                 <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
@@ -125,7 +276,102 @@
 
     </div>
 
-    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
+    <!-- ЧИСТИЙ І ПРЯМИЙ JS БЕЗ ПОМИЛОК -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. ПЕРЕМИКАЧ ВАРІАНТІВ ДВЕРЕЙ
+            const btnV1 = document.getElementById('btn-door-v1');
+            const btnV2 = document.getElementById('btn-door-v2');
+            const viewV1 = document.getElementById('door-view-1');
+            const viewV2 = document.getElementById('door-view-2');
+
+            if (btnV1 && btnV2 && viewV1 && viewV2) {
+                btnV1.addEventListener('click', () => {
+                    btnV1.classList.add('active');
+                    btnV2.classList.remove('active');
+                    viewV1.classList.remove('is-hidden');
+                    viewV2.classList.add('is-hidden');
+                });
+
+                btnV2.addEventListener('click', () => {
+                    btnV2.classList.add('active');
+                    btnV1.classList.remove('active');
+                    viewV2.classList.remove('is-hidden');
+                    viewV1.classList.add('is-hidden');
+                });
+            }
+
+            // 2. ВЕРХНІ ФІЛЬТРИ ЗОН
+            const chips = {
+                all: document.getElementById('chip-all'),
+                doors: document.getElementById('chip-doors'),
+                ct: document.getElementById('chip-ct'),
+                tunnel: document.getElementById('chip-tunnel')
+            };
+
+            const cardsDoors = document.querySelectorAll('.target-doors');
+            const cardsCt = document.querySelectorAll('.target-ct');
+            const cardsTunnel = document.querySelectorAll('.target-tunnel');
+            const secSpawn = document.querySelector('.sec-t-spawn');
+            const secTunnel = document.querySelector('.sec-tunnel');
+
+            function applyFilter(activeKey) {
+                // Підсвітка кнопок
+                Object.keys(chips).forEach(key => {
+                    if (chips[key]) {
+                        if (key === activeKey) chips[key].classList.add('active');
+                        else chips[key].classList.remove('active');
+                    }
+                });
+
+                const hiddenList = JSON.parse(localStorage.getItem('hiddenCards') || '[]');
+
+                function toggleCards(cards, show) {
+                    cards.forEach(card => {
+                        const isHiddenByEye = hiddenList.includes(card.id);
+                        if (isHiddenByEye) {
+                            card.classList.add('is-hidden');
+                        } else {
+                            if (show) card.classList.remove('is-hidden');
+                            else card.classList.add('is-hidden');
+                        }
+                    });
+                }
+
+                if (activeKey === 'all') {
+                    toggleCards(cardsDoors, true);
+                    toggleCards(cardsCt, true);
+                    toggleCards(cardsTunnel, true);
+                    if (secSpawn) secSpawn.classList.remove('is-hidden');
+                    if (secTunnel) secTunnel.classList.remove('is-hidden');
+                } else if (activeKey === 'doors') {
+                    toggleCards(cardsDoors, true);
+                    toggleCards(cardsCt, false);
+                    toggleCards(cardsTunnel, false);
+                    if (secSpawn) secSpawn.classList.remove('is-hidden');
+                    if (secTunnel) secTunnel.classList.add('is-hidden');
+                } else if (activeKey === 'ct') {
+                    toggleCards(cardsDoors, false);
+                    toggleCards(cardsCt, true);
+                    toggleCards(cardsTunnel, false);
+                    if (secSpawn) secSpawn.classList.remove('is-hidden');
+                    if (secTunnel) secTunnel.classList.add('is-hidden');
+                } else if (activeKey === 'tunnel') {
+                    toggleCards(cardsDoors, false);
+                    toggleCards(cardsCt, false);
+                    toggleCards(cardsTunnel, true);
+                    if (secSpawn) secSpawn.classList.add('is-hidden');
+                    if (secTunnel) secTunnel.classList.remove('is-hidden');
+                }
+            }
+
+            if (chips.all) chips.all.addEventListener('click', () => applyFilter('all'));
+            if (chips.doors) chips.doors.addEventListener('click', () => applyFilter('doors'));
+            if (chips.ct) chips.ct.addEventListener('click', () => applyFilter('ct'));
+            if (chips.tunnel) chips.tunnel.addEventListener('click', () => applyFilter('tunnel'));
+        });
+    </script>
+
     <script src="favorites.js"></script>
     <script src="gallery.js"></script>
 

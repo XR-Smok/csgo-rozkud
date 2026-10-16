@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIRAGE — A SITE (T)</title>
+    <title>MIRAGE — A SITE (T) 💣</title>
     <link rel="stylesheet" href="style.css?v=6">
     <style>
-        /* Сітка для розміщення двох imagesграфій в один ряд по горизонталі */
         .grid-2-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -16,17 +15,90 @@
 
         @media (max-width: 600px) {
             .grid-2-col {
-                grid-template-columns: 1fr; /* На смартфонах images встануть одне під одним */
+                grid-template-columns: 1fr;
             }
+        }
+
+        /* Верхні плашки-фільтри */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+
+        .filter-chip {
+            background: #14161d;
+            border: 1px solid #232733;
+            color: #8fa0c7;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            border-color: #ff9800;
+            color: #ffffff;
+        }
+
+        .filter-chip.active {
+            background: #ff9800 !important;
+            border-color: #ff9800 !important;
+            color: #0b0c10 !important;
+        }
+
+        /* Розділювачі секцій */
+        .section-separator {
+            color: #ff9800;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 25px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .section-separator::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #232733;
+        }
+
+        .combo-badge {
+            display: inline-block;
+            background: rgba(255, 152, 0, 0.15);
+            border: 1px solid #ff9800;
+            color: #ffb74d;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .is-hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <!-- КНОПКА НАЗАД -->
     <a href="t-positions.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
-    <div class="header-title">MIRAGE — A SITE</div>
+    <div class="header-title">MIRAGE — A SITE 💣</div>
 
     <div class="guide-container">
 
@@ -34,20 +106,30 @@
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
         </div>
 
-        <!-- КРОК 1: ПОЗИЦІЯ ГРАВЦЯ -->
-        <div class="step-card" id="mirage-t-asite-stand">
+        <!-- ПЛАШКИ-ФІЛЬТРИ ЗВЕРХУ -->
+        <div class="filter-bar">
+            <button class="filter-chip active" id="chip-all" type="button">🔥 Всі розкидки</button>
+            <button class="filter-chip" id="chip-base" type="button">🏛️ Базовий розкид</button>
+            <button class="filter-chip" id="chip-push" type="button">🥷 Смок під пуш (Стелс)</button>
+        </div>
+
+        <!-- ================= БЛОК 1: БАЗОВИЙ РОЗКИД ================= -->
+        <div class="section-separator sec-base">🏛️ Базовий розкид A Site</div>
+
+        <!-- КРОК 1: ПОЗИЦІЯ ГРАВЦЯ ДЛЯ БАЗИ -->
+        <div class="step-card cat-base" id="mirage-t-asite-stand">
             <div class="card-top-actions">
                 <button class="hide-card-btn" onclick="hideCard('mirage-t-asite-stand', 'Позиція гравця [A Site]')" title="Сховати цю картку">👁️</button>
                 <button class="fav-star-btn" data-id="mirage-t-asite-stand" onclick="toggleFavoriteCard(this, 'mirage-t-asite-stand', 'MIRAGE T: A Site — Позиція гравця', 't-asite.html')">☆</button>
             </div>
 
-            <div class="step-title">📍 КРОК 1: ПОЗИЦІЯ ГРАВЦЯ</div>
+            <div class="step-title">📍 КРОК 1: ПОЗИЦІЯ ГРАВЦЯ ДЛЯ БАЗИ</div>
             <img src="images/t-asite-1-stand.jpg" alt="Позиція гравця" class="step-img">
             <div class="step-description">СТАВАЙ ТУТ (ПРИТУЛИСЯ ДО СТІНИ)</div>
         </div>
 
         <!-- РОЗКИДКА №1 -->
-        <div class="step-card" id="mirage-t-asite-1">
+        <div class="step-card cat-base" id="mirage-t-asite-1">
             <div class="card-top-actions">
                 <button class="hide-card-btn" onclick="hideCard('mirage-t-asite-1', 'Розкидка №1 [A Site]')" title="Сховати цю розкидку">👁️</button>
                 <button class="fav-star-btn" data-id="mirage-t-asite-1" onclick="toggleFavoriteCard(this, 'mirage-t-asite-1', 'MIRAGE T: A Site — Розкидка №1', 't-asite.html')">☆</button>
@@ -70,7 +152,7 @@
         </div>
 
         <!-- РОЗКИДКА №2 -->
-        <div class="step-card" id="mirage-t-asite-2">
+        <div class="step-card cat-base" id="mirage-t-asite-2">
             <div class="card-top-actions">
                 <button class="hide-card-btn" onclick="hideCard('mirage-t-asite-2', 'Розкидка №2 [A Site]')" title="Сховати цю розкидку">👁️</button>
                 <button class="fav-star-btn" data-id="mirage-t-asite-2" onclick="toggleFavoriteCard(this, 'mirage-t-asite-2', 'MIRAGE T: A Site — Розкидка №2', 't-asite.html')">☆</button>
@@ -93,7 +175,7 @@
         </div>
 
         <!-- РОЗКИДКА №3 -->
-        <div class="step-card" id="mirage-t-asite-3">
+        <div class="step-card cat-base" id="mirage-t-asite-3">
             <div class="card-top-actions">
                 <button class="hide-card-btn" onclick="hideCard('mirage-t-asite-3', 'Розкидка №3 [A Site]')" title="Сховати цю розкидку">👁️</button>
                 <button class="fav-star-btn" data-id="mirage-t-asite-3" onclick="toggleFavoriteCard(this, 'mirage-t-asite-3', 'MIRAGE T: A Site — Розкидка №3', 't-asite.html')">☆</button>
@@ -115,11 +197,38 @@
             <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
         </div>
 
-        <div class="tip-box">
-            📌 <b>Пам'ятка для команди:</b> Наводись на приціл, натискай Jumpthrow + ЛКМ і дивись, як граната лягає ідеально в ціль!
+        <!-- ================= БЛОК 2: СМОК ДЛЯ ПРОСОЧЕННЯ ================= -->
+        <div class="section-separator sec-push">🥷 Стелс-вихід / Пуш у смок</div>
+
+        <div class="step-card cat-push" id="mirage-t-asite-push-smoke">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('mirage-t-asite-push-smoke', 'Смок під пуш в A')" title="Сховати цей смок">👁️</button>
+                <button class="fav-star-btn" data-id="mirage-t-asite-push-smoke" onclick="toggleFavoriteCard(this, 'mirage-t-asite-push-smoke', 'MIRAGE T: Смок під пуш A Site', 't-asite.html')">☆</button>
+            </div>
+
+            <div class="step-title">🌫️ СМОК ПІД ПУШ (ПРОСОЧУВАННЯ В САЙТ)</div>
+            <div class="combo-badge">🥷 ЗАНЯТТЯ ПОЗИЦІЇ: ПРОСОЧИСЯ В СМОК, ЩОБ БУТИ НЕОЧІКУВАНИМ ДЛЯ ОПОРНИКІВ</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="step-description" style="margin-bottom: 8px;">📍 СТАВАЙ ТУТ</div>
+                <img src="images/t-asite-push-stand.jpg" alt="Позиція під пуш смок" class="step-img">
+            </div>
+
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">🎯 ЦІЛЬСЯ ТУТ</div>
+                    <img src="images/t-asite-push-aim.jpg" alt="Приціл під пуш смок" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description" style="margin-bottom: 8px;">💥 ВПАДЕ ТУТ</div>
+                    <img src="images/t-asite-push-drop.jpg" alt="Результат пуш смоку" class="step-img">
+                </div>
+            </div>
+
+            <div class="action-badge">⚡ КИДОК: ЛКМ (З МІСЦЯ)</div>
         </div>
 
-        <!-- ================= БЛОК ПРИХОВАНИХ РОЗКИДОК ================= -->
+        <!-- БЛОК ПРИХОВАНИХ РОЗКИДОК -->
         <div id="hiddenSection" class="hidden-section" style="display: none;">
             <div class="hidden-section-header">
                 <h4 class="hidden-section-title">📦 Приховані розкидки (<span id="hiddenCount">0</span>)</h4>
@@ -129,6 +238,61 @@
         </div>
 
     </div>
+
+    <!-- ЛОГІКА ПЛАШОК-ФІЛЬТРІВ -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const chipAll = document.getElementById('chip-all');
+            const chipBase = document.getElementById('chip-base');
+            const chipPush = document.getElementById('chip-push');
+
+            const cardsBase = document.querySelectorAll('.cat-base');
+            const cardsPush = document.querySelectorAll('.cat-push');
+            const secBase = document.querySelector('.sec-base');
+            const secPush = document.querySelector('.sec-push');
+
+            function applyFilter(mode) {
+                [chipAll, chipBase, chipPush].forEach(c => c && c.classList.remove('active'));
+
+                const hiddenList = JSON.parse(localStorage.getItem('hiddenCards') || '[]');
+
+                function toggleList(cards, show) {
+                    cards.forEach(card => {
+                        if (hiddenList.includes(card.id)) {
+                            card.classList.add('is-hidden');
+                        } else {
+                            if (show) card.classList.remove('is-hidden');
+                            else card.classList.add('is-hidden');
+                        }
+                    });
+                }
+
+                if (mode === 'all') {
+                    if (chipAll) chipAll.classList.add('active');
+                    toggleList(cardsBase, true);
+                    toggleList(cardsPush, true);
+                    if (secBase) secBase.classList.remove('is-hidden');
+                    if (secPush) secPush.classList.remove('is-hidden');
+                } else if (mode === 'base') {
+                    if (chipBase) chipBase.classList.add('active');
+                    toggleList(cardsBase, true);
+                    toggleList(cardsPush, false);
+                    if (secBase) secBase.classList.remove('is-hidden');
+                    if (secPush) secPush.classList.add('is-hidden');
+                } else if (mode === 'push') {
+                    if (chipPush) chipPush.classList.add('active');
+                    toggleList(cardsBase, false);
+                    toggleList(cardsPush, true);
+                    if (secBase) secBase.classList.add('is-hidden');
+                    if (secPush) secPush.classList.remove('is-hidden');
+                }
+            }
+
+            if (chipAll) chipAll.addEventListener('click', () => applyFilter('all'));
+            if (chipBase) chipBase.addEventListener('click', () => applyFilter('base'));
+            if (chipPush) chipPush.addEventListener('click', () => applyFilter('push'));
+        });
+    </script>
 
     <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
     <script src="favorites.js"></script>

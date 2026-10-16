@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANCIENT — CT MID ІНСТА-СМОКИ</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <style>
+        .guide-container {
+            max-width: 950px;
+            margin: 20px auto 50px auto;
+            padding: 0 15px;
+        }
+
+        /* Головна картка-контейнер для всієї позиції */
+        .step-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        /* Кнопки "Приховати" та "Обране" зверху картки */
+        .card-top-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .hide-card-btn, .fav-star-btn {
+            background: #1f2433;
+            border: 1px solid #2e354b;
+            color: #a0a5b5;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .hide-card-btn:hover {
+            background: #ff4655;
+            color: #fff;
+            border-color: #ff4655;
+        }
+
+        .fav-star-btn:hover, .fav-star-btn.active {
+            background: #ffd700;
+            color: #0d0e12;
+            border-color: #ffd700;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #4b69ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-right: 80px; /* Щоб заголовок не наїжджав на кнопки */
+            text-transform: uppercase;
+        }
+
+        .img-card {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #232733;
+            background: #0f1117;
+            position: relative;
+            margin-top: 15px;
+        }
+
+        .img-card img {
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .img-card img:hover {
+            opacity: 0.95;
+        }
+
+        /* Кнопки вибору спавнів */
+        .spawns-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 15px 0 15px 0;
+            justify-content: center;
+        }
+
+        .spawn-btn {
+            background: #181b26;
+            border: 1px solid #2f364a;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spawn-btn:hover {
+            border-color: #4b69ff;
+            transform: translateY(-2px);
+            background: #202638;
+        }
+
+        .spawn-btn.active {
+            background: #4b69ff;
+            border-color: #4b69ff;
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(75, 105, 255, 0.4);
+        }
+
+        /* Плашка кидка */
+        .throw-badge-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: rgba(75, 105, 255, 0.08);
+            border: 1px solid rgba(75, 105, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 15px;
+        }
+
+        .throw-keys {
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 800;
+            color: #00e676;
+            background: #0d121d;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .spawn-view {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .spawn-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .is-hidden {
+            display: none !important;
+        }
+
+        /* Стилі для блоку відновлення прихованих карток внизу */
+        .hidden-section {
+            background: #101218;
+            border: 1px dashed #2f364a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .hidden-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .hidden-section-title {
+            color: #8fa0c7;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .restore-all-btn {
+            background: #1f2433;
+            border: 1px solid #2e354b;
+            color: #00e676;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .restore-all-btn:hover {
+            background: #00e676;
+            color: #0d0e12;
+            border-color: #00e676;
+        }
+
+        .hidden-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="ancient-ct-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title" style="color: #4b69ff;">ANCIENT — CT MID РОЗКИД</div>
+
+    <div class="guide-container">
+
+        <div class="tip-box">
+            📍 Натискай на картинку, щоб відкрити її на весь екран. Зірочка додає позицію в «Мій раунд», а око ховає її вниз із можливістю відновлення.
+        </div>
+
+        <!-- ЄДИНИЙ ОБ'ЄКТ ВСІЄЇ ПОЗИЦІЇ НА ANCIENT CT MID -->
+        <div class="step-card" id="ancient-ct-mid-guide">
+            
+            <!-- Кнопки керування (Око та Зірочка) -->
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('ancient-ct-mid-guide', 'Ancient CT Mid — Інста-смоки по спавнах')" title="Сховати цю позицію">👁️</button>
+                <button class="fav-star-btn" data-id="ancient-ct-mid-guide" onclick="toggleFavoriteCard(this, 'ancient-ct-mid-guide', 'ANCIENT CT: Mid Інста-смоки', 'ancient-ct-mid.html')">☆</button>
+            </div>
+
+            <div class="section-title">
+                <span>🛡️ ANCIENT CT MID: ІНСТА-СМОКИ ПО СПАВНАХ (1–5)</span>
+            </div>
+
+            <!-- 1. ЗАГАЛЬНА КАРТИНКА ЗІ СПАВНАМИ -->
+            <div style="font-size: 13.5px; font-weight: 700; color: #a0a5b5; margin-bottom: 8px; text-transform: uppercase;">
+                🎯 Позначення точок спавну на карті:
+            </div>
+            <div class="img-card" style="margin-bottom: 20px;">
+                <img src="images/ancient-ct-mid-spawns.jpg" alt="Позначення спавнів CT Mid" class="step-img">
+            </div>
+
+            <!-- 2. ІНТЕРАКТИВНИЙ ВИБІР СПАВНУ -->
+            <div style="font-size: 13.5px; font-weight: 700; color: #fff; margin-bottom: 10px; text-transform: uppercase;">
+                📍 Оберіть свій спавн для перегляду кидка:
+            </div>
+
+            <!-- Кнопки швидкого перемикання -->
+            <div class="spawns-nav">
+                <button type="button" class="spawn-btn active" onclick="showSpawn(1, this)">Спавн 1</button>
+                <button type="button" class="spawn-btn" onclick="showSpawn(2, this)">Спавн 2</button>
+                <button type="button" class="spawn-btn" onclick="showSpawn(3, this)">Спавн 3</button>
+                <button type="button" class="spawn-btn" onclick="showSpawn(4, this)">Спавн 4</button>
+                <button type="button" class="spawn-btn" onclick="showSpawn(5, this)">Спавн 5</button>
+            </div>
+
+            <!-- ТИП КИДКА -->
+            <div class="throw-badge-container">
+                <span style="font-size: 14px; font-weight: 700; color: #fff;">Тип кидка для всіх спавнів:</span>
+                <span class="throw-keys">⌨️ SHIFT + W + JUMPTHROW + LKM</span>
+            </div>
+
+            <!-- СПАВН 1 -->
+            <div id="spawn-content-1" class="spawn-view active">
+                <div class="img-card">
+                    <img src="images/ancient-ct-mid-spawn1.jpg" alt="Приціл для спавну 1" class="step-img">
+                </div>
+            </div>
+
+            <!-- СПАВН 2 -->
+            <div id="spawn-content-2" class="spawn-view">
+                <div class="img-card">
+                    <img src="images/ancient-ct-mid-spawn2.jpg" alt="Приціл для спавну 2" class="step-img">
+                </div>
+            </div>
+
+            <!-- СПАВН 3 -->
+            <div id="spawn-content-3" class="spawn-view">
+                <div class="img-card">
+                    <img src="images/ancient-ct-mid-spawn3.jpg" alt="Приціл для спавну 3" class="step-img">
+                </div>
+            </div>
+
+            <!-- СПАВН 4 -->
+            <div id="spawn-content-4" class="spawn-view">
+                <div class="img-card">
+                    <img src="images/ancient-ct-mid-spawn4.jpg" alt="Приціл для спавну 4" class="step-img">
+                </div>
+            </div>
+
+            <!-- СПАВН 5 -->
+            <div id="spawn-content-5" class="spawn-view">
+                <div class="img-card">
+                    <img src="images/ancient-ct-mid-spawn5.jpg" alt="Приціл для спавну 5" class="step-img">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- БЛОК ПРИХОВАНИХ КАРТОК (ЗІСКОКУЄ ВНИЗ) -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані позиції (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
+        </div>
+
+    </div>
+
+    <!-- СКРИПТИ -->
+    <script src="favorites.js"></script>
+    <script src="gallery.js"></script>
+    <script>
+        function showSpawn(number, btn) {
+            document.querySelectorAll('.spawn-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.spawn-view').forEach(v => v.classList.remove('active'));
+
+            btn.classList.add('active');
+            const target = document.getElementById(`spawn-content-${number}`);
+            if (target) {
+                target.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

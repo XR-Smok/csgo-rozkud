@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DUST II — ТЕРОРИСТИ (T)</title>
+    <title>DUST II — ТЕРОРИСТИ (T) 💣</title>
     <link rel="stylesheet" href="style.css?v=6">
     <style>
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
         }
 
         .card-link {
@@ -20,42 +21,66 @@
             display: block;
         }
 
-        .side-card {
+        .map-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            box-sizing: border-box;
-            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .side-card img {
+        .map-card-img-wrapper {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            height: 190px;
+            overflow: hidden;
+            background: #181b24;
         }
 
-        @media (max-width: 850px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            .side-card img {
-                height: 240px;
-            }
+        .map-card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .map-title {
+            padding: 15px 10px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0;
+            background: #14161d;
+            letter-spacing: 0.5px;
+            transition: color 0.25s ease;
+        }
+
+        .card-link:hover .map-card {
+            border-color: #ff9800;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 22px rgba(255, 152, 0, 0.25);
+        }
+
+        .card-link:hover img {
+            transform: scale(1.06);
+        }
+
+        .card-link:hover .map-title {
+            color: #ff9800;
         }
     </style>
 </head>
 <body>
 
-    <!-- РОЗУМНА КНОПКА НАЗАД -->
+    <!-- КНОПКА НАЗАД -->
     <a href="dust2.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
 
-    <div class="header-title">DUST II — ТЕРОРИСТИ (T)</div>
+    <div class="header-title">DUST II — ТАКТИКИ (T) 💣</div>
 
-    <div class="guide-container" style="max-width: 1200px;">
+    <div class="guide-container" style="max-width: 1100px; display: block !important;">
 
         <div class="tip-box">
             📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
@@ -63,37 +88,49 @@
 
         <div class="cards-grid">
 
-            <!-- 1. РОЗКИД B -->
+            <!-- 1. B SITE -->
             <a href="dust2-t-b.html" class="card-link">
-                <div class="step-card side-card">
-                    <img src="images/dust2-t-b.jpg" alt="Розкид B" class="step-img">
-                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД B</div>
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <img src="images/dust2-t-b.jpg" alt="B Site">
+                    </div>
+                    <div class="map-title">💣 B Site</div>
                 </div>
             </a>
 
-            <!-- 2. РОЗКИД MID -->
+            <!-- 2. SHORT -->
+            <a href="dust2-t-short.html" class="card-link">
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <img src="images/dust2-t-short-smokes-drop.jpg" alt="Short">
+                    </div>
+                    <div class="map-title">🎯 Short</div>
+                </div>
+            </a>
+
+            <!-- 3. MID -->
             <a href="dust2-t-mid.html" class="card-link">
-                <div class="step-card side-card">
-                    <img src="images/dust2-t-mid.jpg" alt="Розкид Mid" class="step-img">
-                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД MID</div>
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <img src="images/dust2-t-mid.jpg" alt="Mid">
+                    </div>
+                    <div class="map-title">⚔️ Mid</div>
                 </div>
             </a>
 
-            <!-- 3. РОЗКИД LONG -->
+            <!-- 4. LONG -->
             <a href="dust2-t-long.html" class="card-link">
-                <div class="step-card side-card">
-                    <img src="images/dust2-t-long.jpg" alt="Розкид Long" class="step-img">
-                    <div class="step-title" style="margin-bottom: 0;">РОЗКИД LONG</div>
+                <div class="map-card">
+                    <div class="map-card-img-wrapper">
+                        <img src="images/dust2-t-long.jpg" alt="Long">
+                    </div>
+                    <div class="map-title">🛡️ Long</div>
                 </div>
             </a>
 
         </div>
 
     </div>
-
-    <!-- ПІДКЛЮЧЕННЯ СКРИПТІВ -->
-    <script src="favorites.js"></script>
-    <script src="gallery.js"></script>
 
 </body>
 </html>

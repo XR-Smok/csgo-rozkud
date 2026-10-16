@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INFERNO — B SITE РОЗКИД 💣</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <style>
+        .grid-2-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2-col {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Фільтри зверху */
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .filter-bar::-webkit-scrollbar { display: none; }
+
+        .filter-chip {
+            background: #14161d;
+            border: 1px solid #232733;
+            color: #8fa0c7;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-chip:hover {
+            border-color: #ff4655;
+            color: #ffffff;
+        }
+
+        .filter-chip.active {
+            background: #ff4655 !important;
+            border-color: #ff4655 !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 15px rgba(255, 70, 85, 0.4);
+        }
+
+        /* Перемикач варіацій (для першого смоку) */
+        .var-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .var-btn {
+            background: #181b26;
+            border: 1px solid #2f364a;
+            color: #a0a5b5;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .var-btn:hover {
+            border-color: #ff4655;
+            color: #fff;
+        }
+
+        .var-btn.active {
+            background: #ff4655;
+            border-color: #ff4655;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 70, 85, 0.4);
+        }
+
+        .var-content {
+            display: none;
+        }
+        .var-content.active {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Головні картки-контейнери */
+        .step-card {
+            background: #14161d;
+            border: 1px solid #232733;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .card-top-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .hide-card-btn, .fav-star-btn {
+            background: #1f2433;
+            border: 1px solid #2e354b;
+            color: #a0a5b5;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .hide-card-btn:hover {
+            background: #ff4655;
+            color: #fff;
+            border-color: #ff4655;
+        }
+
+        .fav-star-btn:hover, .fav-star-btn.active {
+            background: #ffd700;
+            color: #0d0e12;
+            border-color: #ffd700;
+        }
+
+        .step-title {
+            color: #ff4655;
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding-right: 80px;
+        }
+
+        .step-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #232733;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .step-img:hover {
+            opacity: 0.95;
+        }
+
+        .step-description {
+            color: #a0a5b5;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 8px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .action-badge {
+            background: rgba(255, 70, 85, 0.12);
+            border: 1px solid #ff4655;
+            color: #ff808a;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .is-hidden {
+            display: none !important;
+        }
+
+        /* Блок відновлення прихованих карток */
+        .hidden-section {
+            background: #101218;
+            border: 1px dashed #2f364a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .hidden-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .hidden-section-title {
+            color: #8fa0c7;
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .restore-all-btn {
+            background: #1f2433;
+            border: 1px solid #2e354b;
+            color: #00e676;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .restore-all-btn:hover {
+            background: #00e676;
+            color: #0d0e12;
+            border-color: #00e676;
+        }
+
+        .hidden-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="inferno-t-side.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title" style="color: #ff4655;">INFERNO — B SITE РОЗКИД 💣</div>
+
+    <div class="guide-container" style="max-width: 1000px;">
+
+        <div class="tip-box">
+            📍 Використовуй фільтри зверху для вибору гранат. Зірочка додає в «Мій раунд», око ховає картку вниз.
+        </div>
+
+        <!-- ФІЛЬТРИ ЗВЕРХУ -->
+        <div class="filter-bar">
+            <button class="filter-chip active" id="chip-all" type="button">🔥 Всі розкидки</button>
+            <button class="filter-chip" id="chip-smoke" type="button">☁️ Смоки</button>
+            <button class="filter-chip" id="chip-molly" type="button">🔥 Молотові</button>
+            <button class="filter-chip" id="chip-flash" type="button">⚡ Флешки</button>
+        </div>
+
+        <!-- ================= 1. СМОК №1 (ІЗ ДВОМА ВАРІАЦІЯМИ) ================= -->
+        <div class="step-card cat-smoke" id="inferno-b-smoke1">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('inferno-b-smoke1', 'Смок №1 [Inferno B]')" title="Сховати">👁️</button>
+                <button class="fav-star-btn" data-id="inferno-b-smoke1" onclick="toggleFavoriteCard(this, 'inferno-b-smoke1', 'INFERNO T: Смок №1 на B', 'inferno-t-b.html')">☆</button>
+            </div>
+
+            <div class="step-title">☁️ СМОК №1 НА B SITE (ДВІ ВАРІАЦІЇ)</div>
+
+            <!-- Кнопки перемикання варіацій -->
+            <div class="var-nav">
+                <button type="button" class="var-btn active" onclick="switchSmokeVar(1, this)">Варіація 1</button>
+                <button type="button" class="var-btn" onclick="switchSmokeVar(2, this)">Варіація 2</button>
+            </div>
+
+            <!-- ВАРІАЦІЯ 1 -->
+            <div id="smoke-var-1" class="var-content active">
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description">📍 Ставай тут (Вар. 1)</div>
+                        <img src="images/inferno-b-smoke1-var1-stand.jpg" alt="Ставай тут вар 1" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description">🎯 Цілься тут (Вар. 1)</div>
+                        <img src="images/inferno-b-smoke1-var1-aim.jpg" alt="Цілься тут вар 1" class="step-img">
+                    </div>
+                </div>
+                <div class="action-badge">⚡ КИДОК: ЛКМ</div>
+            </div>
+
+            <!-- ВАРІАЦІЯ 2 -->
+            <div id="smoke-var-2" class="var-content">
+                <div class="grid-2-col">
+                    <div>
+                        <div class="step-description">📍 Ставай тут (Вар. 2)</div>
+                        <img src="images/inferno-b-smoke1-var2-stand.jpg" alt="Ставай тут вар 2" class="step-img">
+                    </div>
+                    <div>
+                        <div class="step-description">🎯 Цілься тут (Вар. 2)</div>
+                        <img src="images/inferno-b-smoke1-var2-aim.jpg" alt="Цілься тут вар 2" class="step-img">
+                    </div>
+                </div>
+                <div class="action-badge">⚡ КИДОК: CTRL + W + JUMPTHROW + ЛКМ</div>
+            </div>
+
+            <!-- РЕЗУЛЬТАТ ДЛЯ ПЕРШОГО СМОКУ -->
+            <div style="margin-top: 15px; border-top: 1px solid #232733; padding-top: 15px;">
+                <div class="step-description">💥 Впаде тут (Результат)</div>
+                <img src="images/inferno-b-smoke1-drop.jpg" alt="Впаде тут" class="step-img">
+            </div>
+        </div>
+
+        <!-- ================= 2. СМОК №2 ================= -->
+        <div class="step-card cat-smoke" id="inferno-b-smoke2">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('inferno-b-smoke2', 'Смок №2 [Inferno B]')" title="Сховати">👁️</button>
+                <button class="fav-star-btn" data-id="inferno-b-smoke2" onclick="toggleFavoriteCard(this, 'inferno-b-smoke2', 'INFERNO T: Смок №2 на B', 'inferno-t-b.html')">☆</button>
+            </div>
+
+            <div class="step-title">☁️ СМОК №2 НА B SITE</div>
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description">📍 Ставай тут</div>
+                    <img src="images/inferno-b-smoke2-stand.jpg" alt="Ставай тут" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description">🎯 Цілься тут</div>
+                    <img src="images/inferno-b-smoke2-aim.jpg" alt="Цілься тут" class="step-img">
+                </div>
+            </div>
+            <div class="action-badge">⚡ КИДОК: W + JUMPTHROW + ЛКМ + ПКМ (З ДВОХ КЛАВІШ)</div>
+            <div style="margin-top: 15px;">
+                <div class="step-description">💥 Впаде тут</div>
+                <img src="images/inferno-b-smoke2-drop.jpg" alt="Впаде тут" class="step-img">
+            </div>
+        </div>
+
+        <!-- ================= 3. МОЛОТОВИ НА БАШНЮ ================= -->
+        <div class="step-card cat-molly" id="inferno-b-molly">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('inferno-b-molly', 'Молотові [Inferno B]')" title="Сховати">👁️</button>
+                <button class="fav-star-btn" data-id="inferno-b-molly" onclick="toggleFavoriteCard(this, 'inferno-b-molly', 'INFERNO T: Молотові на B', 'inferno-t-b.html')">☆</button>
+            </div>
+
+            <div class="step-title">🔥 МОЛОТОВИ НА БАШНЮ (СИНХРОННО)</div>
+            <div style="margin-bottom: 15px;">
+                <div class="step-description">📍 Ставай тут</div>
+                <img src="images/inferno-b-molly-stand.jpg" alt="Позиція молотова" class="step-img">
+            </div>
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description">🎯 Цілься в 1-у точку</div>
+                    <img src="images/inferno-b-molly-aim1.jpg" alt="Приціл 1" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description">🎯 Цілься в 2-у точку</div>
+                    <img src="images/inferno-b-molly-aim2.jpg" alt="Приціл 2" class="step-img">
+                </div>
+            </div>
+            <div class="action-badge">⚡ КИДОК: ЛКМ</div>
+            <div style="margin-top: 15px;">
+                <div class="step-description">💥 Впаде тут</div>
+                <img src="images/inferno-b-molly-drop.jpg" alt="Впаде тут" class="step-img">
+            </div>
+        </div>
+
+        <!-- ================= 4. ФЛЕШКА ================= -->
+        <div class="step-card cat-flash" id="inferno-b-flash">
+            <div class="card-top-actions">
+                <button class="hide-card-btn" onclick="hideCard('inferno-b-flash', 'Флешка [Inferno B]')" title="Сховати">👁️</button>
+                <button class="fav-star-btn" data-id="inferno-b-flash" onclick="toggleFavoriteCard(this, 'inferno-b-flash', 'INFERNO T: Флешка на B', 'inferno-t-b.html')">☆</button>
+            </div>
+
+            <div class="step-title">⚡ ФЛЕШКА НА B SITE</div>
+            <div class="grid-2-col">
+                <div>
+                    <div class="step-description">📍 Ставай тут </div>
+                    <img src="images/inferno-b-flash-aim.jpg" alt="Флешка цілься" class="step-img">
+                </div>
+                <div>
+                    <div class="step-description">💥 Цілься тут </div>
+                    <img src="images/inferno-b-flash-drop.jpg" alt="Флешка результат" class="step-img">
+                </div>
+            </div>
+            <div class="action-badge">⚡ КИДОК: JUMPTHROW + ЛКМ</div>
+        </div>
+
+        <!-- БЛОК ПРИХОВАНИХ КАРТОК (ЗІСКОКУЄ ВНИЗ) -->
+        <div id="hiddenSection" class="hidden-section" style="display: none;">
+            <div class="hidden-section-header">
+                <h4 class="hidden-section-title">📦 Приховані позиції (<span id="hiddenCount">0</span>)</h4>
+                <button onclick="restoreAllCards()" class="restore-all-btn">Повернути всі</button>
+            </div>
+            <div id="hiddenList" class="hidden-list"></div>
+        </div>
+
+    </div>
+
+    <!-- СКРИПТИ ТА ЛОГІКА -->
+    <script>
+        function switchSmokeVar(varNum, btn) {
+            const card = btn.closest('.step-card');
+            card.querySelectorAll('.var-btn').forEach(b => b.classList.remove('active'));
+            card.querySelectorAll('.var-content').forEach(c => c.classList.remove('active'));
+
+            btn.classList.add('active');
+            const target = card.querySelector(`#smoke-var-${varNum}`);
+            if (target) target.classList.add('active');
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const chipAll = document.getElementById('chip-all');
+            const chipSmoke = document.getElementById('chip-smoke');
+            const chipMolly = document.getElementById('chip-molly');
+            const chipFlash = document.getElementById('chip-flash');
+
+            const cardsSmoke = document.querySelectorAll('.cat-smoke');
+            const cardsMolly = document.querySelectorAll('.cat-molly');
+            const cardsFlash = document.querySelectorAll('.cat-flash');
+
+            function applyFilter(mode) {
+                [chipAll, chipSmoke, chipMolly, chipFlash].forEach(c => c && c.classList.remove('active'));
+                const hiddenList = JSON.parse(localStorage.getItem('hiddenCards') || '[]');
+
+                function toggleList(cards, show) {
+                    cards.forEach(card => {
+                        if (hiddenList.includes(card.id)) {
+                            card.classList.add('is-hidden');
+                        } else {
+                            if (show) card.classList.remove('is-hidden');
+                            else card.classList.add('is-hidden');
+                        }
+                    });
+                }
+
+                if (mode === 'all') {
+                    if (chipAll) chipAll.classList.add('active');
+                    toggleList(cardsSmoke, true);
+                    toggleList(cardsMolly, true);
+                    toggleList(cardsFlash, true);
+                } else if (mode === 'smoke') {
+                    if (chipSmoke) chipSmoke.classList.add('active');
+                    toggleList(cardsSmoke, true);
+                    toggleList(cardsMolly, false);
+                    toggleList(cardsFlash, false);
+                } else if (mode === 'molly') {
+                    if (chipMolly) chipMolly.classList.add('active');
+                    toggleList(cardsSmoke, false);
+                    toggleList(cardsMolly, true);
+                    toggleList(cardsFlash, false);
+                } else if (mode === 'flash') {
+                    if (chipFlash) chipFlash.classList.add('active');
+                    toggleList(cardsSmoke, false);
+                    toggleList(cardsMolly, false);
+                    toggleList(cardsFlash, true);
+                }
+            }
+
+            if (chipAll) chipAll.addEventListener('click', () => applyFilter('all'));
+            if (chipSmoke) chipSmoke.addEventListener('click', () => applyFilter('smoke'));
+            if (chipMolly) chipMolly.addEventListener('click', () => applyFilter('molly'));
+            if (chipFlash) chipFlash.addEventListener('click', () => applyFilter('flash'));
+        });
+    </script>
+
+    <script src="favorites.js"></script>
+    <script src="gallery.js"></script>
+
+</body>
+</html>

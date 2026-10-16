@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANUBIS — Т ПОЗИЦІЇ</title>
+    <link rel="stylesheet" href="style.css?v=6">
+    <style>
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        /* Т СТИЛІ КАРТОК */
+        .t-card {
+            border: 1px solid #232733;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #14161d;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .t-card:hover {
+            border-color: #ff4655;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 70, 85, 0.25);
+        }
+
+        .map-card-img-wrapper {
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            background: #181b24;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .map-card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .map-title {
+            padding: 14px 10px;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            margin: 0;
+            background: #14161d;
+            letter-spacing: 0.5px;
+        }
+
+        /* ЗАБЛОКОВАНІ ПОЗИЦІЇ (СКОРО) */
+        .card-link.disabled {
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .card-link.disabled .t-card {
+            opacity: 0.45;
+            filter: grayscale(80%);
+            border-color: #1f232d;
+        }
+
+        .lock-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 17, 23, 0.92);
+            border: 1px solid #ff4b4b;
+            color: #ff7b7b;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .badge-active {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 230, 118, 0.2);
+            border: 1px solid #00e676;
+            color: #00e676;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- КНОПКА НАЗАД -->
+    <a href="anubis.html" class="back-btn" onclick="if(history.length > 1){ history.back(); return false; }">← НАЗАД</a>
+
+    <div class="header-title" style="color: #ff4655;">ANUBIS — Т ТАКТИКИ 🔥</div>
+
+    <div class="guide-container" style="max-width: 1100px; display: block !important;">
+
+        <div class="tip-box">
+            📍 <b>Порада для телефонів:</b> Щоб бачити сторінку точно так само, як на комп'ютері, відкрий меню браузера (3 крапки) та постав галочку «Версія для комп'ютера».
+        </div>
+
+        <div class="cards-grid">
+
+            <!-- 1. B SITE (АКТИВНИЙ) -->
+            <a href="anubis-t-b.html" class="card-link">
+                <div class="map-card t-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="badge-active">🟢 Активно</span>
+                        <img src="images/anubis-t-b.jpg" alt="B Site">
+                    </div>
+                    <div class="map-title">💣 B Site</div>
+                </div>
+            </a>
+
+            <!-- 2. MID (ЗАБЛОКОВАНИЙ) -->
+            <a href="#" class="card-link disabled">
+                <div class="map-card t-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="lock-badge">🔒 Скоро</span>
+                        <img src="images/anubis-t-mid.jpg" alt="Mid">
+                    </div>
+                    <div class="map-title">⚔️ Mid</div>
+                </div>
+            </a>
+
+            <!-- 3. WATER (ЗАБЛОКОВАНИЙ) -->
+            <a href="#" class="card-link disabled">
+                <div class="map-card t-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="lock-badge">🔒 Скоро</span>
+                        <img src="images/anubis-t-water.jpg" alt="Water">
+                    </div>
+                    <div class="map-title">🌊 Water</div>
+                </div>
+            </a>
+
+            <!-- 4. A SITE (ЗАБЛОКОВАНИЙ) -->
+            <a href="#" class="card-link disabled">
+                <div class="map-card t-card">
+                    <div class="map-card-img-wrapper">
+                        <span class="lock-badge">🔒 Скоро</span>
+                        <img src="images/anubis-t-a.jpg" alt="A Site">
+                    </div>
+                    <div class="map-title">🏛️ A Site</div>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
